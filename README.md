@@ -18,14 +18,12 @@ The module handles the following components:
 
 These components make up the `private_cert` secrets type. The module also signs the intermediate certificate authority (CA) when the engine is created.
 
-:information_source: **Tip:** The [Secrets Manager module](https://github.ibm.com/GoldenEye/secrets-manager-module) provides automation to create a Secret Manager instance.
-
 ## Usage
 
 ```hcl
 # Replace "master" with a GIT release version to lock into a specific release
 module "private_secret_engine" {
-  source                    = "git::ssh://github.ibm.com/GoldenEye/secrets-manager-private-cert-engine-module.git?ref=master"
+  source                    = "git::https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine?ref=main"
   secrets_manager_guid      = "<secrets_manager_instance_id>"
   region                    = "us-south"
   root_ca_name              = "My Root CA"
@@ -43,8 +41,6 @@ You need the following permissions to run this module.
     - **Secrets Manager** service
         - `Administrator` platform access
         - `Manager` service access
-
-For more information about the access you need to run all the GoldenEye modules, see [GoldenEye IAM permissions](https://github.ibm.com/GoldenEye/documentation/blob/master/goldeneye-iam-permissions.md).
 
 <!-- BEGIN EXAMPLES HOOK -->
 ## Examples
@@ -144,6 +140,5 @@ No modules.
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-<!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
-## Developing
-To set up your local development environment, see steps [here](https://github.ibm.com/GoldenEye/documentation/blob/master/local-dev-setup.md)
+<!-- BEGIN CONTRIBUTING HOOK -->
+<!-- END CONTRIBUTING HOOK -->
