@@ -8,10 +8,9 @@ module "resource_group" {
 resource "ibm_resource_instance" "secrets_manager" {
   name              = "${var.prefix}-secrets-manager"
   service           = "secrets-manager"
-  plan              = var.sm_service_plan
+  plan              = "trial"
   location          = var.region
-  tags = var.resource_tags
-  sm_service_plan      = "trial"
+  tags              = var.resource_tags
   resource_group_id = module.resource_group.resource_group_id
   timeouts {
     create = "20m" # Extending provisioning time to 20 minutes

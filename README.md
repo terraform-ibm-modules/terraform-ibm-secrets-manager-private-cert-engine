@@ -1,11 +1,12 @@
 # Secrets Manager Private Certificates Secrets Engine module
 
-<!-- UPDATE BADGES:
-1. Make sure that the badge link for the current status of the module is correct. For the status options, see https://github.ibm.com/GoldenEye/documentation/blob/master/status.md.
-2. Update the "Build Status" badge to point to the travis pipeline for the module. Replace "module-template" in two places.
-3. Update the "latest release" badge to point to the new module. Replace "module-template" in two places.
--->
-[![Stable](https://img.shields.io/badge/Status-Stable%20(Adopted)-yellowgreen?style=plastic)](https://github.ibm.com/GoldenEye/documentation/blob/master/status.md) [![CI](https://img.shields.io/badge/CI-Toolchain%20Tekton%20Pipeline-3662FF?logo=ibm)](https://cloud.ibm.com/devops/toolchains/c3916535-165a-4275-9b1f-c58575839951?env_id=ibm:yp:us-south) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![latest release](https://shields-server.m03l6u0cqkx.eu-de.codeengine.appdomain.cloud/github/v/release/GoldenEye/secrets-manager-private-cert-engine-module?logo=GitHub)](https://github.ibm.com/GoldenEye/secrets-manager-private-cert-engine-module/releases/latest)
+<!-- UPDATE BADGE: Update the link for the following badge-->
+[![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
+[![Build status](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/actions/workflows/ci.yml)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/releases/latest)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 This module configures a private certificates engine for a Secrets Manager instance. For more information about enabling Secrets Manager for private certificates, see [Preparing to create private certificates](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates).
 
