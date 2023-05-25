@@ -5,18 +5,22 @@ module "resource_group" {
   existing_resource_group_name = var.resource_group
 }
 
-module "secrets_manager" {
-  source               = "git::https://github.ibm.com/GoldenEye/secrets-manager-module.git?ref=3.0.0"
-  resource_group_id    = module.resource_group.resource_group_id
-  region               = var.region
-  secrets_manager_name = "${var.prefix}-secrets-manager" #tfsec:ignore:general-secrets-no-plaintext-exposure
+resource "ibm_resource_instance" "secrets_manager" {
+  name              = "${var.prefix}-secrets-manager"
+  service           = "secrets-manager"
+  plan              = var.sm_service_plan
+  location          = var.region
+  tags = var.resource_tags
   sm_service_plan      = "trial"
-  sm_tags              = var.resource_tags
+  resource_group_id = module.resource_group.resource_group_id
+  timeouts {
+    create = "20m" # Extending provisioning time to 20 minutes
+  }
 }
 
 module "private_secret_engine" {
   source                    = "../.."
-  secrets_manager_guid      = module.secrets_manager.secrets_manager_guid
+  secrets_manager_guid      = ibm_resource_instance.secrets_manager.guid
   region                    = var.region
   root_ca_name              = var.root_ca_name
   root_ca_common_name       = "cloud.ibm.com"
