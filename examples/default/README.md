@@ -1,8 +1,6 @@
-# Default example
+# Example with Secrets Manager and the private certificates engine
 
-An end-to-end example that uses the module's default variable values.
-This example uses the IBM Cloud terraform provider to:
- - Create a new resource group if one is not passed in.
- - Create a new Cloud Object Storage instance.
+This example handles the following tasks:
 
-<!-- Add your example and link to it from the module's main readme file. -->
+- Creates a Secrets Manager instance
+- Configures a `private_cert` secret type in the Secrets Manager instance
