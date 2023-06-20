@@ -22,7 +22,8 @@ These components make up the `private_cert` secrets type. The module also signs 
 ```hcl
 # Replace "main" with a GIT release version to lock into a specific release
 module "private_secret_engine" {
-  source                    = "git::https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine?ref=main"
+  source  = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
+  version = "latest" # Replace "latest" with a release version to lock into a specific release
   secrets_manager_guid      = "<secrets_manager_instance_id>"
   region                    = "us-south"
   root_ca_name              = "My Root CA"
