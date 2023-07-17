@@ -188,7 +188,6 @@
         "filename": "variables.tf",
         "line": 400
       },
-      "immutable": true,
       "computed": true
     },
     "intermediate_ca_signing_method": {
@@ -520,7 +519,6 @@
         "filename": "variables.tf",
         "line": 328
       },
-      "immutable": true,
       "computed": true
     },
     "secrets_manager_guid": {
@@ -875,7 +873,8 @@
         "filename": "variables.tf",
         "line": 641
       },
-      "computed": true
+      "computed": true,
+      "deprecated": "This field is deprecated."
     },
     "template_server_flag": {
       "name": "template_server_flag",
