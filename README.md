@@ -49,18 +49,18 @@ You need the following permissions to run this module.
 <!-- END EXAMPLES HOOK -->
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
+### Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.51.0 |
 
-## Modules
+### Modules
 
 No modules.
 
-## Resources
+### Resources
 
 | Name | Type |
 |------|------|
@@ -68,7 +68,7 @@ No modules.
 | [ibm_sm_private_certificate_configuration_root_ca.private_certificate_root_ca](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/sm_private_certificate_configuration_root_ca) | resource |
 | [ibm_sm_private_certificate_configuration_template.certificate_template](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/sm_private_certificate_configuration_template) | resource |
 
-## Inputs
+### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -135,7 +135,7 @@ No modules.
 | <a name="input_ttl"></a> [ttl](#input\_ttl) | Optional, Time-to-live (TTL) to assign to a private certificate | `string` | `null` | no |
 | <a name="input_uri_sans"></a> [uri\_sans](#input\_uri\_sans) | Optional, URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list | `string` | `null` | no |
 
-## Outputs
+### Outputs
 
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
