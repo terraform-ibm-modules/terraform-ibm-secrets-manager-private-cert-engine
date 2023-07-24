@@ -12,7 +12,6 @@ resource "ibm_sm_private_certificate_configuration_root_ca" "private_certificate
   crl_disable                       = var.root_ca_crl_disable
   crl_distribution_points_encoded   = var.root_ca_crl_distribution_points_encoded
   issuing_certificates_urls_encoded = var.root_ca_issuing_certificates_urls_encoded
-  serial_number                     = var.root_ca_serial_number
   alt_names                         = var.alt_names
   ip_sans                           = var.ip_sans
   uri_sans                          = var.uri_sans
@@ -43,7 +42,6 @@ resource "ibm_sm_private_certificate_configuration_intermediate_ca" "intermediat
   crl_expiry                        = var.intermediate_ca_crl_expiry
   crl_distribution_points_encoded   = var.intermediate_ca_crl_distribution_points_encoded
   issuing_certificates_urls_encoded = var.intermediate_ca_issuing_certificates_urls_encoded
-  serial_number                     = var.intermediate_ca_serial_number
   alt_names                         = var.alt_names
   ip_sans                           = var.ip_sans
   uri_sans                          = var.uri_sans

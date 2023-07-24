@@ -54,7 +54,7 @@ You need the following permissions to run this module.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.51.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.55.0 |
 
 ### Modules
 
@@ -84,7 +84,6 @@ No modules.
 | <a name="input_intermediate_ca_issuing_certificates_urls_encoded"></a> [intermediate\_ca\_issuing\_certificates\_urls\_encoded](#input\_intermediate\_ca\_issuing\_certificates\_urls\_encoded) | issuing\_certificates\_urls\_encoded flag for the intermediate CA | `bool` | `true` | no |
 | <a name="input_intermediate_ca_max_ttl"></a> [intermediate\_ca\_max\_ttl](#input\_intermediate\_ca\_max\_ttl) | for the intermediate CA | `string` | `"26300h"` | no |
 | <a name="input_intermediate_ca_name"></a> [intermediate\_ca\_name](#input\_intermediate\_ca\_name) | Name of the Intermediate CA to create for a private\_cert secret engine | `string` | n/a | yes |
-| <a name="input_intermediate_ca_serial_number"></a> [intermediate\_ca\_serial\_number](#input\_intermediate\_ca\_serial\_number) | Optional, serial number to assign to the generated certificate. To assign a random serial number, you can omit this field. | `string` | `null` | no |
 | <a name="input_intermediate_ca_signing_method"></a> [intermediate\_ca\_signing\_method](#input\_intermediate\_ca\_signing\_method) | Optional, Signing method to use with this certificate authority to generate private certificates | `string` | `"internal"` | no |
 | <a name="input_ip_sans"></a> [ip\_sans](#input\_ip\_sans) | Optional, IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list | `string` | `null` | no |
 | <a name="input_key_type"></a> [key\_type](#input\_key\_type) | Optional, Type of private key to generate | `string` | `"rsa"` | no |
@@ -105,7 +104,6 @@ No modules.
 | <a name="input_root_ca_issuing_certificates_urls_encoded"></a> [root\_ca\_issuing\_certificates\_urls\_encoded](#input\_root\_ca\_issuing\_certificates\_urls\_encoded) | issuing\_certificates\_urls\_encoded flag for the root CA | `bool` | `true` | no |
 | <a name="input_root_ca_max_ttl"></a> [root\_ca\_max\_ttl](#input\_root\_ca\_max\_ttl) | Maximum TTL value for the root CA | `string` | n/a | yes |
 | <a name="input_root_ca_name"></a> [root\_ca\_name](#input\_root\_ca\_name) | Name of the Root CA to create for a private\_cert secret engine | `string` | n/a | yes |
-| <a name="input_root_ca_serial_number"></a> [root\_ca\_serial\_number](#input\_root\_ca\_serial\_number) | Optional, serial number to assign to the generated certificate. To assign a random serial number, you can omit this field. | `string` | `null` | no |
 | <a name="input_secrets_manager_guid"></a> [secrets\_manager\_guid](#input\_secrets\_manager\_guid) | GUID of secrets manager instance to create the secret engine in | `string` | n/a | yes |
 | <a name="input_street_address"></a> [street\_address](#input\_street\_address) | Optional, Street Address values in the subject field of the resulting certificate | `list(string)` | `null` | no |
 | <a name="input_tempalate_key_usage"></a> [tempalate\_key\_usage](#input\_tempalate\_key\_usage) | Optional, List of allowed key usage constraint to define for private certificates | `list(string)` | <pre>[<br>  "DigitalSignature",<br>  "KeyAgreement",<br>  "KeyEncipherment"<br>]</pre> | no |
