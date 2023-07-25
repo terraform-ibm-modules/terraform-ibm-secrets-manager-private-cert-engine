@@ -325,22 +325,6 @@ variable "root_ca_issuing_certificates_urls_encoded" {
   default     = true
 }
 
-variable "root_ca_serial_number" {
-  type        = string
-  description = "Optional, serial number to assign to the generated certificate. To assign a random serial number, you can omit this field."
-  default     = null
-
-  validation {
-    condition     = var.root_ca_serial_number == null ? true : length(var.root_ca_serial_number) >= 32 && length(var.root_ca_serial_number) <= 64
-    error_message = "length of root_ca_serial_number >= 32 and <= 64"
-  }
-
-  validation {
-    condition     = var.root_ca_serial_number == null ? true : can(regex("[^a-fA-F0-9]", var.root_ca_serial_number)) #verify regex
-    error_message = "root_ca_serial_number must match regular expression /[^a-fA-F0-9]/"
-  }
-}
-
 ##############################################################################
 # Intermediate CA
 ##############################################################################
@@ -394,22 +378,6 @@ variable "intermediate_ca_signing_method" {
   validation {
     condition     = contains(["internal", "external"], var.intermediate_ca_signing_method)
     error_message = "specified signing_method is not valid. Allowed values are: internal, external"
-  }
-}
-
-variable "intermediate_ca_serial_number" {
-  type        = string
-  description = "Optional, serial number to assign to the generated certificate. To assign a random serial number, you can omit this field."
-  default     = null
-
-  validation {
-    condition     = var.intermediate_ca_serial_number == null ? true : length(var.intermediate_ca_serial_number) >= 32 && length(var.intermediate_ca_serial_number) <= 64
-    error_message = "length of intermediate_ca_serial_number >= 32 and <= 64"
-  }
-
-  validation {
-    condition     = var.intermediate_ca_serial_number == null ? true : can(regex("[^a-fA-F0-9]", var.intermediate_ca_serial_number)) #verify regex
-    error_message = "intermediate_ca_serial_number must match regular expression /[^a-fA-F0-9]/"
   }
 }
 
