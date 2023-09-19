@@ -1,6 +1,5 @@
 # Secrets Manager Private Certificates Secrets Engine module
 
-<!-- UPDATE BADGE: Update the link for the following badge-->
 [![Stable (With quality checks)](https://img.shields.io/badge/Status-Stable%20(With%20quality%20checks)-green)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/releases/latest)
@@ -17,13 +16,23 @@ The module handles the following components:
 
 These components make up the `private_cert` secrets type. The module also signs the intermediate certificate authority (CA) when the engine is created.
 
-## Usage
+<!-- Below content is automatically populated via pre-commit hook -->
+<!-- BEGIN OVERVIEW HOOK -->
+## Overview
+* [terraform-ibm-secrets-manager-private-cert-engine](#terraform-ibm-secrets-manager-private-cert-engine)
+* [Examples](./examples)
+    * [Example with Secrets Manager and the private certificates engine](./examples/default)
+* [Contributing](#contributing)
+
+## terraform-ibm-secrets-manager-private-cert-engine
+<!-- END OVERVIEW HOOK -->
+
+### Usage
 
 ```hcl
-# Replace "main" with a GIT release version to lock into a specific release
 module "private_secret_engine" {
-  source  = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
-  version = "latest" # Replace "latest" with a release version to lock into a specific release
+  source                    = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
+  version                   = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
   secrets_manager_guid      = "<secrets_manager_instance_id>"
   region                    = "us-south"
   root_ca_name              = "My Root CA"
@@ -34,19 +43,13 @@ module "private_secret_engine" {
 }
 ```
 
-## Required IAM access policies
+### Required IAM access policies
 You need the following permissions to run this module.
 
 - IAM Services
     - **Secrets Manager** service
         - `Administrator` platform access
         - `Manager` service access
-
-<!-- BEGIN EXAMPLES HOOK -->
-## Examples
-
-- [ Example with Secrets Manager and the private certificates engine](examples/default)
-<!-- END EXAMPLES HOOK -->
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ### Requirements
@@ -138,5 +141,9 @@ No modules.
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-<!-- BEGIN CONTRIBUTING HOOK -->
-<!-- END CONTRIBUTING HOOK -->
+<!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
+## Contributing
+
+You can report issues and request features for this module in GitHub issues in the module repo. See [Report an issue or request a feature](https://github.com/terraform-ibm-modules/.github/blob/main/.github/SUPPORT.md).
+
+To set up your local development environment, see [Local development setup](https://terraform-ibm-modules.github.io/documentation/#/local-dev-setup) in the project documentation.
