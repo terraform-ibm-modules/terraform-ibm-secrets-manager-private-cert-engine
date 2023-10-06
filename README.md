@@ -23,9 +23,9 @@ These components make up the `private_cert` secrets type. The module also signs 
 * [Examples](./examples)
     * [Example with Secrets Manager and the private certificates engine](./examples/default)
 * [Contributing](#contributing)
+<!-- END OVERVIEW HOOK -->
 
 ## terraform-ibm-secrets-manager-private-cert-engine
-<!-- END OVERVIEW HOOK -->
 
 ### Usage
 
