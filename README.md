@@ -1,6 +1,6 @@
 # Secrets Manager Private Certificates Secrets Engine module
 
-[![Stable (With quality checks)](https://img.shields.io/badge/Status-Stable%20(With%20quality%20checks)-green)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
+[![Graduated (Supported)](https://img.shields.io/badge/Status-Graduated%20(Supported)-brightgreen)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/releases/latest)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
@@ -19,10 +19,17 @@ These components make up the `private_cert` secrets type. The module also signs 
 <!-- Below content is automatically populated via pre-commit hook -->
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
-* [terraform-ibm-secrets-manager-private-cert-engine](#terraform-ibm-secrets-manager-private-cert-engine)
-* [Examples](./examples)
-    * [Example with Secrets Manager and the private certificates engine](./examples/default)
-* [Contributing](#contributing)
+- [Secrets Manager Private Certificates Secrets Engine module](#secrets-manager-private-certificates-secrets-engine-module)
+  - [Overview](#overview)
+  - [terraform-ibm-secrets-manager-private-cert-engine](#terraform-ibm-secrets-manager-private-cert-engine)
+    - [Usage](#usage)
+    - [Required IAM access policies](#required-iam-access-policies)
+    - [Requirements](#requirements)
+    - [Modules](#modules)
+    - [Resources](#resources)
+    - [Inputs](#inputs)
+    - [Outputs](#outputs)
+  - [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
 ## terraform-ibm-secrets-manager-private-cert-engine
