@@ -19,17 +19,10 @@ These components make up the `private_cert` secrets type. The module also signs 
 <!-- Below content is automatically populated via pre-commit hook -->
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
-- [Secrets Manager Private Certificates Secrets Engine module](#secrets-manager-private-certificates-secrets-engine-module)
-  - [Overview](#overview)
-  - [terraform-ibm-secrets-manager-private-cert-engine](#terraform-ibm-secrets-manager-private-cert-engine)
-    - [Usage](#usage)
-    - [Required IAM access policies](#required-iam-access-policies)
-    - [Requirements](#requirements)
-    - [Modules](#modules)
-    - [Resources](#resources)
-    - [Inputs](#inputs)
-    - [Outputs](#outputs)
-  - [Contributing](#contributing)
+* [terraform-ibm-secrets-manager-private-cert-engine](#terraform-ibm-secrets-manager-private-cert-engine)
+* [Examples](./examples)
+    * [Example with Secrets Manager and the private certificates engine](./examples/default)
+* [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
 ## terraform-ibm-secrets-manager-private-cert-engine
