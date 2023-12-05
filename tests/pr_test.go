@@ -15,10 +15,11 @@ func TestRunDefaultExample(t *testing.T) {
 	t.Parallel()
 
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
-		Testing:       t,
-		TerraformDir:  defaultExampleTerraformDir,
-		Prefix:        "sm-prv-cert-eng",
-		ResourceGroup: resourceGroup,
+		Testing:            t,
+		TerraformDir:       defaultExampleTerraformDir,
+		Prefix:             "sm-prv-cert-eng",
+		ResourceGroup:      resourceGroup,
+		BestRegionYAMLPath: "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml",
 	})
 
 	output, err := options.RunTestConsistency()
@@ -30,10 +31,11 @@ func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
-		Testing:       t,
-		TerraformDir:  defaultExampleTerraformDir,
-		Prefix:        "sm-prv-cert-eng-upg",
-		ResourceGroup: resourceGroup,
+		Testing:            t,
+		TerraformDir:       defaultExampleTerraformDir,
+		Prefix:             "sm-prv-cert-eng-upg",
+		ResourceGroup:      resourceGroup,
+		BestRegionYAMLPath: "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml",
 	})
 
 	output, err := options.RunTestUpgrade()
