@@ -6,21 +6,20 @@ module "resource_group" {
   existing_resource_group_name = var.resource_group
 }
 
-resource "ibm_resource_instance" "secrets_manager" {
-  name              = "${var.prefix}-secrets-manager"
-  service           = "secrets-manager"
-  plan              = "trial"
-  location          = var.region
-  tags              = var.resource_tags
-  resource_group_id = module.resource_group.resource_group_id
-  timeouts {
-    create = "20m" # Extending provisioning time to 20 minutes
-  }
+module "secrets_manager" {
+  source               = "terraform-ibm-modules/secrets-manager/ibm"
+  version              = "1.1.0"
+  resource_group_id    = module.resource_group.resource_group_id
+  region               = var.region
+  secrets_manager_name = "${var.prefix}-secrets-manager"
+  sm_service_plan      = "trial"
+  service_endpoints    = "public-and-private"
+  sm_tags              = var.resource_tags
 }
 
 module "private_secret_engine" {
   source                    = "../.."
-  secrets_manager_guid      = ibm_resource_instance.secrets_manager.guid
+  secrets_manager_guid      = module.secrets_manager.secrets_manager_guid
   region                    = var.region
   root_ca_name              = var.root_ca_name
   root_ca_common_name       = "cloud.ibm.com"
