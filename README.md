@@ -79,6 +79,7 @@ No modules.
 | <a name="input_alt_names"></a> [alt\_names](#input\_alt\_names) | Optional, Alternate names for the certificate to be created | `list(string)` | `null` | no |
 | <a name="input_certificate_template_name"></a> [certificate\_template\_name](#input\_certificate\_template\_name) | Name of the Certificate Template to create for a private\_cert secret engine | `string` | n/a | yes |
 | <a name="input_country"></a> [country](#input\_country) | Optional, Country (C) values to define in the subject field of the resulting certificate | `list(string)` | `null` | no |
+| <a name="input_endpoint_type"></a> [endpoint\_type](#input\_endpoint\_type) | The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 | <a name="input_exclude_cn_from_sans"></a> [exclude\_cn\_from\_sans](#input\_exclude\_cn\_from\_sans) | Optional, Set whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply | `bool` | `false` | no |
 | <a name="input_intermediate_ca_common_name"></a> [intermediate\_ca\_common\_name](#input\_intermediate\_ca\_common\_name) | Common name for the intermediate CA | `string` | `"cloud.ibm.com"` | no |
 | <a name="input_intermediate_ca_crl_disable"></a> [intermediate\_ca\_crl\_disable](#input\_intermediate\_ca\_crl\_disable) | crl\_disable for the intermediate CA | `bool` | `false` | no |

@@ -5,6 +5,7 @@
 resource "ibm_sm_private_certificate_configuration_root_ca" "private_certificate_root_ca" {
   instance_id                       = var.secrets_manager_guid
   region                            = var.region
+  endpoint_type                     = var.endpoint_type
   name                              = var.root_ca_name
   common_name                       = var.root_ca_common_name
   max_ttl                           = var.root_ca_max_ttl
@@ -34,6 +35,7 @@ resource "ibm_sm_private_certificate_configuration_root_ca" "private_certificate
 resource "ibm_sm_private_certificate_configuration_intermediate_ca" "intermediate_ca" {
   instance_id                       = var.secrets_manager_guid
   name                              = var.intermediate_ca_name
+  endpoint_type                     = var.endpoint_type
   common_name                       = var.intermediate_ca_common_name
   signing_method                    = var.intermediate_ca_signing_method
   issuer                            = var.root_ca_name
@@ -69,6 +71,7 @@ resource "ibm_sm_private_certificate_configuration_template" "certificate_templa
   instance_id                        = var.secrets_manager_guid
   region                             = var.region
   name                               = var.certificate_template_name
+  endpoint_type                      = var.endpoint_type
   certificate_authority              = var.intermediate_ca_name
   max_ttl                            = var.template_max_ttl
   allow_any_name                     = var.template_allow_any_name
