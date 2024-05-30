@@ -6,7 +6,7 @@
 # approach based on https://stackoverflow.com/a/66682419
 locals {
   # intermediate CA common name and root CA common name are different
-  common_name_validate_condition = var.root_ca_common_name != var.intermediate_ca_common_name
+  common_name_validate_condition = var.root_ca_common_name == var.intermediate_ca_common_name
   common_name_validate_msg       = "The values for 'root_ca_common_name' and 'intermediate_ca_common_name' must be different"
   # tflint-ignore: terraform_unused_declarations
   common_name_validate_check = regex("^${local.common_name_validate_msg}$", (!local.common_name_validate_condition ? local.common_name_validate_msg : ""))
