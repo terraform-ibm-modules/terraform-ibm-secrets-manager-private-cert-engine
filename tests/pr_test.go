@@ -54,7 +54,7 @@ func TestPrivateInSchematics(t *testing.T) {
 
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
 		Testing: t,
-		Prefix:  "sm-prv-crt-eng-private",
+		Prefix:  "sm-prv-crt-eng-prv",
 		TarIncludePatterns: []string{
 			"*.tf",
 			testLocation + "/*.tf",
