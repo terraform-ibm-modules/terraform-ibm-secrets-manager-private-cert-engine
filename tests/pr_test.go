@@ -11,6 +11,7 @@ import (
 
 const resourceGroup = "geretain-test-sm-prv-cert-eng"
 const defaultExampleTerraformDir = "examples/default"
+const bestRegionYAMLPath = "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml"
 
 func TestRunDefaultExample(t *testing.T) {
 	t.Parallel()
@@ -20,7 +21,7 @@ func TestRunDefaultExample(t *testing.T) {
 		TerraformDir:       defaultExampleTerraformDir,
 		Prefix:             "sm-prv-cert-eng",
 		ResourceGroup:      resourceGroup,
-		BestRegionYAMLPath: "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml",
+		BestRegionYAMLPath: bestRegionYAMLPath,
 	})
 
 	output, err := options.RunTestConsistency()
@@ -36,7 +37,7 @@ func TestRunUpgradeExample(t *testing.T) {
 		TerraformDir:       defaultExampleTerraformDir,
 		Prefix:             "sm-prv-cert-eng-upg",
 		ResourceGroup:      resourceGroup,
-		BestRegionYAMLPath: "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml",
+		BestRegionYAMLPath: bestRegionYAMLPath,
 	})
 
 	output, err := options.RunTestUpgrade()
@@ -63,6 +64,7 @@ func TestPrivateInSchematics(t *testing.T) {
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 80,
+		BestRegionYAMLPath:     bestRegionYAMLPath,
 	})
 
 	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
