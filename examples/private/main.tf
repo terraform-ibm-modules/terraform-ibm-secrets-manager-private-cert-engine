@@ -14,6 +14,7 @@ module "secrets_manager" {
   secrets_manager_name = "${var.prefix}-secrets-manager"
   sm_service_plan      = "trial"
   allowed_network      = "private-only"
+  endpoint_type        = "private"
   sm_tags              = var.resource_tags
 }
 
