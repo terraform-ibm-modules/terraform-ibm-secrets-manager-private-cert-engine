@@ -47,6 +47,7 @@ resource "ibm_sm_private_certificate_configuration_intermediate_ca" "intermediat
   instance_id                       = var.secrets_manager_guid
   name                              = var.intermediate_ca_name
   endpoint_type                     = var.endpoint_type
+  region                            = var.region
   common_name                       = var.intermediate_ca_common_name
   signing_method                    = var.intermediate_ca_signing_method
   issuer                            = var.root_ca_name
