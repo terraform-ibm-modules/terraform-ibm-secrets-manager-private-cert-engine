@@ -8,7 +8,7 @@ module "resource_group" {
 
 module "secrets_manager" {
   source               = "terraform-ibm-modules/secrets-manager/ibm"
-  version              = "1.14.1"
+  version              = "1.19.10"
   resource_group_id    = module.resource_group.resource_group_id
   region               = var.region
   secrets_manager_name = "${var.prefix}-secrets-manager"
@@ -22,7 +22,7 @@ module "private_secret_engine" {
   secrets_manager_guid      = module.secrets_manager.secrets_manager_guid
   region                    = var.region
   root_ca_name              = var.root_ca_name
-  root_ca_common_name       = "cloud.ibm.com"
+  root_ca_common_name       = "*.cloud.ibm.com"
   root_ca_max_ttl           = "8760h"
   intermediate_ca_name      = var.intermediate_ca_name
   certificate_template_name = var.certificate_template_name
