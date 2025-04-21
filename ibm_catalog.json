@@ -1,7 +1,7 @@
 {
     "products": [
       {
-        "name": "deploy-arch-secrets-manager-private-cert-engine-vpc",
+        "name": "deploy-arch-secrets-manager-private-cert-engine",
         "label": "Cloud automation for secrets manager private cert engine",
         "product_kind": "solution",
         "tags": [
