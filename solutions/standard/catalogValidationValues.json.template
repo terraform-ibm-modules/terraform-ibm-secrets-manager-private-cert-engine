@@ -1,0 +1,5 @@
+{
+  "ibmcloud_api_key": $VALIDATION_APIKEY,
+  "existing_secrets_manager_guid": "79c6d411-c18f-4670-b009-b0044a238667",
+  "region": "eu-de"
+}

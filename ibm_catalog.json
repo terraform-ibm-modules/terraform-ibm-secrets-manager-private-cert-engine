@@ -83,11 +83,7 @@
             },
             "iam_permissions": [
               {
-                "role_crns": ["crn:v1:bluemix:public:iam::::role:Administrator"],
-                "service_name": "iam-identity"
-              },
-              {
-                "role_crns": ["crn:v1:bluemix:public:iam::::role:Administrator"],
+                "role_crns": [""],
                 "service_name": ""
               }
             ],
@@ -96,10 +92,54 @@
                 "key": "ibmcloud_api_key"
               },
               {
-                "key": "existing_secrets_manager_guid"
+                "key": "existing_secrets_manager_guid",
+                "required": true
               },
               {
-                "key": "region"
+                "key": "region",
+                "required": true,
+                "options": [
+                  {
+                    "displayname": "Osaka (jp-osa)",
+                    "value": "jp-osa"
+                  },
+                  {
+                    "displayname": "Sydney (au-syd)",
+                    "value": "au-syd"
+                  },
+                  {
+                    "displayname": "Tokyo (jp-tok)",
+                    "value": "jp-tok"
+                  },
+                  {
+                    "displayname": "Frankfurt (eu-de)",
+                    "value": "eu-de"
+                  },
+                  {
+                    "displayname": "London (eu-gb)",
+                    "value": "eu-gb"
+                  },
+                  {
+                    "displayname": "Madrid (eu-es)",
+                    "value": "eu-es"
+                  },
+                  {
+                    "displayname": "Dallas (us-south)",
+                    "value": "us-south"
+                  },
+                  {
+                    "displayname": "Toronto (ca-tor)",
+                    "value": "ca-tor"
+                  },
+                  {
+                    "displayname": "Washington DC (us-east)",
+                    "value": "us-east"
+                  },
+                  {
+                    "displayname": "Sao Paulo (br-sao)",
+                    "value": "br-sao"
+                  }
+                ]
               },
               {
                 "key": "endpoint_type"
@@ -280,27 +320,6 @@
               }
             ],
             "dependencies": [
-              {
-                "name": "deploy-arch-ibm-account-infra-base",
-                "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
-                "flavors": ["standard"],
-                "id": "63641cec-6093-4b4f-b7b0-98d2f4185cd6-global",
-                "ignore_auto_referencing": ["*"],
-                "input_mapping": [
-                  {
-                    "dependency_output": "workload_resource_group_name",
-                    "version_input": "existing_resource_group_name"
-                  },
-                  {
-                    "dependency_input": "prefix",
-                    "version_input": "prefix",
-                    "reference_version": true
-                  }
-                ],
-                "optional": true,
-                "on_by_default": true,
-                "version": "^v1.18.0"
-              },
               {
                 "name": "deploy-arch-ibm-secrets-manager",
                 "id": "5f149ae6-d781-460a-977d-c8c4171ad0fa-global",
