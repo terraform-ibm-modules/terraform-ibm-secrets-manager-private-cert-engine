@@ -1,0 +1,336 @@
+{
+    "products": [
+      {
+        "name": "deploy-arch-secrets-manager-private-cert-engine-vpc",
+        "label": "Cloud automation for secrets manager private cert engine",
+        "product_kind": "solution",
+        "tags": [
+          
+        ],
+        "keywords": [
+          
+        ],
+        "short_description": "",
+        "offering_docs_url": "",
+        "offering_icon_url": "",
+        "provider_name": "IBM",
+        "features": [
+          {
+            "title": "",
+            "description": ""
+          },
+          {
+            "title": "",
+            "description": ""
+          },
+          {
+            "title": "",
+            "description": ""
+          },
+          {
+            "title": "",
+            "description": ""
+          },
+          {
+            "title": "",
+            "description": ""
+          },
+          {
+            "title": "",
+            "description": ""
+          },
+          {
+            "title": "",
+            "description": ""
+          },
+          {
+            "title": "",
+            "description": ""
+          },
+          {
+            "title": "",
+            "description": ""
+          }
+        ],
+        "support_details": "",
+        "flavors": [
+          {
+            "label": "Standard",
+            "name": "standard",
+            "install_type": "fullstack",
+            "working_directory": "solutions/standard",
+            "compliance": {
+              "authority": "scc-v3",
+              "profiles": [
+                {
+                  "profile_name": "IBM Cloud Framework for Financial Services",
+                  "profile_version": "1.7.0"
+                }
+              ]
+            },
+            "architecture": {
+              "descriptions": "",
+              "features": [
+                {
+                  "title": "",
+                  "description": ""
+                },
+                {
+                  "title": "",
+                  "description": ""
+                }
+              ],
+              "diagrams": [
+                {
+                  "diagram": {
+                    "caption": "",
+                    "url": "",
+                    "type": "image/svg+xml"
+                  },
+                  "description": ""
+                }
+              ]
+            },
+            "iam_permissions": [
+              {
+                "role_crns": ["crn:v1:bluemix:public:iam::::role:Administrator"],
+                "service_name": "iam-identity"
+              },
+              {
+                "role_crns": ["crn:v1:bluemix:public:iam::::role:Administrator"],
+                "service_name": "is.vpc"
+              }
+            ],
+            "configuration": [
+              {
+                "key": "ibmcloud_api_key"
+              },
+              {
+                "key": "existing_secrets_manager_guid"
+              },
+              {
+                "key": "region"
+              },
+              {
+                "key": "endpoint_type"
+              },
+              {
+                "key": "organizational_unit"
+              },
+              {
+                "key": "organization"
+              },
+              {
+                "key": "country"
+              },
+              {
+                "key": "locality"
+              },
+              {
+                "key": "province"
+              },
+              {
+                "key": "street_address"
+              },
+              {
+                "key": "postal_code"
+              },
+              {
+                "key": "other_sans"
+              },
+              {
+                "key": "ip_sans"
+              },
+              {
+                "key": "uri_sans"
+              },
+              {
+                "key": "return_format"
+              },
+              {
+                "key": "private_key_format"
+              },
+              {
+                "key": "key_type"
+              },
+              {
+                "key": "permitted_dns_domains"
+              },
+              {
+                "key": "alt_names"
+              },
+              {
+                "key": "ttl"
+              },
+              {
+                "key": "exclude_cn_from_sans"
+              },
+              {
+                "key": "root_ca_name"
+              },
+              {
+                "key": "root_ca_max_ttl"
+              },
+              {
+                "key": "root_ca_common_name"
+              },
+              {
+                "key": "root_ca_crl_expiry"
+              },
+              {
+                "key": "root_ca_crl_disable"
+              },
+              {
+                "key": "root_ca_crl_distribution_points_encoded"
+              },
+              {
+                "key": "root_ca_issuing_certificates_urls_encoded"
+              },
+              {
+                "key": "intermediate_ca_name"
+              },
+              {
+                "key": "intermediate_ca_max_ttl"
+              },
+              {
+                "key": "intermediate_ca_common_name"
+              },
+              {
+                "key": "intermediate_ca_crl_expiry"
+              },
+              {
+                "key": "intermediate_ca_crl_disable"
+              },
+              {
+                "key": "intermediate_ca_crl_distribution_points_encoded"
+              },
+              {
+                "key": "intermediate_ca_issuing_certificates_urls_encoded"
+              },
+              {
+                "key": "intermediate_ca_signing_method"
+              },
+              {
+                "key": "certificate_template_name"
+              },
+              {
+                "key": "template_max_ttl"
+              },
+              {
+                "key": "template_allow_any_name"
+              },
+              {
+                "key": "template_allow_bare_domains"
+              },
+              {
+                "key": "template_allow_glob_domains"
+              },
+              {
+                "key": "template_allow_ip_sans"
+              },
+              {
+                "key": "template_allow_subdomains"
+              },
+              {
+                "key": "template_allowed_domains"
+              },
+              {
+                "key": "allowed_domains_template"
+              },
+              {
+                "key": "template_allowed_other_sans"
+              },
+              {
+                "key": "template_allowed_secret_groups"
+              },
+              {
+                "key": "template_allowed_uri_sans"
+              },
+              {
+                "key": "template_basic_constraints_valid_for_non_ca"
+              },
+              {
+                "key": "template_client_flag"
+              },
+              {
+                "key": "template_code_signing_flag"
+              },
+              {
+                "key": "template_email_protection_flag"
+              },
+              {
+                "key": "template_enforce_hostnames"
+              },
+              {
+                "key": "template_ext_key_usage"
+              },
+              {
+                "key": "template_ext_key_usage_oids"
+              },
+              {
+                "key": "tempalate_key_usage"
+              },
+              {
+                "key": "template_policy_identifiers"
+              },
+              {
+                "key": "template_require_common_name"
+              },
+              {
+                "key": "template_server_flag"
+              },
+              {
+                "key": "template_serial_number"
+              },
+              {
+                "key": "template_use_csr_cn"
+              },
+              {
+                "key": "template_use_csr_sans"
+              }
+            ],
+            "dependencies": [
+              {
+                "name": "deploy-arch-ibm-account-infra-base",
+                "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
+                "flavors": ["standard"],
+                "id": "63641cec-6093-4b4f-b7b0-98d2f4185cd6-global",
+                "ignore_auto_referencing": ["*"],
+                "input_mapping": [
+                  {
+                    "dependency_output": "workload_resource_group_name",
+                    "version_input": "existing_resource_group_name"
+                  },
+                  {
+                    "dependency_input": "prefix",
+                    "version_input": "prefix",
+                    "reference_version": true
+                  }
+                ],
+                "optional": true,
+                "on_by_default": true,
+                "version": "^v1.18.0"
+              },
+              {
+                "name": "deploy-arch-ibm-secrets-manager",
+                "id": "5f149ae6-d781-460a-977d-c8c4171ad0fa-global",
+                "version": "^v1.3.0",
+                "flavors": ["fully-configurable"],
+                "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
+                "optional": true,
+                "on_by_default": true,
+                "ignore_auto_referencing": ["*"],
+                "input_mapping": [
+                  {
+                    "dependency_output": "secrets_manager_guid",
+                    "version_input": "existing_secrets_manager_guid"
+                  }
+                ]
+              }
+            ],
+            "dependency_version_2": true
+          }
+        ]
+      }
+    ]
+  }
