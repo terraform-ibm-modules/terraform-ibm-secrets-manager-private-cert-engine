@@ -81,12 +81,6 @@
                 }
               ]
             },
-            "iam_permissions": [
-              {
-                "role_crns": [""],
-                "service_name": ""
-              }
-            ],
             "configuration": [
               {
                 "key": "ibmcloud_api_key"
@@ -142,7 +136,17 @@
                 ]
               },
               {
-                "key": "endpoint_type"
+                "key": "endpoint_type",
+                "options": [
+                  {
+                    "displayname": "public",
+                    "value": "public"
+                  },
+                  {
+                    "displayname": "private",
+                    "value": "private"
+                  }
+                ]
               },
               {
                 "key": "organizational_unit"
@@ -175,13 +179,43 @@
                 "key": "uri_sans"
               },
               {
-                "key": "return_format"
+                "key": "return_format",
+                "options": [
+                  {
+                    "displayname": "pem",
+                    "value": "pem"
+                  },
+                  {
+                    "displayname": "pem_bundle",
+                    "value": "pem_bundle"
+                  }
+                ]
               },
               {
-                "key": "private_key_format"
+                "key": "private_key_format",
+                "options": [
+                  {
+                    "displayname": "der",
+                    "value": "der"
+                  },
+                  {
+                    "displayname": "pkcs8",
+                    "value": "pkcs8"
+                  }
+                ]
               },
               {
-                "key": "key_type"
+                "key": "key_type",
+                "options": [
+                  {
+                    "displayname": "rsa",
+                    "value": "rsa"
+                  },
+                  {
+                    "displayname": "ec",
+                    "value": "ec"
+                  }
+                ]
               },
               {
                 "key": "permitted_dns_domains"
@@ -193,7 +227,17 @@
                 "key": "ttl"
               },
               {
-                "key": "exclude_cn_from_sans"
+                "key": "exclude_cn_from_sans",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
                 "key": "root_ca_name"
@@ -208,13 +252,43 @@
                 "key": "root_ca_crl_expiry"
               },
               {
-                "key": "root_ca_crl_disable"
+                "key": "root_ca_crl_disable",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "root_ca_crl_distribution_points_encoded"
+                "key": "root_ca_crl_distribution_points_encoded",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "root_ca_issuing_certificates_urls_encoded"
+                "key": "root_ca_issuing_certificates_urls_encoded",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
                 "key": "intermediate_ca_name"
@@ -229,16 +303,56 @@
                 "key": "intermediate_ca_crl_expiry"
               },
               {
-                "key": "intermediate_ca_crl_disable"
+                "key": "intermediate_ca_crl_disable",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "intermediate_ca_crl_distribution_points_encoded"
+                "key": "intermediate_ca_crl_distribution_points_encoded",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "intermediate_ca_issuing_certificates_urls_encoded"
+                "key": "intermediate_ca_issuing_certificates_urls_encoded",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "intermediate_ca_signing_method"
+                "key": "intermediate_ca_signing_method",
+                "options": [
+                  {
+                    "displayname": "internal",
+                    "value": "internal"
+                  },
+                  {
+                    "displayname": "external",
+                    "value": "external"
+                  }
+                ]
               },
               {
                 "key": "certificate_template_name"
@@ -247,25 +361,85 @@
                 "key": "template_max_ttl"
               },
               {
-                "key": "template_allow_any_name"
+                "key": "template_allow_any_name",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_allow_bare_domains"
+                "key": "template_allow_bare_domains",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_allow_glob_domains"
+                "key": "template_allow_glob_domains",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_allow_ip_sans"
+                "key": "template_allow_ip_sans",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_allow_subdomains"
+                "key": "template_allow_subdomains",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
                 "key": "template_allowed_domains"
               },
               {
-                "key": "allowed_domains_template"
+                "key": "allowed_domains_template",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
                 "key": "template_allowed_other_sans"
@@ -277,19 +451,69 @@
                 "key": "template_allowed_uri_sans"
               },
               {
-                "key": "template_basic_constraints_valid_for_non_ca"
+                "key": "template_basic_constraints_valid_for_non_ca",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_client_flag"
+                "key": "template_client_flag",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_code_signing_flag"
+                "key": "template_code_signing_flag",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_email_protection_flag"
+                "key": "template_email_protection_flag",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_enforce_hostnames"
+                "key": "template_enforce_hostnames",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
                 "key": "template_ext_key_usage"
@@ -304,19 +528,59 @@
                 "key": "template_policy_identifiers"
               },
               {
-                "key": "template_require_common_name"
+                "key": "template_require_common_name",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_server_flag"
+                "key": "template_server_flag",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
                 "key": "template_serial_number"
               },
               {
-                "key": "template_use_csr_cn"
+                "key": "template_use_csr_cn",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               },
               {
-                "key": "template_use_csr_sans"
+                "key": "template_use_csr_sans",
+                "options": [
+                  {
+                    "displayname": "true",
+                    "value": "true"
+                  },
+                  {
+                    "displayname": "false",
+                    "value": "false"
+                  }
+                ]
               }
             ],
             "dependencies": [
