@@ -8,20 +8,22 @@ variable "ibmcloud_api_key" {
   sensitive   = true
 }
 
-variable "existing_secrets_manager_guid" {
+variable "existing_secrets_manager_crn" {
   type        = string
-  description = "GUID of secrets manager instance to create the secret engine in"
+  description = "CRN of secrets manager instance to create the secret engine in"
+  nullable    = false
 }
 
 variable "region" {
   type        = string
   description = "Region of the secrets manager instance"
+  default     = "us-south"
 }
 
 variable "endpoint_type" {
   type        = string
   description = "The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`"
-  default     = "public"
+  default     = "private"
   validation {
     condition     = contains(["public", "private"], var.endpoint_type)
     error_message = "The specified endpoint_type is not a valid selection!"

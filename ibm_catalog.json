@@ -2,7 +2,7 @@
     "products": [
       {
         "name": "deploy-arch-secrets-manager-private-cert-engine",
-        "label": "Cloud automation for secrets manager private cert engine",
+        "label": "Cloud automation for Secrets Manager private certificate engine",
         "product_kind": "solution",
         "tags": [
           "ibm_created",
@@ -12,14 +12,14 @@
           "security"
         ],
         "keywords": [
-          "Private cert engine",
+          "Private certificate engine",
           "Secrets Manager",
           "IaC",
           "infrastructure as code",
           "terraform",
           "solution"
         ],
-        "short_description": "Creates and configures a Secrets Manager Private Cert Engine.",
+        "short_description": "Creates and configures a Secrets Manager private certificate engine.",
         "long_description" : "This deployable architecture is used to provision and configure a root certificate authority, an intermediate certificate authority and a certificate template. This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) asset collection, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
         "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/blob/main/README.md",
         "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/images/secrets_manager_private_cert_engine.svg",
@@ -55,7 +55,7 @@
               ]
             },
             "architecture": {
-              "descriptions": "This architecture supports creating and configuring a Secrets Manager Private Cert Engine.",
+              "descriptions": "This architecture supports creating and configuring a Secrets Manager Private Certificate Engine.",
               "features": [
                 {
                   "title": "Root certificate authority",
@@ -73,11 +73,11 @@
               "diagrams": [
                 {
                   "diagram": {
-                    "caption": "Secrets Manager Private Cert Engine",
+                    "caption": "Secrets Manager Private Certificate Engine",
                     "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/reference-architecture/secrets_manager_private_cert_engine.svg",
                     "type": "image/svg+xml"
                   },
-                  "description": "This architcture supports creating secrets manager private cert engine within a secrets manager instance."
+                  "description": "This architcture supports creating secrets manager private certificate engine within a secrets manager instance."
                 }
               ]
             },
@@ -86,7 +86,7 @@
                 "key": "ibmcloud_api_key"
               },
               {
-                "key": "existing_secrets_manager_guid",
+                "key": "existing_secrets_manager_crn",
                 "required": true
               },
               {
@@ -595,8 +595,8 @@
                 "ignore_auto_referencing": ["*"],
                 "input_mapping": [
                   {
-                    "dependency_output": "secrets_manager_guid",
-                    "version_input": "existing_secrets_manager_guid"
+                    "dependency_output": "secrets_manager_crn",
+                    "version_input": "existing_secrets_manager_crn"
                   }
                 ]
               }

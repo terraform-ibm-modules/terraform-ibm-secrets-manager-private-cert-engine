@@ -115,15 +115,45 @@ func TestRunSolutionsStandardSchematics(t *testing.T) {
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 80,
-		BestRegionYAMLPath:     bestRegionYAMLPath,
+		Region:                 "us-south",
 	})
 
 	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
 		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
-		{Name: "existing_secrets_manager_guid", Value: permanentResources["secretsManagerGuid"], DataType: "string"},
+		{Name: "existing_secrets_manager_crn", Value: permanentResources["secretsManagerCRN"], DataType: "string"},
 		{Name: "region", Value: options.Region, DataType: "string"},
 	}
 
 	err := options.RunSchematicTest()
+	assert.Nil(t, err, "This should not have errored")
+}
+
+func TestRunSolutionsStandardUpgradeSchematics(t *testing.T) {
+	t.Parallel()
+
+	const testLocation = "solutions/standard"
+
+	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
+		Testing: t,
+		Prefix:  "sm-pce-up",
+		TarIncludePatterns: []string{
+			"*.tf",
+			testLocation + "/*.tf",
+		},
+		ResourceGroup:          resourceGroup,
+		TemplateFolder:         testLocation,
+		Tags:                   []string{"test-schematic"},
+		DeleteWorkspaceOnFail:  false,
+		WaitJobCompleteMinutes: 80,
+		Region:                 "us-south",
+	})
+
+	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
+		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
+		{Name: "existing_secrets_manager_crn", Value: permanentResources["secretsManagerCRN"], DataType: "string"},
+		{Name: "region", Value: options.Region, DataType: "string"},
+	}
+
+	err := options.RunSchematicUpgradeTest()
 	assert.Nil(t, err, "This should not have errored")
 }

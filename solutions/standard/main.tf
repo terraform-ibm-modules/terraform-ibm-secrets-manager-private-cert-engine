@@ -2,9 +2,19 @@
 # Secrets Manager Private Cert Engine
 ########################################################################################################################
 
+module "crn_parser" {
+  source  = "terraform-ibm-modules/common-utilities/ibm//modules/crn-parser"
+  version = "1.1.0"
+  crn     = var.existing_secrets_manager_crn
+}
+
+locals {
+  existing_secrets_manager_guid = module.crn_parser.service_instance
+}
+
 module "secrets_manager_private_cert_engine" {
   source                = "../.."
-  secrets_manager_guid  = var.existing_secrets_manager_guid
+  secrets_manager_guid  = local.existing_secrets_manager_guid
   region                = var.region
   endpoint_type         = var.endpoint_type
   organizational_unit   = var.organizational_unit
