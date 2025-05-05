@@ -305,6 +305,11 @@ variable "root_ca_common_name" {
     condition     = can(regex("(.*?)", var.root_ca_common_name))
     error_message = "root_ca_common_name must match regular expression /(.*?)/"
   }
+
+  validation {
+    condition     = var.root_ca_common_name != var.intermediate_ca_common_name
+    error_message = "The values for 'root_ca_common_name' and 'intermediate_ca_common_name' must be different."
+  }
 }
 
 variable "root_ca_crl_expiry" {
