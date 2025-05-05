@@ -136,19 +136,6 @@
                 ]
               },
               {
-                "key": "endpoint_type",
-                "options": [
-                  {
-                    "displayname": "public",
-                    "value": "public"
-                  },
-                  {
-                    "displayname": "private",
-                    "value": "private"
-                  }
-                ]
-              },
-              {
                 "key": "organizational_unit"
               },
               {

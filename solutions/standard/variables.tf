@@ -20,16 +20,6 @@ variable "region" {
   default     = "us-south"
 }
 
-variable "endpoint_type" {
-  type        = string
-  description = "The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`"
-  default     = "private"
-  validation {
-    condition     = contains(["public", "private"], var.endpoint_type)
-    error_message = "The specified endpoint_type is not a valid selection!"
-  }
-}
-
 variable "organizational_unit" {
   type        = list(string)
   description = "Optional, Organizational Unit (OU) values to define in the subject field of the resulting certificate"
