@@ -9,7 +9,8 @@ module "crn_parser" {
 }
 
 locals {
-  existing_secrets_manager_guid = module.crn_parser.service_instance
+  existing_secrets_manager_guid   = module.crn_parser.service_instance
+  existing_secrets_manager_region = module.crn_parser.region
 }
 
 module "secrets_manager_private_cert_engine" {

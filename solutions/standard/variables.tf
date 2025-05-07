@@ -18,6 +18,11 @@ variable "region" {
   type        = string
   description = "Region of the secrets manager instance"
   default     = "us-south"
+
+  validation {
+    condition     = var.region != local.existing_secrets_manager_region ? false : true
+    error_message = "The value of the region 'var.region' should be same as the region where the existing secrets manager instance is deployed."
+  }
 }
 
 variable "organizational_unit" {
