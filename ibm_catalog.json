@@ -570,6 +570,15 @@
                 ]
               }
             ],
+            "iam_permissions": [
+            {
+              "service_name": "secrets-manager",
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Administrator",
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
+              ]
+            }
+          ],
             "dependencies": [
               {
                 "name": "deploy-arch-ibm-secrets-manager",
