@@ -24,7 +24,7 @@ variable "endpoint_type" {
 
 variable "organizational_unit" {
   type        = list(string)
-  description = "Optional, Organizational Unit (OU) values to define in the subject field of the resulting certificate"
+  description = "Organizational Unit (OU) values to define in the subject field of the resulting certificate"
   default     = null
 
   validation {
@@ -42,7 +42,7 @@ variable "organizational_unit" {
 
 variable "organization" {
   type        = list(string)
-  description = "Optional, Organization (O) values to define in the subject field of the resulting certificate"
+  description = "Organization (O) values to define in the subject field of the resulting certificate"
   default     = null
 
   validation {
@@ -60,7 +60,7 @@ variable "organization" {
 
 variable "country" {
   type        = list(string)
-  description = "Optional, Country (C) values to define in the subject field of the resulting certificate"
+  description = "Country (C) values to define in the subject field of the resulting certificate"
   default     = null
 
   validation {
@@ -78,7 +78,7 @@ variable "country" {
 
 variable "locality" {
   type        = list(string)
-  description = "Optional, Locality (L) values to define in the subject field of the resulting certificate"
+  description = "Locality (L) values to define in the subject field of the resulting certificate"
   default     = null
 
   validation {
@@ -96,7 +96,7 @@ variable "locality" {
 
 variable "province" {
   type        = list(string)
-  description = "Optional, Province (ST) values to define in the subject field of the resulting certificate"
+  description = "Province (ST) values to define in the subject field of the resulting certificate"
   default     = null
 
   validation {
@@ -114,7 +114,7 @@ variable "province" {
 
 variable "street_address" {
   type        = list(string)
-  description = "Optional, Street Address values in the subject field of the resulting certificate"
+  description = "Street Address values in the subject field of the resulting certificate"
   default     = null
 
   validation {
@@ -132,7 +132,7 @@ variable "street_address" {
 
 variable "postal_code" {
   type        = list(string)
-  description = "Optional, Street Address values in the subject field of the resulting certificate"
+  description = "Street Address values in the subject field of the resulting certificate"
   default     = null
 
   validation {
@@ -150,7 +150,7 @@ variable "postal_code" {
 
 variable "other_sans" {
   type        = list(string)
-  description = "Optional, The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template"
+  description = "The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template"
   default     = null
 
   validation {
@@ -168,7 +168,7 @@ variable "other_sans" {
 
 variable "ip_sans" {
   type        = string
-  description = "Optional, IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
+  description = "IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
   default     = null
 
   validation {
@@ -179,7 +179,7 @@ variable "ip_sans" {
 
 variable "uri_sans" {
   type        = string
-  description = "Optional, URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
+  description = "URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
   default     = null
 
   validation {
@@ -190,7 +190,7 @@ variable "uri_sans" {
 
 variable "return_format" {
   type        = string
-  description = "Optional, Format of the returned data"
+  description = "Format of the returned data"
   default     = "pem"
   validation {
     condition     = contains(["pem", "pem_bundle"], var.return_format)
@@ -200,7 +200,7 @@ variable "return_format" {
 
 variable "private_key_format" {
   type        = string
-  description = "Optional, Format of the generated private key"
+  description = "Format of the generated private key"
   default     = "der"
   validation {
     condition     = contains(["der", "pkcs8"], var.private_key_format)
@@ -210,7 +210,7 @@ variable "private_key_format" {
 
 variable "key_type" {
   type        = string
-  description = "Optional, Type of private key to generate"
+  description = "Type of private key to generate"
   default     = "rsa"
   validation {
     condition     = contains(["rsa", "ec"], var.key_type)
@@ -220,7 +220,7 @@ variable "key_type" {
 
 variable "permitted_dns_domains" {
   type        = list(string)
-  description = "Optional, Allowed DNS domains or subdomains for the certificates to be signed and issued by the CA certificate"
+  description = "Allowed DNS domains or subdomains for the certificates to be signed and issued by the CA certificate"
   default     = null
 
   validation {
@@ -238,7 +238,7 @@ variable "permitted_dns_domains" {
 
 variable "alt_names" {
   type        = list(string)
-  description = "Optional, Alternate names for the certificate to be created"
+  description = "Alternate names for the certificate to be created"
   default     = null
 
   validation {
@@ -256,7 +256,7 @@ variable "alt_names" {
 
 variable "ttl" {
   type        = string
-  description = "Optional, Time-to-live (TTL) to assign to a private certificate"
+  description = "Time-to-live (TTL) to assign to a private certificate"
   default     = null
   validation {
     condition     = var.ttl == null ? true : can(regex("^[0-9]+[s,m,h,d]{0,1}$", var.ttl))
@@ -266,7 +266,7 @@ variable "ttl" {
 
 variable "exclude_cn_from_sans" {
   type        = bool
-  description = "Optional, Set whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply"
+  description = "Set whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply"
   default     = false
 }
 
@@ -314,7 +314,7 @@ variable "root_ca_common_name" {
 
 variable "root_ca_crl_expiry" {
   type        = string
-  description = "Optional, Expiry time for root CA Certificate Revocation List (CRL)"
+  description = "Expiry time for root CA Certificate Revocation List (CRL)"
   default     = null
   validation {
     condition     = var.root_ca_crl_expiry == null ? true : can(regex("^[0-9]+[s,m,h,d]{0,1}$", var.root_ca_crl_expiry))
@@ -387,7 +387,7 @@ variable "intermediate_ca_issuing_certificates_urls_encoded" {
 
 variable "intermediate_ca_signing_method" {
   type        = string
-  description = "Optional, Signing method to use with this certificate authority to generate private certificates"
+  description = "Signing method to use with this certificate authority to generate private certificates"
   default     = "internal"
 
   validation {
@@ -413,36 +413,36 @@ variable "template_max_ttl" {
 
 variable "template_allow_any_name" {
   type        = bool
-  description = "Optional, Allow clients to request a private certificate that matches any common name"
+  description = "Allow clients to request a private certificate that matches any common name"
   default     = true
 }
 
 variable "template_allow_bare_domains" {
   type        = bool
-  description = "Optional, Allow clients to request private certificates that match the value of the actual domains on the final certificate"
+  description = "Allow clients to request private certificates that match the value of the actual domains on the final certificate"
   default     = false
 }
 
 variable "template_allow_glob_domains" {
   type        = bool
-  description = "Optional, Allow glob patterns in the names that are specified in the allowed_domains field"
+  description = "Allow glob patterns in the names that are specified in the allowed_domains field"
   default     = false
 }
 
 variable "template_allow_ip_sans" {
   type        = bool
-  description = "Optional, Allow clients to request a private certificate with IP Subject Alternative Names"
+  description = "Allow clients to request a private certificate with IP Subject Alternative Names"
   default     = true
 }
 
 variable "template_allow_subdomains" {
   type        = bool
-  description = "Optional, Allow clients to request private certificates with common names (CN) that are subdomains of the CNs that are allowed by the other certificate template options"
+  description = "Allow clients to request private certificates with common names (CN) that are subdomains of the CNs that are allowed by the other certificate template options"
   default     = false
 }
 variable "template_allowed_domains" {
   type        = list(string)
-  description = "Optional, Domains to define for the certificate template"
+  description = "Domains to define for the certificate template"
   default     = []
 
   validation {
@@ -460,13 +460,13 @@ variable "template_allowed_domains" {
 
 variable "allowed_domains_template" {
   type        = bool
-  description = "Optional, Allow the domains that are supplied in the allowed_domains field to contain access control list (ACL) templates"
+  description = "Allow the domains that are supplied in the allowed_domains field to contain access control list (ACL) templates"
   default     = false
 }
 
 variable "template_allowed_other_sans" {
   type        = list(string)
-  description = "Optional, The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to allow for private certificates"
+  description = "The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to allow for private certificates"
   default     = []
 
   validation {
@@ -484,7 +484,7 @@ variable "template_allowed_other_sans" {
 
 variable "template_allowed_secret_groups" {
   type        = string
-  description = "Optional, Allowed secrets group Ids as a comma-delimited list"
+  description = "Allowed secrets group Ids as a comma-delimited list"
   default     = null
 
   validation {
@@ -520,37 +520,37 @@ variable "template_allowed_uri_sans" {
 
 variable "template_basic_constraints_valid_for_non_ca" {
   type        = bool
-  description = "Optional, Mark the Basic Constraints extension of an issued private certificate as valid for non-CA certificates"
+  description = "Mark the Basic Constraints extension of an issued private certificate as valid for non-CA certificates"
   default     = false
 }
 
 variable "template_client_flag" {
   type        = bool
-  description = "Optional, Set whether private certificates are flagged for client use"
+  description = "Set whether private certificates are flagged for client use"
   default     = true
 }
 
 variable "template_code_signing_flag" {
   type        = bool
-  description = "Optional, Set whether private certificates are flagged for code signing use"
+  description = "Set whether private certificates are flagged for code signing use"
   default     = false
 }
 
 variable "template_email_protection_flag" {
   type        = bool
-  description = "Optional, Set whether private certificates are flagged for email protection use"
+  description = "Set whether private certificates are flagged for email protection use"
   default     = false
 }
 
 variable "template_enforce_hostnames" {
   type        = bool
-  description = "Optional, Set whether to enforce only valid host names for common names, DNS Subject Alternative Names, and the host section of email addresses"
+  description = "Set whether to enforce only valid host names for common names, DNS Subject Alternative Names, and the host section of email addresses"
   default     = true
 }
 
 variable "template_ext_key_usage" {
   type        = list(string)
-  description = "Optional, List of allowed extended key usage constraint on private certificates"
+  description = "List of allowed extended key usage constraint on private certificates"
   default     = []
 
   validation {
@@ -569,7 +569,7 @@ variable "template_ext_key_usage" {
 
 variable "template_ext_key_usage_oids" {
   type        = list(string)
-  description = "Optional, List of extended key usage Object Identifiers (OIDs)"
+  description = "List of extended key usage Object Identifiers (OIDs)"
   default     = []
 
   validation {
@@ -587,7 +587,7 @@ variable "template_ext_key_usage_oids" {
 
 variable "tempalate_key_usage" {
   type        = list(string)
-  description = "Optional, List of allowed key usage constraint to define for private certificates"
+  description = "List of allowed key usage constraint to define for private certificates"
   default     = ["DigitalSignature", "KeyAgreement", "KeyEncipherment"]
 
   validation {
@@ -605,25 +605,25 @@ variable "tempalate_key_usage" {
 
 variable "template_policy_identifiers" {
   type        = list(string)
-  description = "Optional, list of policy Object Identifiers (OIDs)"
+  description = "List of policy Object Identifiers (OIDs)"
   default     = []
 }
 
 variable "template_require_common_name" {
   type        = bool
-  description = "Optional, Set whether to require a common name to create a private certificate"
+  description = "Set whether to require a common name to create a private certificate"
   default     = true
 }
 
 variable "template_server_flag" {
   type        = bool
-  description = "Optional, Set whether private certificates are flagged for server use"
+  description = "Set whether private certificates are flagged for server use"
   default     = true
 }
 
 variable "template_serial_number" {
   type        = string
-  description = "Optional, Serial number to assign to the generated certificate"
+  description = "Serial number to assign to the generated certificate"
   default     = null
 
   validation {
@@ -639,13 +639,13 @@ variable "template_serial_number" {
 
 variable "template_use_csr_cn" {
   type        = bool
-  description = "Optional, Set whether to use the common name (CN) from a certificate signing request (CSR) instead of the CN that's included in the data of the certificate"
+  description = "Set whether to use the common name (CN) from a certificate signing request (CSR) instead of the CN that's included in the data of the certificate"
   default     = true
 }
 
 variable "template_use_csr_sans" {
   type        = bool
-  description = "Optional, Set whether to use the Subject Alternative Names(SANs) from a certificate signing request (CSR) instead of the SANs that are included in the data of the certificate"
+  description = "Set whether to use the Subject Alternative Names(SANs) from a certificate signing request (CSR) instead of the SANs that are included in the data of the certificate"
   default     = true
 }
 

@@ -14,7 +14,7 @@ This solution supports the following:
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= v1.3.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= v1.9.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | = 1.76.0 |
 
 ### Modules
@@ -57,7 +57,6 @@ No resources.
 | <a name="input_postal_code"></a> [postal\_code](#input\_postal\_code) | Optional, Street Address values in the subject field of the resulting certificate | `list(string)` | `null` | no |
 | <a name="input_private_key_format"></a> [private\_key\_format](#input\_private\_key\_format) | Optional, Format of the generated private key | `string` | `"der"` | no |
 | <a name="input_province"></a> [province](#input\_province) | Optional, Province (ST) values to define in the subject field of the resulting certificate | `list(string)` | `null` | no |
-| <a name="input_region"></a> [region](#input\_region) | Region of the secrets manager instance | `string` | `"us-south"` | no |
 | <a name="input_return_format"></a> [return\_format](#input\_return\_format) | Optional, Format of the returned data | `string` | `"pem"` | no |
 | <a name="input_root_ca_common_name"></a> [root\_ca\_common\_name](#input\_root\_ca\_common\_name) | Fully qualified domain name or host domain name for the certificate to be created | `string` | `"terraform-modules.ibm.com"` | no |
 | <a name="input_root_ca_crl_disable"></a> [root\_ca\_crl\_disable](#input\_root\_ca\_crl\_disable) | crl\_disable flag for the root CA | `bool` | `false` | no |

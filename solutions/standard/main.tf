@@ -16,7 +16,7 @@ locals {
 module "secrets_manager_private_cert_engine" {
   source                = "../.."
   secrets_manager_guid  = local.existing_secrets_manager_guid
-  region                = var.region
+  region                = local.existing_secrets_manager_region
   endpoint_type         = "private"
   organizational_unit   = var.organizational_unit
   organization          = var.organization
