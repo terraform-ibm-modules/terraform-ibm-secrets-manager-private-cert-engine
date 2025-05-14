@@ -22,7 +22,7 @@ variable "endpoint_type" {
 
 variable "organizational_unit" {
   type        = list(string)
-  description = "The Organizational Unit (OU) values that are defined in the subject field of the resulting certificate"
+  description = "The Organizational Unit (OU) values that are defined in the subject field of the resulting certificate.[Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -40,7 +40,7 @@ variable "organizational_unit" {
 
 variable "organization" {
   type        = list(string)
-  description = "The Organization (O) values that are defined in the subject field of the resulting certificate."
+  description = "The Organization (O) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -58,7 +58,7 @@ variable "organization" {
 
 variable "country" {
   type        = list(string)
-  description = "The Country (C) values that are defined in the subject field of the resulting certificate."
+  description = "The Country (C) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -76,7 +76,7 @@ variable "country" {
 
 variable "locality" {
   type        = list(string)
-  description = "The Locality (L) values that are defined in the subject field of the resulting certificate."
+  description = "The Locality (L) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -94,7 +94,7 @@ variable "locality" {
 
 variable "province" {
   type        = list(string)
-  description = "The Province (ST) values that are defined in the subject field of the resulting certificate."
+  description = "The Province (ST) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -112,7 +112,7 @@ variable "province" {
 
 variable "street_address" {
   type        = list(string)
-  description = "The Street Address values that are defined in the subject field of the resulting certificate."
+  description = "The Street Address values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -130,7 +130,7 @@ variable "street_address" {
 
 variable "postal_code" {
   type        = list(string)
-  description = "The Street Address values that are defined in the subject field of the resulting certificate."
+  description = "The Street Address values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -148,7 +148,7 @@ variable "postal_code" {
 
 variable "other_sans" {
   type        = list(string)
-  description = "The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template"
+  description = "The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -166,7 +166,7 @@ variable "other_sans" {
 
 variable "ip_sans" {
   type        = string
-  description = "The IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
+  description = "The IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -177,7 +177,7 @@ variable "ip_sans" {
 
 variable "uri_sans" {
   type        = string
-  description = "The URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
+  description = "The URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -202,7 +202,7 @@ variable "private_key_format" {
   default     = "der"
   validation {
     condition     = contains(["der", "pkcs8"], var.private_key_format)
-    error_message = "The specified return_format is not valid. Allowed values are: der, pkcs8"
+    error_message = "The specified return_format is not valid. Allowed values are: der, pkcs8. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   }
 }
 
@@ -212,7 +212,7 @@ variable "key_type" {
   default     = "rsa"
   validation {
     condition     = contains(["rsa", "ec"], var.key_type)
-    error_message = "The specified key_type is not valid. Allowed values are: rsa, ec"
+    error_message = "The specified key_type is not valid. Allowed values are: rsa, ec. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   }
 }
 
@@ -254,7 +254,7 @@ variable "alt_names" {
 
 variable "ttl" {
   type        = string
-  description = "The Time-to-live (TTL) which is to be assigned to a private certificate."
+  description = "The Time-to-live (TTL) which is to be assigned to a private certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
   validation {
     condition     = var.ttl == null ? true : can(regex("^[0-9]+[s,m,h,d]{0,1}$", var.ttl))
