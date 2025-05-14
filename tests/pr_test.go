@@ -98,10 +98,10 @@ func TestPrivateInSchematics(t *testing.T) {
 	assert.Nil(t, err, "This should not have errored")
 }
 
-func TestRunSolutionsStandardSchematics(t *testing.T) {
+func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
 	t.Parallel()
 
-	const testLocation = "solutions/standard"
+	const testLocation = "solutions/fully-configurable"
 
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
 		Testing: t,
@@ -126,10 +126,10 @@ func TestRunSolutionsStandardSchematics(t *testing.T) {
 	assert.Nil(t, err, "This should not have errored")
 }
 
-func TestRunSolutionsStandardUpgradeSchematics(t *testing.T) {
+func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
 	t.Parallel()
 
-	const testLocation = "solutions/standard"
+	const testLocation = "solutions/fully-configurable"
 
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
 		Testing: t,
