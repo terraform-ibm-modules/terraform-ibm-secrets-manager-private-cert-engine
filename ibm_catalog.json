@@ -45,15 +45,6 @@
             "name": "fully-configurable",
             "install_type": "fullstack",
             "working_directory": "solutions/fully-configurable",
-            "compliance": {
-              "authority": "scc-v3",
-              "profiles": [
-                {
-                  "profile_name": "IBM Cloud Framework for Financial Services",
-                  "profile_version": "1.7.0"
-                }
-              ]
-            },
             "architecture": {
               "descriptions": "This architecture supports creating and configuring a Secrets Manager Private Certificate Engine.",
               "features": [
@@ -87,6 +78,10 @@
               },
               {
                 "key": "existing_secrets_manager_crn",
+                "required": true
+              },
+              {
+                "key": "prefix",
                 "required": true
               },
               {

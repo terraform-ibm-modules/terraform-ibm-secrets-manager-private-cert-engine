@@ -14,6 +14,21 @@ variable "existing_secrets_manager_crn" {
   nullable    = false
 }
 
+variable "prefix" {
+  type        = string
+  description = "The prefix to add to all resources created by this solution. To not use any prefix value, you can set this value to `null` or an empty string."
+
+  validation {
+    condition = (var.prefix == null ? true :
+      alltrue([
+        can(regex("^[a-z]{0,1}[-a-z0-9]{0,14}[a-z0-9]{0,1}$", var.prefix)),
+        length(regexall("^.*--.*", var.prefix)) == 0
+      ])
+    )
+    error_message = "Prefix must begin with a lowercase letter, contain only lowercase letters, numbers, and '-' characters. It must end with a lowercase letter or number, and be 16 or fewer characters long."
+  }
+}
+
 variable "endpoint_type" {
   type        = string
   description = "The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`"

@@ -2,6 +2,10 @@
 # Secrets Manager Private Cert Engine
 ########################################################################################################################
 
+locals {
+  prefix = var.prefix != null ? trimspace(var.prefix) != "" ? "${var.prefix}-" : "" : ""
+}
+
 module "crn_parser" {
   source  = "terraform-ibm-modules/common-utilities/ibm//modules/crn-parser"
   version = "1.1.0"
@@ -36,7 +40,7 @@ module "secrets_manager_private_cert_engine" {
   ttl                   = var.ttl
   exclude_cn_from_sans  = var.exclude_cn_from_sans
 
-  root_ca_name                              = var.root_ca_name
+  root_ca_name                              = "${local.prefix}${var.root_ca_name}"
   root_ca_max_ttl                           = var.root_ca_max_ttl
   root_ca_common_name                       = var.root_ca_common_name
   root_ca_crl_expiry                        = var.root_ca_crl_expiry
@@ -44,7 +48,7 @@ module "secrets_manager_private_cert_engine" {
   root_ca_crl_distribution_points_encoded   = var.root_ca_crl_distribution_points_encoded
   root_ca_issuing_certificates_urls_encoded = var.root_ca_issuing_certificates_urls_encoded
 
-  intermediate_ca_name                              = var.intermediate_ca_name
+  intermediate_ca_name                              = "${local.prefix}${var.intermediate_ca_name}"
   intermediate_ca_max_ttl                           = var.intermediate_ca_max_ttl
   intermediate_ca_common_name                       = var.intermediate_ca_common_name
   intermediate_ca_crl_expiry                        = var.intermediate_ca_crl_expiry
@@ -53,7 +57,7 @@ module "secrets_manager_private_cert_engine" {
   intermediate_ca_issuing_certificates_urls_encoded = var.intermediate_ca_issuing_certificates_urls_encoded
   intermediate_ca_signing_method                    = var.intermediate_ca_signing_method
 
-  certificate_template_name                   = var.certificate_template_name
+  certificate_template_name                   = "${local.prefix}${var.certificate_template_name}"
   template_max_ttl                            = var.template_max_ttl
   template_allow_any_name                     = var.template_allow_any_name
   template_allow_bare_domains                 = var.template_allow_bare_domains
