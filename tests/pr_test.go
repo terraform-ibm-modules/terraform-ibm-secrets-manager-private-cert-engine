@@ -13,6 +13,7 @@ import (
 
 const resourceGroup = "geretain-test-sm-prv-cert-eng"
 const defaultExampleTerraformDir = "examples/default"
+const fullyConfigurableDir = "solutions/fully-configurable"
 const bestRegionYAMLPath = "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml"
 
 // Define a struct with fields that match the structure of the YAML data
@@ -35,17 +36,15 @@ func TestMain(m *testing.M) {
 func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
 	t.Parallel()
 
-	const testLocation = "solutions/fully-configurable"
-
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
 		Testing: t,
 		Prefix:  "sm-pce",
 		TarIncludePatterns: []string{
 			"*.tf",
-			testLocation + "/*.tf",
+			fullyConfigurableDir + "/*.tf",
 		},
 		ResourceGroup:          resourceGroup,
-		TemplateFolder:         testLocation,
+		TemplateFolder:         fullyConfigurableDir,
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 80,
@@ -64,17 +63,15 @@ func TestRunSolutionsFullyConfigurableSchematics(t *testing.T) {
 func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
 	t.Parallel()
 
-	const testLocation = "solutions/fully-configurable"
-
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
 		Testing: t,
 		Prefix:  "sm-pce-up",
 		TarIncludePatterns: []string{
 			"*.tf",
-			testLocation + "/*.tf",
+			fullyConfigurableDir + "/*.tf",
 		},
 		ResourceGroup:          resourceGroup,
-		TemplateFolder:         testLocation,
+		TemplateFolder:         fullyConfigurableDir,
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 80,
@@ -87,5 +84,7 @@ func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
 	}
 
 	err := options.RunSchematicUpgradeTest()
-	assert.Nil(t, err, "This should not have errored")
+	if !options.UpgradeTestSkipped {
+		assert.Nil(t, err, "This should not have errored")
+	}
 }

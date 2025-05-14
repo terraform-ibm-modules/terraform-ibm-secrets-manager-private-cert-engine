@@ -16,7 +16,7 @@ variable "existing_secrets_manager_crn" {
 
 variable "prefix" {
   type        = string
-  description = "The prefix to add to all resources created by this solution. To not use any prefix value, you can set this value to `null` or an empty string."
+  description = "The prefix to be added to all resources created by this solution. To skip using a prefix, set this value to null or an empty string. The prefix must begin with a lowercase letter and may contain only lowercase letters, digits, and hyphens '-'. It should not exceed 16 characters, must not end with a hyphen('-'), and can not contain consecutive hyphens ('--'). Example: prod-0205-cos."
 
   validation {
     condition = (var.prefix == null ? true :
@@ -289,7 +289,7 @@ variable "exclude_cn_from_sans" {
 
 variable "root_ca_name" {
   type        = string
-  description = "The name of the Root CA to be created for a private_cert secret engine."
+  description = "The name of the Root CA to be created for a private_cert secret engine. If a prefix input variable is specified, it is added to the value in the `<prefix>-value` format."
   default     = "root-ca"
 
   validation {
@@ -359,7 +359,7 @@ variable "root_ca_issuing_certificates_urls_encoded" {
 
 variable "intermediate_ca_name" {
   type        = string
-  description = "Name of the Intermediate CA to create for a private_cert secret engine"
+  description = "Name of the Intermediate CA to create for a private_cert secret engine. If a prefix input variable is specified, it is added to the value in the `<prefix>-value` format."
   default     = "intermediate-ca"
 }
 
@@ -416,7 +416,7 @@ variable "intermediate_ca_signing_method" {
 
 variable "certificate_template_name" {
   type        = string
-  description = "Name of the Certificate Template to create for a private_cert secret engine"
+  description = "Name of the Certificate Template to create for a private_cert secret engine. If a prefix input variable is specified, it is added to the value in the `<prefix>-value` format."
   default     = "default-cert-template"
 }
 
