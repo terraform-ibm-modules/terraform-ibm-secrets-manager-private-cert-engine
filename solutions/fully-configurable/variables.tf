@@ -27,6 +27,12 @@ variable "prefix" {
     )
     error_message = "Prefix must begin with a lowercase letter, contain only lowercase letters, numbers, and '-' characters. It must end with a lowercase letter or number, and be 16 or fewer characters long."
   }
+
+  validation {
+    # must not exceed 16 characters in length
+    condition     = length(var.prefix) <= 16
+    error_message = "Prefix must not exceed 16 characters."
+  }
 }
 
 variable "endpoint_type" {
