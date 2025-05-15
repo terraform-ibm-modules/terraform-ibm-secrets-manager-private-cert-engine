@@ -2,29 +2,48 @@
 # Common
 ##############################################################################
 
-variable "secrets_manager_guid" {
+variable "ibmcloud_api_key" {
   type        = string
-  description = "GUID of secrets manager instance to create the secret engine in"
+  description = "The IBM Cloud API key used to provision resources."
+  sensitive   = true
 }
 
-variable "region" {
+variable "existing_secrets_manager_crn" {
   type        = string
-  description = "Region of the secrets manager instance"
+  description = "The CRN of secrets manager instance to create the secret engine in."
+  nullable    = false
+}
+
+variable "prefix" {
+  type        = string
+  description = "The prefix to be added to all resources created by this solution. To skip using a prefix, set this value to null or an empty string. The prefix must begin with a lowercase letter and may contain only lowercase letters, digits, and hyphens '-'. It should not exceed 16 characters, must not end with a hyphen('-'), and can not contain consecutive hyphens ('--'). Example: prod-us-south."
+
+  validation {
+    condition = (var.prefix == null ? true :
+      alltrue([
+        can(regex("^[a-z]{0,1}[-a-z0-9]{0,14}[a-z0-9]{0,1}$", var.prefix)),
+        length(regexall("^.*--.*", var.prefix)) == 0
+      ])
+    )
+    error_message = "Prefix must begin with a lowercase letter, contain only lowercase letters, numbers, and '-' characters. It must end with a lowercase letter or number, and be 16 or fewer characters long."
+  }
+
+  validation {
+    # must not exceed 16 characters in length
+    condition     = length(var.prefix) <= 16
+    error_message = "Prefix must not exceed 16 characters."
+  }
 }
 
 variable "endpoint_type" {
   type        = string
   description = "The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private`"
-  default     = "public"
-  validation {
-    condition     = contains(["public", "private"], var.endpoint_type)
-    error_message = "The specified endpoint_type is not a valid selection!"
-  }
+  default     = "private"
 }
 
 variable "organizational_unit" {
   type        = list(string)
-  description = "Organizational Unit (OU) values to define in the subject field of the resulting certificate"
+  description = "The Organizational Unit (OU) values that are defined in the subject field of the resulting certificate.[Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -42,7 +61,7 @@ variable "organizational_unit" {
 
 variable "organization" {
   type        = list(string)
-  description = "Organization (O) values to define in the subject field of the resulting certificate"
+  description = "The Organization (O) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -60,7 +79,7 @@ variable "organization" {
 
 variable "country" {
   type        = list(string)
-  description = "Country (C) values to define in the subject field of the resulting certificate"
+  description = "The Country (C) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -78,7 +97,7 @@ variable "country" {
 
 variable "locality" {
   type        = list(string)
-  description = "Locality (L) values to define in the subject field of the resulting certificate"
+  description = "The Locality (L) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -96,7 +115,7 @@ variable "locality" {
 
 variable "province" {
   type        = list(string)
-  description = "Province (ST) values to define in the subject field of the resulting certificate"
+  description = "The Province (ST) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -114,7 +133,7 @@ variable "province" {
 
 variable "street_address" {
   type        = list(string)
-  description = "Street Address values in the subject field of the resulting certificate"
+  description = "The Street Address values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -132,7 +151,7 @@ variable "street_address" {
 
 variable "postal_code" {
   type        = list(string)
-  description = "Street Address values in the subject field of the resulting certificate"
+  description = "The Street Address values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -150,7 +169,7 @@ variable "postal_code" {
 
 variable "other_sans" {
   type        = list(string)
-  description = "The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template"
+  description = "The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to define for the CA certificate. The alternative names must match the values that are specified in the 'allowed_other_sans' field in the associated certificate template. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -168,7 +187,7 @@ variable "other_sans" {
 
 variable "ip_sans" {
   type        = string
-  description = "IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
+  description = "The IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -179,7 +198,7 @@ variable "ip_sans" {
 
 variable "uri_sans" {
   type        = string
-  description = "URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list"
+  description = "The URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
 
   validation {
@@ -190,7 +209,7 @@ variable "uri_sans" {
 
 variable "return_format" {
   type        = string
-  description = "Format of the returned data"
+  description = "The format in which the data is returned."
   default     = "pem"
   validation {
     condition     = contains(["pem", "pem_bundle"], var.return_format)
@@ -200,27 +219,27 @@ variable "return_format" {
 
 variable "private_key_format" {
   type        = string
-  description = "Format of the generated private key"
+  description = "The format in which the private key is generated."
   default     = "der"
   validation {
     condition     = contains(["der", "pkcs8"], var.private_key_format)
-    error_message = "The specified return_format is not valid. Allowed values are: der, pkcs8"
+    error_message = "The specified return_format is not valid. Allowed values are: der, pkcs8. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   }
 }
 
 variable "key_type" {
   type        = string
-  description = "Type of private key to generate"
+  description = "The type of private key which is to be generated."
   default     = "rsa"
   validation {
     condition     = contains(["rsa", "ec"], var.key_type)
-    error_message = "The specified key_type is not valid. Allowed values are: rsa, ec"
+    error_message = "The specified key_type is not valid. Allowed values are: rsa, ec. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   }
 }
 
 variable "permitted_dns_domains" {
   type        = list(string)
-  description = "Allowed DNS domains or subdomains for the certificates to be signed and issued by the CA certificate"
+  description = "The Allowed DNS domains or subdomains for the certificates which is to be signed and issued by the CA certificate."
   default     = null
 
   validation {
@@ -238,7 +257,7 @@ variable "permitted_dns_domains" {
 
 variable "alt_names" {
   type        = list(string)
-  description = "Alternate names for the certificate to be created"
+  description = "The alternate names of the certificate which is to be created."
   default     = null
 
   validation {
@@ -256,7 +275,7 @@ variable "alt_names" {
 
 variable "ttl" {
   type        = string
-  description = "Time-to-live (TTL) to assign to a private certificate"
+  description = "The Time-to-live (TTL) which is to be assigned to a private certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli)"
   default     = null
   validation {
     condition     = var.ttl == null ? true : can(regex("^[0-9]+[s,m,h,d]{0,1}$", var.ttl))
@@ -266,7 +285,7 @@ variable "ttl" {
 
 variable "exclude_cn_from_sans" {
   type        = bool
-  description = "Set whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply"
+  description = "Whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply"
   default     = false
 }
 
@@ -276,7 +295,9 @@ variable "exclude_cn_from_sans" {
 
 variable "root_ca_name" {
   type        = string
-  description = "Name of the Root CA to create for a private_cert secret engine"
+  description = "The name of the Root CA to be created for a private_cert secret engine. If a prefix input variable is specified, it is added to the value in the `<prefix>-value` format."
+  default     = "root-ca"
+
   validation {
     condition     = length(var.root_ca_name) >= 2
     error_message = "length of root_ca_name must be >= 2"
@@ -286,6 +307,8 @@ variable "root_ca_name" {
 variable "root_ca_max_ttl" {
   type        = string
   description = "Maximum TTL value for the root CA"
+  default     = "87600h"
+
   validation {
     condition     = can(regex("^[0-9]+[s,m,h,d]{0,1}$", var.root_ca_max_ttl))
     error_message = "root_ca_max_ttl must match regular expression /^[0-9]+[s,m,h,d]{0,1}$/"
@@ -294,7 +317,8 @@ variable "root_ca_max_ttl" {
 
 variable "root_ca_common_name" {
   type        = string
-  description = "Fully qualified domain name or host domain name for the certificate to be created"
+  description = "Fully qualified domain name or host domain name for the certificate which is to be created"
+  default     = "terraform-modules.ibm.com"
 
   validation {
     condition     = length(var.root_ca_common_name) >= 4 && length(var.root_ca_common_name) <= 128
@@ -305,16 +329,11 @@ variable "root_ca_common_name" {
     condition     = can(regex("(.*?)", var.root_ca_common_name))
     error_message = "root_ca_common_name must match regular expression /(.*?)/"
   }
-
-  validation {
-    condition     = var.root_ca_common_name != var.intermediate_ca_common_name
-    error_message = "The values for 'root_ca_common_name' and 'intermediate_ca_common_name' must be different."
-  }
 }
 
 variable "root_ca_crl_expiry" {
   type        = string
-  description = "Expiry time for root CA Certificate Revocation List (CRL)"
+  description = "The expiry time for root CA Certificate Revocation List (CRL)"
   default     = null
   validation {
     condition     = var.root_ca_crl_expiry == null ? true : can(regex("^[0-9]+[s,m,h,d]{0,1}$", var.root_ca_crl_expiry))
@@ -346,7 +365,8 @@ variable "root_ca_issuing_certificates_urls_encoded" {
 
 variable "intermediate_ca_name" {
   type        = string
-  description = "Name of the Intermediate CA to create for a private_cert secret engine"
+  description = "Name of the Intermediate CA to create for a private_cert secret engine. If a prefix input variable is specified, it is added to the value in the `<prefix>-value` format."
+  default     = "intermediate-ca"
 }
 
 variable "intermediate_ca_max_ttl" {
@@ -387,7 +407,7 @@ variable "intermediate_ca_issuing_certificates_urls_encoded" {
 
 variable "intermediate_ca_signing_method" {
   type        = string
-  description = "Signing method to use with this certificate authority to generate private certificates"
+  description = "The signing method to use with this certificate authority to generate private certificates"
   default     = "internal"
 
   validation {
@@ -402,7 +422,8 @@ variable "intermediate_ca_signing_method" {
 
 variable "certificate_template_name" {
   type        = string
-  description = "Name of the Certificate Template to create for a private_cert secret engine"
+  description = "Name of the Certificate Template to create for a private_cert secret engine. If a prefix input variable is specified, it is added to the value in the `<prefix>-value` format."
+  default     = "default-cert-template"
 }
 
 variable "template_max_ttl" {
@@ -440,6 +461,7 @@ variable "template_allow_subdomains" {
   description = "Allow clients to request private certificates with common names (CN) that are subdomains of the CNs that are allowed by the other certificate template options"
   default     = false
 }
+
 variable "template_allowed_domains" {
   type        = list(string)
   description = "Domains to define for the certificate template"
