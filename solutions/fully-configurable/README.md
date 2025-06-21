@@ -21,7 +21,7 @@ This solution supports the following:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_crn_parser"></a> [crn\_parser](#module\_crn\_parser) | terraform-ibm-modules/common-utilities/ibm//modules/crn-parser | 1.1.0 |
+| <a name="module_crn_parser"></a> [crn\_parser](#module\_crn\_parser) | terraform-ibm-modules/common-utilities/ibm//modules/crn-parser | 1.2.0 |
 | <a name="module_secrets_manager_private_cert_engine"></a> [secrets\_manager\_private\_cert\_engine](#module\_secrets\_manager\_private\_cert\_engine) | ../.. | n/a |
 
 ### Resources
