@@ -140,8 +140,8 @@
                 "type": "string",
                 "options": [
                   {
-                  "displayname": "Standard",
-                  "value": "standard"
+                    "displayname": "Standard",
+                    "value": "standard"
                   },
                   {
                     "displayname": "Trial",
