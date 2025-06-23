@@ -89,7 +89,7 @@
                 "required": true,
                 "virtual": true,
                 "default_value": "us-south",
-                "description": "The region to provision a new Secrets Manager instance in."
+                "description": "The region to provision a new Secrets Manager instance in.",
                 "options": [
                   {
                     "displayname": "Osaka (jp-osa)",
