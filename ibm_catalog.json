@@ -44,6 +44,7 @@
         {
           "label": "Fully configurable",
           "name": "fully-configurable",
+          "index": 1,
           "install_type": "fullstack",
           "working_directory": "solutions/fully-configurable",
           "architecture": {
@@ -616,21 +617,21 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "iam-access-groups",
-              "notes": "[optional] Required for managing IAM access groups."
+              "notes": "[Optional] Required for managing IAM access groups."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Account Management services",
-              "notes": "Administrator access is required for resource group creation and deletion."
+              "notes": "[Optional] Administrator access is required for resource group creation and deletion."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Identity and Access enabled services",
-              "notes": "(Optional) Only required if creating context-based restrictions which can be toggled using the `provision_cbr` input."
+              "notes": "[Optional] Only required if creating context-based restrictions which can be toggled using the `provision_cbr` input."
             },
             {
               "role_crns": [
@@ -645,7 +646,7 @@
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager"
               ],
               "service_name": "secrets-manager",
-              "notes": "[optional] Required for creating a Secrets Manager instance."
+              "notes": "[Optional] Required for creating a Secrets Manager instance."
             },
             {
               "role_crns": [
