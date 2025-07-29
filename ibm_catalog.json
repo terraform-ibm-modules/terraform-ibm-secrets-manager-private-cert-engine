@@ -27,7 +27,7 @@
       "provider_name": "IBM",
       "features": [
         {
-          "title": "Root CA",
+          "title": "Root Certificate Authority",
           "description": "Creates an internally signed root certificate authority."
         },
         {
