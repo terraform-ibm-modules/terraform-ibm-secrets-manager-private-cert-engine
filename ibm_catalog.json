@@ -31,7 +31,7 @@
           "description": "Creates an internally signed root certificate authority."
         },
         {
-          "title": "Intermediate CA",
+          "title": "Intermediate Certificate Authority",
           "description": "Creates and configures an intermediate certificate authority."
         },
         {
