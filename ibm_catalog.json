@@ -2,7 +2,7 @@
   "products": [
     {
       "name": "deploy-arch-secrets-manager-private-cert-engine",
-      "label": "Cloud automation for Secrets Manager private certificates engine",
+      "label": "Cloud automation for Secrets Manager Private Certificates Engine",
       "product_kind": "solution",
       "tags": [
         "ibm_created",
@@ -20,26 +20,26 @@
         "terraform",
         "solution"
       ],
-      "short_description": "Creates and configures a Secrets Manager private certificates engine.",
-      "long_description": "This deployable architecture is used to provision and configure a root certificate authority, an intermediate certificate authority and a certificate template. This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) asset collection, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
+      "short_description": "Creates and configures a Secrets Manager Private Certificates Engine",
+      "long_description": "This deployable architecture is used to provision and configure a root certificate authority, an intermediate certificate authority and a certificate template.\n \n This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) asset collection, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/images/secrets_manager_private_cert_engine.svg",
       "provider_name": "IBM",
       "features": [
         {
           "title": "Root Certificate Authority",
-          "description": "Creates an internally signed root certificate authority."
+          "description": "Creates an internally signed root certificate authority to use it to sign a lower level certificate authority. [Learn more](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-root-certificate-authorities&interface=terraform)."
         },
         {
           "title": "Intermediate Certificate Authority",
-          "description": "Creates and configures an intermediate certificate authority."
+          "description": "Creates and configures an intermediate certificate authority to sign and issue certificates to an end entity. [Learn more](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities&interface=terraform)."
         },
         {
           "title": "Certificate template",
-          "description": "Creates and manages certificate templates to define the parameters to apply to the private certificates."
+          "description": "Creates and manages certificate templates to define the parameters to apply to the private certificates. [Learn more](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificate-templates&interface=terraform)."
         }
       ],
-      "support_details": "This product is in the community registry, as such support is handled through the originated repo. If you experience issues please open an issue in that repository [https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/issues](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/issues). Please note this product is not supported via the IBM Cloud Support Center.",
+      "support_details": "This product is in the community registry, as such support is handled through the [original repo](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine). If you experience issues please open an issue [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/issues). Please note this product is not supported via the IBM Cloud Support Center.",
       "flavors": [
         {
           "label": "Fully configurable",
@@ -48,7 +48,6 @@
           "install_type": "fullstack",
           "working_directory": "solutions/fully-configurable",
           "architecture": {
-            "descriptions": "This architecture supports creating and configuring a Secrets Manager Private Certificate Engine.",
             "features": [
               {
                 "title": "",
@@ -62,31 +61,13 @@
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/reference-architecture/secrets_manager_private_cert_engine.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architcture supports creating secrets manager private certificates engine within a secrets manager instance."
+                "description": "This architecture supports creating a Secrets Manager private certificates engine within a Secrets Manager instance. The private certificates engine enables you to issue and manage internal TLS/SSL certificates without relying on external certificate authorities. It supports creating and managing root and intermediate certificate authorities, defining certificate templates, and automating certificate issuance for internal applications and services."
               }
             ]
           },
           "configuration": [
             {
               "key": "ibmcloud_api_key"
-            },
-            {
-              "key": "provider_visibility",
-              "options": [
-                {
-                  "displayname": "private",
-                  "value": "private"
-                },
-                {
-                  "displayname": "public",
-                  "value": "public"
-                },
-                {
-                  "displayname": "public-and-private",
-                  "value": "public-and-private"
-                }
-              ],
-              "hidden": true
             },
             {
               "key": "existing_secrets_manager_crn",
@@ -101,7 +82,7 @@
               "required": true,
               "virtual": true,
               "default_value": "us-south",
-              "description": "The region to provision a new Secrets Manager instance in.",
+              "description": "The region to provision a Secrets Manager instance.",
               "options": [
                 {
                   "displayname": "Osaka (jp-osa)",
@@ -609,6 +590,24 @@
                   "value": "false"
                 }
               ]
+            },
+            {
+              "key": "provider_visibility",
+              "options": [
+                {
+                  "displayname": "private",
+                  "value": "private"
+                },
+                {
+                  "displayname": "public",
+                  "value": "public"
+                },
+                {
+                  "displayname": "public-and-private",
+                  "value": "public-and-private"
+                }
+              ],
+              "hidden": true
             }
           ],
           "iam_permissions": [
@@ -616,7 +615,7 @@
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
-              "service_name": "iam-access-groups",
+              "service_name": "iam-groups",
               "notes": "[Optional] Required for managing IAM access groups."
             },
             {
@@ -631,14 +630,14 @@
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Identity and Access enabled services",
-              "notes": "[Optional] Only required if creating context-based restrictions which can be toggled using the `provision_cbr` input."
+              "notes": "[Optional] Required if creating context-based restrictions."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Viewer"
               ],
-              "service_name": "resource-group",
-              "notes":"Viewer access is required in the resource group you want to provision in."
+              "service_name": "Resource group only",
+              "notes": "Viewer access is required in the resource group you want to provision in."
             },
             {
               "role_crns": [
@@ -670,7 +669,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "atracker",
-              "notes": "[Optional] Required if you are consuming the Observability deployable architecture and enabled activity tracker."
+              "notes": "[Optional] Required if you are consuming the Observability deployable architecture and enable Activity Tracker Event Routing."
             },
             {
               "role_crns": [
@@ -678,7 +677,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "cloud-object-storage",
-              "notes": "[Optional] Required if you are consuming the Observability deployable architecture and provision object storage."
+              "notes": "[Optional] Required if you are consuming the Observability deployable architecture and provision Object Storage."
             },
             {
               "role_crns": [
@@ -708,7 +707,7 @@
           "dependencies": [
             {
               "name": "deploy-arch-ibm-secrets-manager",
-              "description": "Create a new Secrets Manager instance.",
+              "description": "Enable this to create a new secrets manager instance.",
               "id": "6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global",
               "version": "v2.6.3",
               "flavors": [
