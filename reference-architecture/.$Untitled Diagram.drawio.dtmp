@@ -1,0 +1,82 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
+  <diagram name="Page-1" id="3E-5pRjJv1Lh3Lr4aWlQ">
+    <mxGraphModel dx="1405" dy="814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-20" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-21" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;IBM Cloud&lt;/font&gt;" style="shape=mxgraph.ibm.box;prType=cloud;fontStyle=0;verticalAlign=top;align=left;spacingLeft=32;spacingTop=4;fillColor=#FFFFFF;rounded=0;whiteSpace=wrap;html=1;strokeColor=#4376BB;strokeWidth=3;dashed=0;container=1;spacing=-4;collapsible=0;expand=0;recursiveResize=0;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-20">
+          <mxGeometry x="190" y="380" width="840" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-22" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Region&lt;/font&gt;" style="shape=mxgraph.ibm.box;prType=region;fontStyle=0;verticalAlign=top;align=left;spacingLeft=32;spacingTop=4;fillColor=none;rounded=0;whiteSpace=wrap;html=1;strokeColor=#919191;strokeWidth=2;dashed=0;container=1;spacing=-4;collapsible=0;expand=0;recursiveResize=0;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-21">
+          <mxGeometry x="40" y="37" width="580" height="393" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-23" value="" style="container=1;collapsible=0;expand=0;recursiveResize=0;html=1;whiteSpace=wrap;strokeColor=#FA4D56;fillColor=none;dashed=1;dashPattern=1 3;strokeWidth=2" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-22">
+          <mxGeometry x="40" y="43" width="500" height="307" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-24" value="Resource Group" style="shape=rect;fillColor=none;aspect=fixed;resizable=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;strokeColor=none;part=1;spacingLeft=0;fontSize=14;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-23">
+          <mxGeometry width="48" height="48" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-25" value="" style="fillColor=#FA4D56;shape=mxgraph.ibm_cloud.group--resource;strokeColor=none;dashed=0;outlineConnect=0;html=1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;part=1;movable=0;resizable=0;rotatable=0;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-24">
+          <mxGeometry width="24" height="24" relative="1" as="geometry">
+            <mxPoint x="12" y="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-26" value="" style="fontStyle=0;verticalAlign=top;align=left;spacingTop=-2;fillColor=none;rounded=0;whiteSpace=wrap;html=1;strokeColor=#4376BB;strokeWidth=1;dashed=0;container=1;collapsible=0;expand=0;recursiveResize=0;fontColor=#000000;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-23">
+          <mxGeometry x="40" y="48.5" width="420" height="221.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="ZmZcXV07oQQn4Na53wDT-23" source="ZmZcXV07oQQn4Na53wDT-26" target="ZmZcXV07oQQn4Na53wDT-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-16" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/vpc/InternetServices2.svg;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-21">
+          <mxGeometry x="740" y="210" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-52" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="ZmZcXV07oQQn4Na53wDT-21" source="ZmZcXV07oQQn4Na53wDT-26" target="ZmZcXV07oQQn4Na53wDT-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="400" as="sourcePoint" />
+            <mxPoint x="570" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-78" value="Internet&lt;div&gt;service&lt;/div&gt;&lt;div&gt;authorization&lt;/div&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-21">
+          <mxGeometry x="610" y="200" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-28" value="Secrets Manager" style="shape=rect;fillColor=#FA4D56;aspect=fixed;resizable=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;strokeColor=none;fontSize=14;spacingRight=0;spacingLeft=6;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-20">
+          <mxGeometry x="320" y="520" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-29" value="" style="fillColor=#ffffff;strokeColor=none;dashed=0;outlineConnect=0;html=1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=middle;part=1;movable=0;resizable=0;rotatable=0;shape=mxgraph.ibm_cloud.ibm-cloud--secrets-manager" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-28">
+          <mxGeometry width="24" height="24" relative="1" as="geometry">
+            <mxPoint x="12" y="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-30" value="Secrets Manager Private&#xa;Certificates Engine" style="shape=rect;fillColor=#FA4D56;aspect=fixed;resizable=0;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;strokeColor=none;fontSize=14;" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-20">
+          <mxGeometry x="496" y="591" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-31" value="" style="fillColor=#ffffff;strokeColor=none;dashed=0;outlineConnect=0;html=1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;part=1;movable=0;resizable=0;rotatable=0;shape=mxgraph.ibm_cloud.ibm-cloud--secrets-manager" vertex="1" parent="ZmZcXV07oQQn4Na53wDT-30">
+          <mxGeometry width="24" height="24" relative="1" as="geometry">
+            <mxPoint x="12" y="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-32" value="IBM Cloud" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-33" value="Resource Group" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-34" value="Identity &amp; Access Management" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-35" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-36" value="Secrets-Manager" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-37" value="SG" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-38" value="Payloads" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-39" value="Metadata instructions" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-40" value="Secrets" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-41" value="Credentials" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-42" value="IBM Cloud" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-43" value="Resource Group" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-44" value="Identity &amp; Access Management" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-45" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-46" value="Secrets-Manager" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-47" value="SG" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-48" value="Payloads" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-49" value="Metadata instructions" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-50" value="Secrets" parent="0" />
+        <mxCell id="ZmZcXV07oQQn4Na53wDT-51" value="Credentials" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

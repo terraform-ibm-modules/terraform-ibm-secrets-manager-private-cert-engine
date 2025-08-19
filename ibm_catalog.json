@@ -155,7 +155,8 @@
                   "displayname": "public",
                   "value": "public"
                 }
-              ]
+              ],
+              "hidden": true
             },
             {
               "key": "organizational_unit"
