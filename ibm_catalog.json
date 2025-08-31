@@ -21,7 +21,7 @@
         "solution"
       ],
       "short_description": "Creates and configures a Secrets Manager Private Certificates Engine",
-      "long_description": "This deployable architecture is used to provision and configure a root certificate authority, an intermediate certificate authority and a certificate template. \n\nℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
+      "long_description": "This deployable architecture sets up a Private Certificates Engine within IBM Cloud Secrets Manager. A Private Certificate Engine is used to issue and manage private TLS certificates that are trusted only within your organization, rather than by Public Certificate Authorities. The module provisions a Root Certificate Authority, an Intermediate Certificate Authority, and a Certificate Template to define policies for certificate issuance. \n\nℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/images/secrets_manager_private_cert_engine.svg",
       "provider_name": "IBM",
@@ -61,7 +61,7 @@
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/reference-architecture/deployable-architecture-sm-private-cert-engine.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architecture supports creating a Secrets Manager Private Certificates Engine within a Secrets Manager instance. The private certificates engine enables you to issue and manage internal TLS/SSL certificates without relying on external certificate authorities. It supports creating and managing root and intermediate certificate authorities, defining certificate templates, and automating certificate issuance for internal applications and services."
+                "description": "This architecture supports creating a Secrets Manager Private Certificates Engine within a Secrets Manager instance. The Secrets Manager Private Certificates Engine enables you to issue and manage internal TLS/SSL certificates without relying on external Certificate Authorities. It supports creating and managing Root and Intermediate Certificate Authorities, defining Certificate Templates, and automating certificate issuance for internal applications and services."
               }
             ]
           },
@@ -148,11 +148,11 @@
               "key": "endpoint_type",
               "options": [
                 {
-                  "displayname": "private",
+                  "displayname": "Private",
                   "value": "private"
                 },
                 {
-                  "displayname": "public",
+                  "displayname": "Public",
                   "value": "public"
                 }
               ],
@@ -192,11 +192,11 @@
               "key": "return_format",
               "options": [
                 {
-                  "displayname": "pem",
+                  "displayname": "Pem",
                   "value": "pem"
                 },
                 {
-                  "displayname": "pem_bundle",
+                  "displayname": "Pem_bundle",
                   "value": "pem_bundle"
                 }
               ]
@@ -205,11 +205,11 @@
               "key": "private_key_format",
               "options": [
                 {
-                  "displayname": "der",
+                  "displayname": "Der",
                   "value": "der"
                 },
                 {
-                  "displayname": "pkcs8",
+                  "displayname": "Pkcs8",
                   "value": "pkcs8"
                 }
               ]
@@ -218,11 +218,11 @@
               "key": "key_type",
               "options": [
                 {
-                  "displayname": "rsa",
+                  "displayname": "Rsa",
                   "value": "rsa"
                 },
                 {
-                  "displayname": "ec",
+                  "displayname": "Ec",
                   "value": "ec"
                 }
               ]
@@ -240,11 +240,11 @@
               "key": "exclude_cn_from_sans",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -265,11 +265,11 @@
               "key": "root_ca_crl_disable",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -278,11 +278,11 @@
               "key": "root_ca_crl_distribution_points_encoded",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -291,11 +291,11 @@
               "key": "root_ca_issuing_certificates_urls_encoded",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -316,11 +316,11 @@
               "key": "intermediate_ca_crl_disable",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -329,11 +329,11 @@
               "key": "intermediate_ca_crl_distribution_points_encoded",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -342,11 +342,11 @@
               "key": "intermediate_ca_issuing_certificates_urls_encoded",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -355,11 +355,11 @@
               "key": "intermediate_ca_signing_method",
               "options": [
                 {
-                  "displayname": "internal",
+                  "displayname": "Internal",
                   "value": "internal"
                 },
                 {
-                  "displayname": "external",
+                  "displayname": "External",
                   "value": "external"
                 }
               ]
@@ -374,11 +374,11 @@
               "key": "template_allow_any_name",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -387,11 +387,11 @@
               "key": "template_allow_bare_domains",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -400,11 +400,11 @@
               "key": "template_allow_glob_domains",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -413,11 +413,11 @@
               "key": "template_allow_ip_sans",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -426,11 +426,11 @@
               "key": "template_allow_subdomains",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -442,11 +442,11 @@
               "key": "allowed_domains_template",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -464,11 +464,11 @@
               "key": "template_basic_constraints_valid_for_non_ca",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -477,11 +477,11 @@
               "key": "template_client_flag",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -490,11 +490,11 @@
               "key": "template_code_signing_flag",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -503,11 +503,11 @@
               "key": "template_email_protection_flag",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -516,11 +516,11 @@
               "key": "template_enforce_hostnames",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -541,11 +541,11 @@
               "key": "template_require_common_name",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -554,11 +554,11 @@
               "key": "template_server_flag",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -570,11 +570,11 @@
               "key": "template_use_csr_cn",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -583,11 +583,11 @@
               "key": "template_use_csr_sans",
               "options": [
                 {
-                  "displayname": "true",
+                  "displayname": "True",
                   "value": "true"
                 },
                 {
-                  "displayname": "false",
+                  "displayname": "False",
                   "value": "false"
                 }
               ]
@@ -596,15 +596,15 @@
               "key": "provider_visibility",
               "options": [
                 {
-                  "displayname": "private",
+                  "displayname": "Private",
                   "value": "private"
                 },
                 {
-                  "displayname": "public",
+                  "displayname": "Public",
                   "value": "public"
                 },
                 {
-                  "displayname": "public-and-private",
+                  "displayname": "Public-and-private",
                   "value": "public-and-private"
                 }
               ],
