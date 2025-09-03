@@ -54,7 +54,7 @@ variable "prefix" {
 
 variable "endpoint_type" {
   type        = string
-  description = "The endpoint type to communicate with the provided secrets manager instance."
+  description = "The endpoint type to communicate with the provided Secrets Manager instance."
   default     = "private"
 }
 
