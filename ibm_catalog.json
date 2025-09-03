@@ -21,7 +21,7 @@
         "solution"
       ],
       "short_description": "Creates and configures a Secrets Manager Private Certificates Engine",
-      "long_description": "This deployable architecture sets up a Private Certificates Engine within IBM Cloud Secrets Manager. A Private Certificate Engine is used to issue and manage private TLS certificates that are trusted only within your organization, rather than by Public Certificate Authorities. The module provisions a Root Certificate Authority, an Intermediate Certificate Authority, and a Certificate Template to define policies for certificate issuance. \n\nℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
+      "long_description": "This deployable architecture sets up a Private Certificates Engine within IBM Cloud Secrets Manager. A Private Certificates Engine is used to issue and manage private TLS certificates that are trusted only within your organization, rather than by Public Certificate Authorities. The module provisions a Root Certificate Authority, an Intermediate Certificate Authority, and a Certificate Template to define policies for certificate issuance. \n\nℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/images/secrets_manager_private_cert_engine.svg",
       "provider_name": "IBM",
@@ -196,11 +196,11 @@
               "key": "return_format",
               "options": [
                 {
-                  "displayname": "Pem",
+                  "displayname": "PEM",
                   "value": "pem"
                 },
                 {
-                  "displayname": "Pem_bundle",
+                  "displayname": "PEM-BUNDLE",
                   "value": "pem_bundle"
                 }
               ]
@@ -209,7 +209,7 @@
               "key": "private_key_format",
               "options": [
                 {
-                  "displayname": "Der",
+                  "displayname": "DER",
                   "value": "der"
                 },
                 {
@@ -222,11 +222,11 @@
               "key": "key_type",
               "options": [
                 {
-                  "displayname": "Rsa",
+                  "displayname": "RSA",
                   "value": "rsa"
                 },
                 {
-                  "displayname": "Ec",
+                  "displayname": "EC",
                   "value": "ec"
                 }
               ]
