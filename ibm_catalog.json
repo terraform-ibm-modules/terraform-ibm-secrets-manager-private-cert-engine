@@ -646,7 +646,7 @@
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Administrator",
+                "crn:v1:bluemix:public:iam::::role:Editor",
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager"
               ],
               "service_name": "secrets-manager",
