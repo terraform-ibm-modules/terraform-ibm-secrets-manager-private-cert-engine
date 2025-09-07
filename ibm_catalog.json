@@ -245,11 +245,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -270,11 +270,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -283,11 +283,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -296,11 +296,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -321,11 +321,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -334,11 +334,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -347,11 +347,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -379,11 +379,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -392,11 +392,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -405,11 +405,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -418,11 +418,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -431,11 +431,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -447,11 +447,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -469,11 +469,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -482,11 +482,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -495,11 +495,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -508,11 +508,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -521,11 +521,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -546,11 +546,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -559,11 +559,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -575,11 +575,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
@@ -588,11 +588,11 @@
               "options": [
                 {
                   "displayname": "True",
-                  "value": "true"
+                  "value": true
                 },
                 {
                   "displayname": "False",
-                  "value": "false"
+                  "value": false
                 }
               ]
             },
