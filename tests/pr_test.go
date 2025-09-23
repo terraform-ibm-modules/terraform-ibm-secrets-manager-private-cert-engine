@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/cloudinfo"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/common"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testaddons"
@@ -108,10 +109,11 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 		"fully-configurable",
 		map[string]interface{}{
 			"prefix":                       options.Prefix,
-			"secrets_manager_region":                       "eu-de",
+			"secrets_manager_region":       "eu-de",
 			"secrets_manager_service_plan": "trial",
 		},
 	)
 
-	options.RunAddonTest()
+	err := options.RunAddonTest()
+	require.NoError(t, err)
 }
