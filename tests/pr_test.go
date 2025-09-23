@@ -108,7 +108,7 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 		"fully-configurable",
 		map[string]interface{}{
 			"prefix":                       options.Prefix,
-			"region":                       "eu-de",
+			"secrets_manager_region":                       "eu-de",
 			"secrets_manager_service_plan": "trial",
 		},
 	)
