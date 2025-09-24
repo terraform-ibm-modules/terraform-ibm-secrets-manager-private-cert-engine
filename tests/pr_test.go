@@ -7,7 +7,10 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/cloudinfo"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/common"
+	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testaddons"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testschematic"
 )
 
@@ -87,4 +90,30 @@ func TestRunSolutionsFullyConfigurableUpgradeSchematics(t *testing.T) {
 	if !options.UpgradeTestSkipped {
 		assert.Nil(t, err, "This should not have errored")
 	}
+}
+
+func TestAddonsDefaultConfiguration(t *testing.T) {
+
+	t.Parallel()
+
+	options := testaddons.TestAddonsOptionsDefault(&testaddons.TestAddonOptions{
+		Testing:       t,
+		Prefix:        "sm-priv-eng",
+		ResourceGroup: resourceGroup,
+		QuietMode:     false, // Suppress logs except on failure
+	})
+
+	options.AddonConfig = cloudinfo.NewAddonConfigTerraform(
+		options.Prefix,
+		"deploy-arch-secrets-manager-private-cert-engine",
+		"fully-configurable",
+		map[string]interface{}{
+			"prefix":                       options.Prefix,
+			"secrets_manager_region":       "eu-de",
+			"secrets_manager_service_plan": "trial",
+		},
+	)
+
+	err := options.RunAddonTest()
+	require.NoError(t, err)
 }

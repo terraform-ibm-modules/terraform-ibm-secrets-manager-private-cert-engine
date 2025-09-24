@@ -2,10 +2,7 @@
 # Outputs
 ##############################################################################
 
-#output "myoutput" {
-#  description = "Description of my output"
-#  value       = "value"
-#  depends_on  = [<some resource>]
-#}
-
-##############################################################################
+output "template_name" {
+  description = "template name"
+  value       = ibm_sm_private_certificate_configuration_template.certificate_template.name
+}

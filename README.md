@@ -140,7 +140,9 @@ No modules.
 
 ### Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_template_name"></a> [template\_name](#output\_template\_name) | template name |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
