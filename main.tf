@@ -2,10 +2,6 @@
 # Secrets Manager Private Secrets Engine Module
 ##############################################################################
 
-locals {
-  key_bits = var.key_bits != null ? var.key_bits : (var.key_type == "rsa" ? 2048 : 256)
-}
-
 resource "ibm_sm_private_certificate_configuration_root_ca" "private_certificate_root_ca" {
   instance_id                       = var.secrets_manager_guid
   region                            = var.region
@@ -25,7 +21,7 @@ resource "ibm_sm_private_certificate_configuration_root_ca" "private_certificate
   format                            = var.return_format
   private_key_format                = var.private_key_format
   key_type                          = var.key_type
-  key_bits                          = local.key_bits
+  key_bits                          = var.key_bits
   exclude_cn_from_sans              = var.exclude_cn_from_sans
   permitted_dns_domains             = var.permitted_dns_domains
   ou                                = var.organizational_unit
@@ -58,7 +54,7 @@ resource "ibm_sm_private_certificate_configuration_intermediate_ca" "intermediat
   format                            = var.return_format
   private_key_format                = var.private_key_format
   key_type                          = var.key_type
-  key_bits                          = local.key_bits
+  key_bits                          = var.key_bits
   exclude_cn_from_sans              = var.exclude_cn_from_sans
   permitted_dns_domains             = var.permitted_dns_domains
   ou                                = var.organizational_unit
