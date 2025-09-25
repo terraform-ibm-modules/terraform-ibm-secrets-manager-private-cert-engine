@@ -252,7 +252,7 @@ variable "key_type" {
 variable "key_bits" {
   type        = number
   description = "The number of bits for the generated private key. Required for RSA/EC algorithms."
-  default     = null
+  default     = 2048
 
   validation {
     condition = (
