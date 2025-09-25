@@ -69,7 +69,7 @@
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/reference-architecture/secrets_manager_private_cert_engine.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architcture supports creating secrets manager private certificates engine within a secrets manager instance."
+                "description": "This architecture supports creating secrets manager private certificates engine within a secrets manager instance."
               }
             ]
           },
@@ -255,6 +255,9 @@
                   "value": "ec"
                 }
               ]
+            },
+            {
+              "key": "key_bits"
             },
             {
               "key": "permitted_dns_domains"

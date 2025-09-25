@@ -35,6 +35,7 @@ module "secrets_manager_private_cert_engine" {
   return_format         = var.return_format
   private_key_format    = var.private_key_format
   key_type              = var.key_type
+  key_bits              = var.key_bits
   permitted_dns_domains = var.permitted_dns_domains
   alt_names             = var.alt_names
   ttl                   = var.ttl
