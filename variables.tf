@@ -222,13 +222,14 @@ variable "key_bits" {
   type        = number
   description = "The number of bits for the generated private key. Required for RSA/EC algorithms."
   default     = null
+
   validation {
     condition = (
-      var.key_type == "rsa" && (var.key_bits == null || contains([2048, 4096], var.key_bits))
-      ) || (
-      var.key_type == "ec" && (var.key_bits == null || contains([256, 384, 521], var.key_bits))
+      var.key_bits == null ||
+      (var.key_type == "rsa" && contains([2048, 4096], var.key_bits)) ||
+      (var.key_type == "ec" && contains([256, 384, 521], var.key_bits))
     )
-    error_message = "key_bits must match the key_type: 2048/4096 for RSA, 256/384/521 for EC."
+    error_message = "key_bits must be null or one of [2048, 4096] for RSA, or [256, 384, 521] for EC."
   }
 }
 
