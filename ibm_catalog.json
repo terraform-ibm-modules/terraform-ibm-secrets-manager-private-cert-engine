@@ -257,30 +257,7 @@
               ]
             },
             {
-              "key": "key_bits",
-              "type": "integer",
-              "options": [
-                {
-                  "displayname": "2048 (rsa)",
-                  "value": 2048
-                },
-                {
-                  "displayname": "4096 (rsa)",
-                  "value": 4096
-                },
-                {
-                  "displayname": "256 (ec)",
-                  "value": 256
-                },
-                {
-                  "displayname": "384 (rec)",
-                  "value": 4096
-                },
-                {
-                  "displayname": "521 (ec)",
-                  "value": 521
-                }
-              ]
+              "key": "key_bits"
             },
             {
               "key": "permitted_dns_domains"
