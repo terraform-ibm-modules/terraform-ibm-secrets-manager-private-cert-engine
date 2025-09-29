@@ -122,7 +122,9 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 			OfferingFlavor: "fully-configurable",
 			Inputs: map[string]interface{}{
 				"existing_secrets_manager_crn":         permanentResources["privateOnlySecMgrCRN"],
-				"service_plan":                         "trial",
+				"service_plan":                         "__NULL__",
+				"existing_kms_instance_crn":            "__NULL__",
+				"kms_encryption_enabled":               false,
 				"skip_secrets_manager_iam_auth_policy": true,
 				"secret_groups":                        []string{},
 			},

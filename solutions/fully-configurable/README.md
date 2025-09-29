@@ -101,10 +101,10 @@ No resources.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_template_name"></a> [template\_name](#output\_template\_name) | template name |
 | <a name="output_private_intermediate_ca_id"></a> [private\_intermediate\_ca\_id](#output\_private\_intermediate\_ca\_id) | Intermediate CA ID from the private cert engine module |
 | <a name="output_private_intermediate_ca_status"></a> [private\_intermediate\_ca\_status](#output\_private\_intermediate\_ca\_status) | Intermediate CA status from the private cert engine module |
 | <a name="output_private_root_ca_id"></a> [private\_root\_ca\_id](#output\_private\_root\_ca\_id) | Root CA ID from the private cert engine module |
 | <a name="output_private_root_ca_status"></a> [private\_root\_ca\_status](#output\_private\_root\_ca\_status) | Root CA status from the private cert engine module |
 | <a name="output_private_template_id"></a> [private\_template\_id](#output\_private\_template\_id) | Certificate template ID from the private cert engine module |
+| <a name="output_template_name"></a> [template\_name](#output\_template\_name) | template name |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
