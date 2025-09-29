@@ -116,10 +116,7 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 		},
 	)
 
-	/*
-		use existing secrets manager instance to prevent hitting 20 trial instance limit in account
-		disable target/route creation to prevent hitting quota in account
-	*/
+	//	use existing secrets manager instance to prevent hitting 20 trial instance limit in account
 	options.AddonConfig.Dependencies = []cloudinfo.AddonConfig{
 		{
 			OfferingName:   "deploy-arch-ibm-secrets-manager",
@@ -131,6 +128,7 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 				"secret_groups":                        []string{}, // passing empty array for secret groups as default value is creating general group and it will cause conflicts as we are using an existing SM
 			},
 		},
+		// // Disable target / route creation to prevent hitting quota in account
 		{
 			OfferingName:   "deploy-arch-ibm-cloud-monitoring",
 			OfferingFlavor: "fully-configurable",

@@ -27,6 +27,6 @@ output "template_id" {
 }
 
 output "template_name" {
-  description = "template name"
+  description = "Name of the SSL certificate template used to define certificate settings and policies during issuance."
   value       = ibm_sm_private_certificate_configuration_template.certificate_template.name
 }
