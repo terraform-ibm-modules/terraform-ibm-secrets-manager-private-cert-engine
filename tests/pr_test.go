@@ -116,6 +116,10 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 		},
 	)
 
+	/*
+		use existing secrets manager instance to prevent hitting 20 trial instance limit in account
+		disable target/route creation to prevent hitting quota in account
+	*/
 	options.AddonConfig.Dependencies = []cloudinfo.AddonConfig{
 		{
 			OfferingName:   "deploy-arch-ibm-secrets-manager",
@@ -123,8 +127,6 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 			Inputs: map[string]interface{}{
 				"existing_secrets_manager_crn":         permanentResources["privateOnlySecMgrCRN"],
 				"service_plan":                         "__NULL__",
-				"existing_kms_instance_crn":            "__NULL__",
-				"kms_encryption_enabled":               false,
 				"skip_secrets_manager_iam_auth_policy": true,
 				"secret_groups":                        []string{},
 			},
