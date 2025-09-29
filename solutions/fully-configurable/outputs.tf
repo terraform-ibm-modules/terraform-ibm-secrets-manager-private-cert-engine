@@ -2,6 +2,11 @@
 # Outputs
 ##############################################################################
 
+output "template_name" {
+  description = "Name of the SSL certificate template used to define certificate settings and policies during issuance."
+  value       = module.secrets_manager_private_cert_engine.template_name
+}
+
 output "private_root_ca_id" {
   description = "Root CA ID from the private cert engine module"
   value       = module.secrets_manager_private_cert_engine.root_ca_id
