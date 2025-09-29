@@ -148,7 +148,7 @@ No modules.
 | <a name="output_root_ca_id"></a> [root\_ca\_id](#output\_root\_ca\_id) | Root CA ID from the private cert engine module |
 | <a name="output_root_ca_status"></a> [root\_ca\_status](#output\_root\_ca\_status) | Root CA status from the private cert engine module |
 | <a name="output_template_id"></a> [template\_id](#output\_template\_id) | Certificate template ID from the private cert engine module |
-| <a name="output_template_name"></a> [template\_name](#output\_template\_name) | template name |
+| <a name="output_template_name"></a> [template\_name](#output\_template\_name) | Name of the SSL certificate template used to define certificate settings and policies during issuance. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
