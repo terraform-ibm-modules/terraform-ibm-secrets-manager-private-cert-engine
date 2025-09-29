@@ -218,6 +218,19 @@ variable "key_type" {
   }
 }
 
+variable "key_bits" {
+  type        = number
+  description = "The number of bits for the generated private key. Required for RSA/EC algorithms."
+  default     = 2048
+
+  validation {
+    condition = (
+      (var.key_type == "rsa" && contains([2048, 4096], var.key_bits)) || (var.key_type == "ec" && contains([256, 384, 521], var.key_bits))
+    )
+    error_message = "key_bits must be one of [2048, 4096] for RSA, or [256, 384, 521] for EC."
+  }
+}
+
 variable "permitted_dns_domains" {
   type        = list(string)
   description = "Allowed DNS domains or subdomains for the certificates to be signed and issued by the CA certificate"

@@ -91,6 +91,7 @@ No modules.
 | <a name="input_intermediate_ca_name"></a> [intermediate\_ca\_name](#input\_intermediate\_ca\_name) | Name of the Intermediate CA to create for a private\_cert secret engine | `string` | n/a | yes |
 | <a name="input_intermediate_ca_signing_method"></a> [intermediate\_ca\_signing\_method](#input\_intermediate\_ca\_signing\_method) | Signing method to use with this certificate authority to generate private certificates | `string` | `"internal"` | no |
 | <a name="input_ip_sans"></a> [ip\_sans](#input\_ip\_sans) | IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list | `string` | `null` | no |
+| <a name="input_key_bits"></a> [key\_bits](#input\_key\_bits) | The number of bits for the generated private key. Required for RSA/EC algorithms. | `number` | `2048` | no |
 | <a name="input_key_type"></a> [key\_type](#input\_key\_type) | Type of private key to generate | `string` | `"rsa"` | no |
 | <a name="input_locality"></a> [locality](#input\_locality) | Locality (L) values to define in the subject field of the resulting certificate | `list(string)` | `null` | no |
 | <a name="input_organization"></a> [organization](#input\_organization) | Organization (O) values to define in the subject field of the resulting certificate | `list(string)` | `null` | no |
@@ -140,7 +141,13 @@ No modules.
 
 ### Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_intermediate_ca_id"></a> [intermediate\_ca\_id](#output\_intermediate\_ca\_id) | Intermediate CA ID from the private cert engine module |
+| <a name="output_intermediate_ca_status"></a> [intermediate\_ca\_status](#output\_intermediate\_ca\_status) | Intermediate CA status from the private cert engine module |
+| <a name="output_root_ca_id"></a> [root\_ca\_id](#output\_root\_ca\_id) | Root CA ID from the private cert engine module |
+| <a name="output_root_ca_status"></a> [root\_ca\_status](#output\_root\_ca\_status) | Root CA status from the private cert engine module |
+| <a name="output_template_id"></a> [template\_id](#output\_template\_id) | Certificate template ID from the private cert engine module |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
