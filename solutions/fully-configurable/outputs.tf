@@ -3,7 +3,7 @@
 ##############################################################################
 
 output "template_name" {
-  description = "template name"
+  description = "Name of the SSL certificate template used to define certificate settings and policies during issuance."
   value       = module.secrets_manager_private_cert_engine.template_name
 }
 

@@ -112,7 +112,7 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 		map[string]interface{}{
 			"prefix":                       options.Prefix,
 			"secrets_manager_region":       "eu-de",
-			"secrets_manager_service_plan": "trial",
+			"secrets_manager_service_plan": "__NULL__",
 		},
 	)
 
@@ -127,10 +127,9 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 			Inputs: map[string]interface{}{
 				"existing_secrets_manager_crn":         permanentResources["privateOnlySecMgrCRN"],
 				"service_plan":                         "__NULL__", // no plan value needed when using existing SM
-				"skip_secrets_manager_iam_auth_policy": true,
-				"secret_groups":                        []string{},
+				"skip_secrets_manager_iam_auth_policy": true,       // since using an existing Secrets Manager instance, attempting to re-create auth policy can cause conflicts if the policy already exists
+				"secret_groups":                        []string{}, // passing empty array for secret groups as default value is creating general group and it will cause conflicts as we are using an existing SM
 			},
-			Enabled: core.BoolPtr(true),
 		},
 		{
 			OfferingName:   "deploy-arch-ibm-cloud-monitoring",
@@ -138,16 +137,13 @@ func TestAddonsDefaultConfiguration(t *testing.T) {
 			Inputs: map[string]interface{}{
 				"enable_metrics_routing_to_cloud_monitoring": false,
 			},
-			Enabled: core.BoolPtr(true),
 		},
 		{
 			OfferingName:   "deploy-arch-ibm-activity-tracker",
 			OfferingFlavor: "fully-configurable",
 			Inputs: map[string]interface{}{
-				"enable_activity_tracker_event_routing_to_cos_bucket": true,
 				"enable_activity_tracker_event_routing_to_cloud_logs": false,
 			},
-			Enabled: core.BoolPtr(true),
 		},
 	}
 
