@@ -49,6 +49,7 @@ No resources.
 | <a name="input_intermediate_ca_name"></a> [intermediate\_ca\_name](#input\_intermediate\_ca\_name) | Name of the Intermediate CA to create for a private\_cert secret engine. If a prefix input variable is specified, it is added to the value in the `<prefix>-<intermediate_ca_name>` format. | `string` | `"intermediate-ca"` | no |
 | <a name="input_intermediate_ca_signing_method"></a> [intermediate\_ca\_signing\_method](#input\_intermediate\_ca\_signing\_method) | The signing method to use with this certificate authority to generate private certificates | `string` | `"internal"` | no |
 | <a name="input_ip_sans"></a> [ip\_sans](#input\_ip\_sans) | The IP Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli) | `string` | `null` | no |
+| <a name="input_key_bits"></a> [key\_bits](#input\_key\_bits) | The number of bits for the generated private key. Required for RSA/EC algorithms. | `number` | `2048` | no |
 | <a name="input_key_type"></a> [key\_type](#input\_key\_type) | The type of private key which is to be generated. | `string` | `"rsa"` | no |
 | <a name="input_locality"></a> [locality](#input\_locality) | The Locality (L) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli) | `list(string)` | `null` | no |
 | <a name="input_organization"></a> [organization](#input\_organization) | The Organization (O) values that are defined in the subject field of the resulting certificate. [Learn More](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secrets-manager-cli#secrets-manager-configurations-cli) | `list(string)` | `null` | no |
@@ -101,4 +102,9 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_template_name"></a> [template\_name](#output\_template\_name) | template name |
+| <a name="output_private_intermediate_ca_id"></a> [private\_intermediate\_ca\_id](#output\_private\_intermediate\_ca\_id) | Intermediate CA ID from the private cert engine module |
+| <a name="output_private_intermediate_ca_status"></a> [private\_intermediate\_ca\_status](#output\_private\_intermediate\_ca\_status) | Intermediate CA status from the private cert engine module |
+| <a name="output_private_root_ca_id"></a> [private\_root\_ca\_id](#output\_private\_root\_ca\_id) | Root CA ID from the private cert engine module |
+| <a name="output_private_root_ca_status"></a> [private\_root\_ca\_status](#output\_private\_root\_ca\_status) | Root CA status from the private cert engine module |
+| <a name="output_private_template_id"></a> [private\_template\_id](#output\_private\_template\_id) | Certificate template ID from the private cert engine module |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
