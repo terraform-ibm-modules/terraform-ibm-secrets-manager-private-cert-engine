@@ -28,15 +28,15 @@
       "features": [
         {
           "title": "Root Certificate Authority",
-          "description": "Creates an internally signed root certificate authority to use it to sign a lower level certificate authority. [Learn more](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-root-certificate-authorities&interface=terraform)."
+          "description": "Creates an internally signed root certificate authority (CA) for your service instance. It acts as the trust anchor for a certificates chain and can be used to sign a lower level or subordinate CA. [Learn more](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-root-certificate-authorities&interface=ui)."
         },
         {
           "title": "Intermediate Certificate Authority",
-          "description": "Creates and configures an intermediate certificate authority to sign and issue certificates to an end-entity, such as an app or website. [Learn more](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities&interface=terraform)."
+          "description": "Creates and configures an [intermediate certificate authority](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities&interface=ui) to sign and issue certificates to an end-entity, such as an app or website."
         },
         {
           "title": "Certificate template",
-          "description": "Creates and manages certificate templates to define the parameters to apply to the private certificates. [Learn more](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificate-templates&interface=terraform)."
+          "description": "Creates and manages [certificate templates](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificate-templates&interface=ui) to define the parameters to apply to the private certificates."
         }
       ],
       "support_details": "This product is in the community registry, as such support is handled through the [original repo](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine). If you experience issues please open an issue [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/issues). Please note this product is not supported via the IBM Cloud Support Center.",
@@ -82,7 +82,7 @@
               "required": true,
               "virtual": true,
               "default_value": "us-south",
-              "description": "The region to provision a Secrets Manager instance in.",
+              "description": "The region to provision a Secrets Manager instance.",
               "options": [
                 {
                   "displayname": "Osaka (jp-osa)",
@@ -433,14 +433,14 @@
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Account Management services",
-              "notes": "[Optional] Required to deploy Cloud automation for account configuration, which creates foundational IBM Cloud account resources, like IAM settings, trusted profiles, access groups, and resource groups."
+              "notes": "[Optional] Required to create new resource groups when enabling the Account Configuration integration."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Identity and Access enabled services",
-              "notes": "[Optional] Required to deploy Cloud automation for account configuration, which creates foundational IBM Cloud account resources, like IAM settings, trusted profiles, access groups, and resource group with account settings."
+              "notes": "[Optional] Required to create new resource groups with account settings when enabling the Account Configuration integration."
             },
             {
               "role_crns": [
@@ -455,7 +455,7 @@
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager"
               ],
               "service_name": "secrets-manager",
-              "notes": "Required for creating a Secrets Manager instance to deploy private certificates engine."
+              "notes": "Required to create a Secrets Manager instance."
             },
             {
               "role_crns": [
@@ -463,7 +463,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "event-notifications",
-              "notes": "[Optional] Required for creating an Event Notifications instance."
+              "notes": "[Optional] Required to create an Event Notifications instance."
             },
             {
               "role_crns": [
@@ -471,7 +471,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "sysdig-monitor",
-              "notes": "[Optional] Required if you are consuming the Cloud Monitoring deployable architecture."
+              "notes": "[Optional] Required to create an instance of Cloud Monitoring."
             },
             {
               "role_crns": [
@@ -479,7 +479,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "atracker",
-              "notes": "[Optional] Required if you are configuring Activity Tracker deployable architecture."
+              "notes": "[Optional] Required when enabling the Activity Tracker Event Routing."
             },
             {
               "role_crns": [
@@ -487,7 +487,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "cloud-object-storage",
-              "notes": "[Optional] Required if you are provisioning Object Storage."
+              "notes": "[Optional] Required to create an Object Storage instance."
             },
             {
               "role_crns": [
@@ -495,7 +495,7 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "logs",
-              "notes": "[Optional] Required if you are consuming the Cloud logs deployable architecture."
+              "notes": "[Optional] Required to create an instance of Cloud Logs."
             },
             {
               "role_crns": [
@@ -511,13 +511,13 @@
                 "crn:v1:bluemix:public:iam::::role:Editor"
               ],
               "service_name": "kms",
-              "notes": "[Optional] Required to deploy Cloud automation for Key Protect."
+              "notes": "[Optional] Required if Key Protect is used for encryption."
             }
           ],
           "dependencies": [
             {
               "name": "deploy-arch-ibm-secrets-manager",
-              "description": "Enable to provision and configure Secrets Manager",
+              "description": "Configure Secrets Manager to deploy private certificates engine.",
               "id": "6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global",
               "version": "v2.10.0",
               "flavors": [
