@@ -20,80 +20,54 @@
         "terraform",
         "solution"
       ],
-      "short_description": "Creates and configures a Secrets Manager private certificates engine.",
-      "long_description": "This deployable architecture is used to provision and configure a root certificate authority, an intermediate certificate authority and a certificate template. This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) asset collection, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
+      "short_description": "Creates and configures a Secrets Manager private certificates engine",
+      "long_description": "This deployable architecture sets up a private certificates engine within IBM Cloud Secrets Manager. A private certificates engine is used to issue and manage private TLS certificates that are trusted only within your organization, rather than by public Certificate Authorities. The module provisions a Root Certificate Authority, an Intermediate Certificate Authority, and a Certificate Template to define policies for certificate issuance. \n\nℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/blob/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/images/secrets_manager_private_cert_engine.svg",
       "provider_name": "IBM",
       "features": [
         {
-          "title": "Creates root CA",
-          "description": "Creates an internally signed root certificate authority."
+          "title": "Root Certificate Authority",
+          "description": "Creates an internally signed root certificate authority (CA) for your service instance. It acts as the trust anchor for a certificates chain and can be used to sign a lower level or subordinate CA. [Learn more](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-root-certificate-authorities&interface=ui)."
         },
         {
-          "title": "Creates intermediate CA",
-          "description": "Creates and configures an intermediate certificate authority."
+          "title": "Intermediate Certificate Authority",
+          "description": "Creates and configures an [intermediate certificate authority](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities&interface=ui) to sign and issue certificates to an end-entity, such as an app or website."
         },
         {
-          "title": "Creates a certificate template",
-          "description": "Creates and manages certificate templates to define the parameters to apply to the private certificates."
+          "title": "Certificate template",
+          "description": "Creates and manages [certificate templates](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificate-templates&interface=ui) to define the parameters to apply to the private certificates."
         }
       ],
-      "support_details": "This product is in the community registry, as such support is handled through the originated repo. If you experience issues please open an issue in that repository [https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/issues](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/issues). Please note this product is not supported via the IBM Cloud Support Center.",
+      "support_details": "This product is in the community registry, as such support is handled through the [original repo](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine). If you experience issues please open an issue [here](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/issues). Please note this product is not supported via the IBM Cloud Support Center.",
       "flavors": [
         {
           "label": "Fully configurable",
           "name": "fully-configurable",
+          "index": 1,
           "install_type": "fullstack",
           "working_directory": "solutions/fully-configurable",
           "architecture": {
-            "descriptions": "This architecture supports creating and configuring a Secrets Manager Private Certificate Engine.",
             "features": [
               {
-                "title": "Root certificate authority",
-                "description": "Yes"
-              },
-              {
-                "title": "Intermediate certificate authority",
-                "description": "Yes"
-              },
-              {
-                "title": "Certificate template",
-                "description": "Yes"
+                "title": " ",
+                "description": "Configured to use IBM secure-by-default standards, but can be edited to fit your use case."
               }
             ],
             "diagrams": [
               {
                 "diagram": {
                   "caption": "Secrets Manager Private Certificates Engine",
-                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/reference-architecture/secrets_manager_private_cert_engine.svg",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/reference-architecture/deployable-architecture-sm-private-cert-engine.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architecture supports creating secrets manager private certificates engine within a secrets manager instance."
+                "description": "This architecture supports creating a Secrets Manager private certificates engine within a Secrets Manager instance. The Secrets Manager private certificates engine enables you to issue and manage internal TLS/SSL certificates without relying on external Certificate Authorities. It supports creating and managing Root and Intermediate Certificate Authorities, defining Certificate Templates, and automating certificate issuance for internal applications and services."
               }
             ]
           },
           "configuration": [
             {
               "key": "ibmcloud_api_key"
-            },
-            {
-              "key": "provider_visibility",
-              "options": [
-                {
-                  "displayname": "private",
-                  "value": "private"
-                },
-                {
-                  "displayname": "public",
-                  "value": "public"
-                },
-                {
-                  "displayname": "public-and-private",
-                  "value": "public-and-private"
-                }
-              ],
-              "hidden": true
             },
             {
               "key": "existing_secrets_manager_crn",
@@ -108,7 +82,7 @@
               "required": true,
               "virtual": true,
               "default_value": "us-south",
-              "description": "The region to provision a new Secrets Manager instance in.",
+              "description": "The region to provision a Secrets Manager instance.",
               "options": [
                 {
                   "displayname": "Osaka (jp-osa)",
@@ -178,14 +152,15 @@
               "key": "endpoint_type",
               "options": [
                 {
-                  "displayname": "private",
+                  "displayname": "Private",
                   "value": "private"
                 },
                 {
-                  "displayname": "public",
+                  "displayname": "Public",
                   "value": "public"
                 }
-              ]
+              ],
+              "hidden": true
             },
             {
               "key": "organizational_unit"
@@ -221,11 +196,11 @@
               "key": "return_format",
               "options": [
                 {
-                  "displayname": "pem",
+                  "displayname": "PEM",
                   "value": "pem"
                 },
                 {
-                  "displayname": "pem_bundle",
+                  "displayname": "PEM-BUNDLE",
                   "value": "pem_bundle"
                 }
               ]
@@ -234,11 +209,11 @@
               "key": "private_key_format",
               "options": [
                 {
-                  "displayname": "der",
+                  "displayname": "DER",
                   "value": "der"
                 },
                 {
-                  "displayname": "pkcs8",
+                  "displayname": "PKCS 8",
                   "value": "pkcs8"
                 }
               ]
@@ -247,11 +222,11 @@
               "key": "key_type",
               "options": [
                 {
-                  "displayname": "rsa",
+                  "displayname": "RSA",
                   "value": "rsa"
                 },
                 {
-                  "displayname": "ec",
+                  "displayname": "EC",
                   "value": "ec"
                 }
               ]
@@ -291,17 +266,7 @@
               "key": "ttl"
             },
             {
-              "key": "exclude_cn_from_sans",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "exclude_cn_from_sans"
             },
             {
               "key": "root_ca_name"
@@ -316,43 +281,13 @@
               "key": "root_ca_crl_expiry"
             },
             {
-              "key": "root_ca_crl_disable",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "root_ca_crl_disable"
             },
             {
-              "key": "root_ca_crl_distribution_points_encoded",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "root_ca_crl_distribution_points_encoded"
             },
             {
-              "key": "root_ca_issuing_certificates_urls_encoded",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "root_ca_issuing_certificates_urls_encoded"
             },
             {
               "key": "intermediate_ca_name"
@@ -367,53 +302,23 @@
               "key": "intermediate_ca_crl_expiry"
             },
             {
-              "key": "intermediate_ca_crl_disable",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "intermediate_ca_crl_disable"
             },
             {
-              "key": "intermediate_ca_crl_distribution_points_encoded",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "intermediate_ca_crl_distribution_points_encoded"
             },
             {
-              "key": "intermediate_ca_issuing_certificates_urls_encoded",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "intermediate_ca_issuing_certificates_urls_encoded"
             },
             {
               "key": "intermediate_ca_signing_method",
               "options": [
                 {
-                  "displayname": "internal",
+                  "displayname": "Internal",
                   "value": "internal"
                 },
                 {
-                  "displayname": "external",
+                  "displayname": "External",
                   "value": "external"
                 }
               ]
@@ -425,85 +330,25 @@
               "key": "template_max_ttl"
             },
             {
-              "key": "template_allow_any_name",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_allow_any_name"
             },
             {
-              "key": "template_allow_bare_domains",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_allow_bare_domains"
             },
             {
-              "key": "template_allow_glob_domains",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_allow_glob_domains"
             },
             {
-              "key": "template_allow_ip_sans",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_allow_ip_sans"
             },
             {
-              "key": "template_allow_subdomains",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_allow_subdomains"
             },
             {
               "key": "template_allowed_domains"
             },
             {
-              "key": "allowed_domains_template",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "allowed_domains_template"
             },
             {
               "key": "template_allowed_other_sans"
@@ -515,69 +360,19 @@
               "key": "template_allowed_uri_sans"
             },
             {
-              "key": "template_basic_constraints_valid_for_non_ca",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_basic_constraints_valid_for_non_ca"
             },
             {
-              "key": "template_client_flag",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_client_flag"
             },
             {
-              "key": "template_code_signing_flag",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_code_signing_flag"
             },
             {
-              "key": "template_email_protection_flag",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_email_protection_flag"
             },
             {
-              "key": "template_enforce_hostnames",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_enforce_hostnames"
             },
             {
               "key": "template_ext_key_usage"
@@ -592,74 +387,137 @@
               "key": "template_policy_identifiers"
             },
             {
-              "key": "template_require_common_name",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_require_common_name"
             },
             {
-              "key": "template_server_flag",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_server_flag"
             },
             {
               "key": "template_serial_number"
             },
             {
-              "key": "template_use_csr_cn",
-              "options": [
-                {
-                  "displayname": "true",
-                  "value": "true"
-                },
-                {
-                  "displayname": "false",
-                  "value": "false"
-                }
-              ]
+              "key": "template_use_csr_cn"
             },
             {
-              "key": "template_use_csr_sans",
+              "key": "template_use_csr_sans"
+            },
+            {
+              "key": "provider_visibility",
               "options": [
                 {
-                  "displayname": "true",
-                  "value": "true"
+                  "displayname": "Private",
+                  "value": "private"
                 },
                 {
-                  "displayname": "false",
-                  "value": "false"
+                  "displayname": "Public",
+                  "value": "public"
+                },
+                {
+                  "displayname": "Public-and-private",
+                  "value": "public-and-private"
                 }
-              ]
+              ],
+              "hidden": true
             }
           ],
           "iam_permissions": [
             {
-              "service_name": "secrets-manager",
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Administrator",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "iam-groups",
+              "notes": "[Optional] Required for managing IAM access groups."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Administrator"
+              ],
+              "service_name": "All Account Management services",
+              "notes": "[Optional] Required to create new resource groups when enabling the Account Configuration integration."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Administrator"
+              ],
+              "service_name": "All Identity and Access enabled services",
+              "notes": "[Optional] Required to create new resource groups with account settings when enabling the Account Configuration integration."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Viewer"
+              ],
+              "service_name": "Resource group only",
+              "notes": "Viewer access is required in the resource group you want to provision in."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Editor",
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager"
-              ]
+              ],
+              "service_name": "secrets-manager",
+              "notes": "Required to create a Secrets Manager instance."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "event-notifications",
+              "notes": "[Optional] Required to create an Event Notifications instance."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "sysdig-monitor",
+              "notes": "[Optional] Required to create an instance of Cloud Monitoring."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Writer",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "atracker",
+              "notes": "[Optional] Required when enabling the Activity Tracker Event Routing."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "cloud-object-storage",
+              "notes": "[Optional] Required to create an Object Storage instance."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "logs",
+              "notes": "[Optional] Required to create an instance of Cloud Logs."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "hs-crypto",
+              "notes": "[Optional] Required if Hyper Protect Crypto Service is used for encryption."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                "crn:v1:bluemix:public:iam::::role:Editor"
+              ],
+              "service_name": "kms",
+              "notes": "[Optional] Required if Key Protect is used for encryption."
             }
           ],
           "dependencies": [
             {
               "name": "deploy-arch-ibm-secrets-manager",
-              "description": "Create a new Secrets Manager instance.",
+              "description": "Configure Secrets Manager to deploy private certificates engine.",
               "id": "6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global",
               "version": "v2.10.0",
               "flavors": [
