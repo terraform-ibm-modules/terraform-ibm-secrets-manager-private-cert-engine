@@ -58,7 +58,7 @@
               {
                 "diagram": {
                   "caption": "Secrets Manager Private Certificates Engine",
-                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/reference-architecture/deployable-architecture-sm-private-cert-engine.svg",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-secrets-manager-private-cert-engine/main/reference-architectures/deployable-architecture-sm-private-cert-engine.svg",
                   "type": "image/svg+xml"
                 },
                 "description": "This architecture supports creating a Secrets Manager private certificates engine within a Secrets Manager instance. The Secrets Manager private certificates engine enables you to issue and manage internal TLS/SSL certificates without relying on external Certificate Authorities. It supports creating and managing Root and Intermediate Certificate Authorities, defining Certificate Templates, and automating certificate issuance for internal applications and services."
