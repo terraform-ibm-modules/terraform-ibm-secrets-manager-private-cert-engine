@@ -31,3 +31,8 @@ output "private_template_id" {
   description = "Certificate template ID from the private cert engine module"
   value       = module.secrets_manager_private_cert_engine.template_id
 }
+
+output "secrets_manager_crn" {
+  description = "The CRN of the Secrets Manager instance"
+  value       = var.existing_secrets_manager_crn
+}
