@@ -75,7 +75,18 @@
             },
             {
               "key": "prefix",
-              "required": true
+              "required": true,
+              "default_value": "dev",
+              "random_string": {
+                "length": 4
+              },
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "Prefix must begin with a lowercase letter and may contain only lowercase letters, digits, and hyphens '-'. It must not end with a hyphen('-'), and cannot contain consecutive hyphens ('--'). It should not exceed 16 characters.",
+                  "value": "^$|^__NULL__$|^[a-z](?!.*--)(?:[a-z0-9-]{0,14}[a-z0-9])?$"
+                }
+              ]
             },
             {
               "key": "secrets_manager_region",
@@ -430,20 +441,6 @@
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Administrator"
-              ],
-              "service_name": "All Account Management services",
-              "notes": "[Optional] Required to create new resource groups when enabling the Account Configuration integration."
-            },
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Administrator"
-              ],
-              "service_name": "All Identity and Access enabled services",
-              "notes": "[Optional] Required to create new resource groups with account settings when enabling the Account Configuration integration."
-            },
-            {
-              "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Viewer"
               ],
               "service_name": "Resource group only",
@@ -519,7 +516,7 @@
               "name": "deploy-arch-ibm-secrets-manager",
               "description": "Configure Secrets Manager to deploy private certificates engine.",
               "id": "6d6ebc76-7bbd-42f5-8bc7-78f4fabd5944-global",
-              "version": "v2.10.0",
+              "version": "v2.11.0",
               "flavors": [
                 "fully-configurable"
               ],
@@ -530,6 +527,11 @@
                 {
                   "dependency_input": "prefix",
                   "version_input": "prefix",
+                  "reference_version": true
+                },
+                {
+                  "dependency_input": "existing_resource_group_name",
+                  "version_input": "existing_resource_group_name",
                   "reference_version": true
                 },
                 {
