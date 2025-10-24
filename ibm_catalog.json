@@ -213,10 +213,24 @@
               "key": "other_sans"
             },
             {
-              "key": "ip_sans"
+              "key": "ip_sans",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'ip_sans' must be null or between 2 and 2048 characters long.",
+                  "value": "^__NULL__$|^(?=.{2,2048}$).+$"
+                }
+              ]
             },
             {
-              "key": "uri_sans"
+              "key": "uri_sans",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'uri_sans' must be null or between 2 and 2048 characters long.",
+                  "value": "^__NULL__$|^(?=.{2,2048}$).+$"
+                }
+              ]
             },
             {
               "key": "return_format",
@@ -289,22 +303,57 @@
               "key": "alt_names"
             },
             {
-              "key": "ttl"
+              "key": "ttl",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'ttl' must match regular expression /^[0-9]+[s,m,h,d]{0,1}$/.",
+                  "value": "^__NULL__$|^[0-9]+[s,m,h,d]{0,1}$"
+                }
+              ]
             },
             {
               "key": "exclude_cn_from_sans"
             },
             {
-              "key": "root_ca_name"
+              "key": "root_ca_name",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'root_ca_name' must be at least 2 characters long.",
+                  "value": "^(?=.{2,}$).+$"
+                }
+              ]
             },
             {
-              "key": "root_ca_max_ttl"
+              "key": "root_ca_max_ttl",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'root_ca_max_ttl' must match regular expression /^[0-9]+[s,m,h,d]{0,1}$/.",
+                  "value": "^[0-9]+[s,m,h,d]{0,1}$"
+                }
+              ]
             },
             {
-              "key": "root_ca_common_name"
+              "key": "root_ca_common_name",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value for 'root_ca_common_name' must match /(.*?)/ and have a length between 4 and 128 characters.",
+                  "value": "^(?=.{4,128}$)(.*?)$"
+                }
+              ]
             },
             {
-              "key": "root_ca_crl_expiry"
+              "key": "root_ca_crl_expiry",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'root_ca_crl_expiry' must match regular expression /^[0-9]+[s,m,h,d]{0,1}$/.",
+                  "value": "^__NULL__$|^[0-9]+[s,m,h,d]{0,1}$"
+                }
+              ]
             },
             {
               "key": "root_ca_crl_disable"
@@ -419,7 +468,14 @@
               "key": "template_server_flag"
             },
             {
-              "key": "template_serial_number"
+              "key": "template_serial_number",
+              "value_constraints": [
+                {
+                  "type": "regex",
+                  "description": "The value provided for 'template_serial_number' must be null or a 32–64 character hexadecimal string (a-f, A-F, 0-9).",
+                  "value": "^$|^__NULL__$|^(?=.{32,64}$)[a-fA-F0-9]+$"
+                }
+              ]
             },
             {
               "key": "template_use_csr_cn"
