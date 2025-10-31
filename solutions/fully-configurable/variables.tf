@@ -23,6 +23,11 @@ variable "existing_secrets_manager_crn" {
   type        = string
   description = "The CRN of secrets manager instance to create the secret engine in."
   nullable    = false
+
+  validation {
+    condition     = can(regex("^crn:(.*:){3}secrets-manager:(.*:){2}[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}::$", var.existing_secrets_manager_crn))
+    error_message = "The value provided for 'existing_secrets_manager_crn' is not valid.'"
+  }
 }
 
 variable "prefix" {
