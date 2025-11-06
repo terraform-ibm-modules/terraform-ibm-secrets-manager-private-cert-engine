@@ -38,7 +38,7 @@ output "secrets_manager_crn" {
 }
 
 output "next_steps_text" {
-  value       = "Your Private Certificate Engine is ready."
+  value       = "Your Private Certificates Engine is ready."
   description = "Next steps text"
 }
 
