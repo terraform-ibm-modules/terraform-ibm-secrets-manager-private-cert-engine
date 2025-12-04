@@ -483,7 +483,7 @@
               "value_constraints": [
                 {
                   "type": "regex",
-                  "description": "The value provided for 'template_serial_number' must be null or a 32–64 character hexadecimal string (a-f, A-F, 0-9).",
+                  "description": "The value provided for 'template_serial_number' must be between 32 and 64 characters long and must match the regular expression /[^a-fA-F0-9]/.",
                   "value": "^$|^__NULL__$|^(?=.{32,64}$)[a-fA-F0-9]+$"
                 }
               ]
