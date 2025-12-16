@@ -48,7 +48,7 @@
         {
           "label": "Fully configurable",
           "name": "fully-configurable",
-          "short_description": "Ideal for users who want flexibility with a reliable starting point.",
+          "short_description": "Ideal for users who want to configure a private certificate engine on an existing secrets manager instance.",
           "index": 1,
           "install_type": "fullstack",
           "working_directory": "solutions/fully-configurable",
