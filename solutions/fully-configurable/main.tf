@@ -4,6 +4,16 @@
 
 locals {
   prefix = var.prefix != null ? trimspace(var.prefix) != "" ? "${var.prefix}-" : "" : ""
+
+  # Transform certificate_templates to add prefix to each template name
+  certificate_templates_with_prefix = {
+    for key, template in var.certificate_templates : key => merge(
+      template,
+      {
+        name = "${local.prefix}${template.name}"
+      }
+    )
+  }
 }
 
 module "crn_parser" {
@@ -57,31 +67,5 @@ module "secrets_manager_private_cert_engine" {
   intermediate_ca_crl_distribution_points_encoded   = var.intermediate_ca_crl_distribution_points_encoded
   intermediate_ca_issuing_certificates_urls_encoded = var.intermediate_ca_issuing_certificates_urls_encoded
   intermediate_ca_signing_method                    = var.intermediate_ca_signing_method
-
-  certificate_template_name                   = "${local.prefix}${var.certificate_template_name}"
-  template_max_ttl                            = var.template_max_ttl
-  template_allow_any_name                     = var.template_allow_any_name
-  template_allow_bare_domains                 = var.template_allow_bare_domains
-  template_allow_glob_domains                 = var.template_allow_glob_domains
-  template_allow_ip_sans                      = var.template_allow_ip_sans
-  template_allow_subdomains                   = var.template_allow_subdomains
-  template_allowed_domains                    = var.template_allowed_domains
-  allowed_domains_template                    = var.allowed_domains_template
-  template_allowed_other_sans                 = var.template_allowed_other_sans
-  template_allowed_secret_groups              = var.template_allowed_secret_groups
-  template_allowed_uri_sans                   = var.template_allowed_uri_sans
-  template_basic_constraints_valid_for_non_ca = var.template_basic_constraints_valid_for_non_ca
-  template_client_flag                        = var.template_client_flag
-  template_code_signing_flag                  = var.template_code_signing_flag
-  template_email_protection_flag              = var.template_email_protection_flag
-  template_enforce_hostnames                  = var.template_enforce_hostnames
-  template_ext_key_usage                      = var.template_ext_key_usage
-  template_ext_key_usage_oids                 = var.template_ext_key_usage_oids
-  tempalate_key_usage                         = var.tempalate_key_usage
-  template_policy_identifiers                 = var.template_policy_identifiers
-  template_require_common_name                = var.template_require_common_name
-  template_server_flag                        = var.template_server_flag
-  template_serial_number                      = var.template_serial_number
-  template_use_csr_cn                         = var.template_use_csr_cn
-  template_use_csr_sans                       = var.template_use_csr_sans
+  certificate_templates                             = local.certificate_templates_with_prefix
 }

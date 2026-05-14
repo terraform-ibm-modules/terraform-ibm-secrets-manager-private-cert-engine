@@ -17,6 +17,7 @@ import (
 
 const resourceGroup = "geretain-test-sm-prv-cert-eng"
 const defaultExampleTerraformDir = "examples/default"
+const multitemplateExampleTerraformDir = "examples/multiple-templates"
 const fullyConfigurableDir = "solutions/fully-configurable"
 const bestRegionYAMLPath = "../common-dev-assets/common-go-assets/cloudinfo-region-secmgr-prefs.yaml"
 

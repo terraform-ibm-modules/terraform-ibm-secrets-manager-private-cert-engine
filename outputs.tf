@@ -21,12 +21,16 @@ output "intermediate_ca_status" {
   value       = ibm_sm_private_certificate_configuration_intermediate_ca.intermediate_ca.status
 }
 
-output "template_id" {
-  description = "Certificate template ID from the private cert engine module"
-  value       = ibm_sm_private_certificate_configuration_template.certificate_template.id
+output "template_ids" {
+  description = "Map of certificate template IDs from the private cert engine module"
+  value = {
+    for k, v in ibm_sm_private_certificate_configuration_template.certificate_template : k => v.id
+  }
 }
 
-output "template_name" {
-  description = "Name of the SSL certificate template used to define certificate settings and policies during issuance."
-  value       = ibm_sm_private_certificate_configuration_template.certificate_template.name
+output "template_names" {
+  description = "Map of certificate template names used to define certificate settings and policies during issuance."
+  value = {
+    for k, v in ibm_sm_private_certificate_configuration_template.certificate_template : k => v.name
+  }
 }

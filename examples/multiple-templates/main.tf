@@ -1,0 +1,71 @@
+##############################################################################
+# Example: Multiple Certificate Templates
+# This example demonstrates how to create multiple certificate templates
+# under a single intermediate CA
+##############################################################################
+
+module "resource_group" {
+  source  = "terraform-ibm-modules/resource-group/ibm"
+  version = "1.6.0"
+  # if an existing resource group is not set (null) create a new one using prefix
+  resource_group_name          = var.resource_group == null ? "${var.prefix}-resource-group" : null
+  existing_resource_group_name = var.resource_group
+}
+
+module "secrets_manager" {
+  source               = "terraform-ibm-modules/secrets-manager/ibm"
+  version              = "2.15.2"
+  resource_group_id    = module.resource_group.resource_group_id
+  region               = var.region
+  secrets_manager_name = "${var.prefix}-secrets-manager"
+  sm_service_plan      = "trial"
+  allowed_network      = "public-and-private"
+  resource_tags        = var.resource_tags
+}
+
+module "private_secret_engine" {
+  source               = "../.."
+  secrets_manager_guid = "52d3ce44-b7c3-4f2b-a9ee-f08001098d5e"
+  region               = "us-south"
+  root_ca_name         = var.root_ca_name
+  root_ca_common_name  = "*.cloud.ibm.com"
+  root_ca_max_ttl      = "8760h"
+  intermediate_ca_name = var.intermediate_ca_name
+
+  # Define multiple certificate templates
+  certificate_templates = {
+    # Template for web servers
+    web_server = {
+      name               = "web-server-template"
+      max_ttl            = "8760h"
+      allowed_domains    = ["example.com", "*.example.com"]
+      key_usage          = ["DigitalSignature", "KeyEncipherment"]
+      ext_key_usage      = ["ServerAuth"]
+    }
+
+    # Template for client certificates
+    client_cert = {
+      name               = "client-cert-template"
+      max_ttl            = "4380h"
+      key_usage          = ["DigitalSignature", "KeyAgreement"]
+      ext_key_usage      = ["ClientAuth"]
+    }
+
+    # Template for code signing
+    code_signing = {
+      name               = "code-signing-template"
+      max_ttl            = "2190h"
+      key_usage          = ["DigitalSignature"]
+      ext_key_usage      = ["CodeSigning"]
+    }
+
+    # Template for internal services with wildcard support
+    internal-services-template = {
+      name                 = "internal-services-template"
+      max_ttl              = "8760h"
+      allowed_domains      = ["*.internal.example.com", "*.svc.cluster.local"]
+      key_usage            = ["DigitalSignature", "KeyAgreement", "KeyEncipherment"]
+      ext_key_usage        = ["ServerAuth", "ClientAuth"]
+    }
+  }
+}
