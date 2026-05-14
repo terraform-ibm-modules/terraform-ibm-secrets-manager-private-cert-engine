@@ -25,8 +25,8 @@ module "secrets_manager" {
 
 module "private_secret_engine" {
   source               = "../.."
-  secrets_manager_guid = "52d3ce44-b7c3-4f2b-a9ee-f08001098d5e"
-  region               = "us-south"
+  secrets_manager_guid = var.secrets_manager_guid
+  region               = var.region
   root_ca_name         = var.root_ca_name
   root_ca_common_name  = "*.cloud.ibm.com"
   root_ca_max_ttl      = "8760h"
@@ -36,36 +36,36 @@ module "private_secret_engine" {
   certificate_templates = {
     # Template for web servers
     web_server = {
-      name               = "web-server-template"
-      max_ttl            = "8760h"
-      allowed_domains    = ["example.com", "*.example.com"]
-      key_usage          = ["DigitalSignature", "KeyEncipherment"]
-      ext_key_usage      = ["ServerAuth"]
+      name            = "web-server-template"
+      max_ttl         = "8760h"
+      allowed_domains = ["example.com", "*.example.com"]
+      key_usage       = ["DigitalSignature", "KeyEncipherment"]
+      ext_key_usage   = ["ServerAuth"]
     }
 
     # Template for client certificates
     client_cert = {
-      name               = "client-cert-template"
-      max_ttl            = "4380h"
-      key_usage          = ["DigitalSignature", "KeyAgreement"]
-      ext_key_usage      = ["ClientAuth"]
+      name          = "client-cert-template"
+      max_ttl       = "4380h"
+      key_usage     = ["DigitalSignature", "KeyAgreement"]
+      ext_key_usage = ["ClientAuth"]
     }
 
     # Template for code signing
     code_signing = {
-      name               = "code-signing-template"
-      max_ttl            = "2190h"
-      key_usage          = ["DigitalSignature"]
-      ext_key_usage      = ["CodeSigning"]
+      name          = "code-signing-template"
+      max_ttl       = "2190h"
+      key_usage     = ["DigitalSignature"]
+      ext_key_usage = ["CodeSigning"]
     }
 
     # Template for internal services with wildcard support
     internal-services-template = {
-      name                 = "internal-services-template"
-      max_ttl              = "8760h"
-      allowed_domains      = ["*.internal.example.com", "*.svc.cluster.local"]
-      key_usage            = ["DigitalSignature", "KeyAgreement", "KeyEncipherment"]
-      ext_key_usage        = ["ServerAuth", "ClientAuth"]
+      name            = "internal-services-template"
+      max_ttl         = "8760h"
+      allowed_domains = ["*.internal.example.com", "*.svc.cluster.local"]
+      key_usage       = ["DigitalSignature", "KeyAgreement", "KeyEncipherment"]
+      ext_key_usage   = ["ServerAuth", "ClientAuth"]
     }
   }
 }

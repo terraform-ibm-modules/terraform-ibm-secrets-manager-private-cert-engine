@@ -26,18 +26,6 @@ variable "root_ca_name" {
   default     = "example-root-ca"
 }
 
-variable "root_ca_common_name" {
-  type        = string
-  description = "Common name for the Root CA"
-  default     = "*.cloud.ibm.com"
-}
-
-variable "root_ca_max_ttl" {
-  type        = string
-  description = "Maximum TTL for the Root CA"
-  default     = "87600h"
-}
-
 variable "intermediate_ca_name" {
   type        = string
   description = "Name of the Intermediate CA"
