@@ -100,6 +100,7 @@ resource "ibm_sm_private_certificate_configuration_template" "certificate_templa
   key_usage                          = each.value.key_usage
   require_cn                         = each.value.require_common_name
   server_flag                        = each.value.server_flag
+  serial_number                      = each.value.serial_number
   use_csr_common_name                = each.value.use_csr_cn
   use_csr_sans                       = each.value.use_csr_sans
   ou                                 = var.organizational_unit
