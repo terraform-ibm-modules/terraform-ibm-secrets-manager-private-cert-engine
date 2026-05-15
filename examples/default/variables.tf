@@ -22,12 +22,6 @@ variable "intermediate_ca_name" {
   default     = "intermediate-ca"
 }
 
-variable "certificate_template_name" {
-  type        = string
-  description = "Name of the Certificate Template to create for a private_cert secret engine"
-  default     = "my-template"
-}
-
 variable "resource_tags" {
   type        = list(string)
   description = "Optional list of tags to be added to created resources"

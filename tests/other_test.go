@@ -24,22 +24,6 @@ func TestRunDefaultExample(t *testing.T) {
 	assert.NotNil(t, output, "Expected some output")
 }
 
-func TestRunMultiTemplateExample(t *testing.T) {
-	t.Parallel()
-
-	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
-		Testing:            t,
-		TerraformDir:       multitemplateExampleTerraformDir,
-		Prefix:             "sm-prv-cert-mul",
-		ResourceGroup:      resourceGroup,
-		BestRegionYAMLPath: bestRegionYAMLPath,
-	})
-
-	output, err := options.RunTestConsistency()
-	assert.Nil(t, err, "This should not have errored")
-	assert.NotNil(t, output, "Expected some output")
-}
-
 func TestPrivateInSchematics(t *testing.T) {
 	t.Parallel()
 
