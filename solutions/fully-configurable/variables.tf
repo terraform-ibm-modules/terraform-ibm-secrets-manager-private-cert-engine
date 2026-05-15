@@ -456,7 +456,7 @@ variable "intermediate_ca_signing_method" {
 ##############################################################################
 
 variable "certificate_templates" {
-  type = map(object({
+  type = list(object({
     name                               = string
     max_ttl                            = optional(string, "8760h")
     allow_any_name                     = optional(bool, true)
@@ -484,12 +484,12 @@ variable "certificate_templates" {
     use_csr_cn                         = optional(bool, true)
     use_csr_sans                       = optional(bool, true)
   }))
-  description = "Map of certificate templates to create. Each key is a unique identifier, and the value is an object with template configuration. You can add up to 10 templates per certificate authority."
-  default = {
-    default = {
+  description = "List of certificate templates to create. Each template must have a unique name. You can add up to 10 templates per certificate authority."
+  default = [
+    {
       name = "default-cert-template"
     }
-  }
+  ]
 
   validation {
     condition     = length(var.certificate_templates) > 0 && length(var.certificate_templates) <= 10
@@ -497,57 +497,62 @@ variable "certificate_templates" {
   }
 
   validation {
+    condition     = length(var.certificate_templates) == length(distinct([for t in var.certificate_templates : t.name]))
+    error_message = "All certificate template names must be unique. Duplicate names found in the list."
+  }
+
+  validation {
     condition = alltrue([
-      for k, v in var.certificate_templates : length(v.allowed_domains) <= 100
+      for template in var.certificate_templates : length(template.allowed_domains) <= 100
     ])
     error_message = "length of allowed_domains must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for k, v in var.certificate_templates : length(v.allowed_other_sans) <= 100
+      for template in var.certificate_templates : length(template.allowed_other_sans) <= 100
     ])
     error_message = "length of allowed_other_sans must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for k, v in var.certificate_templates : v.allowed_secret_groups == null ? true : length(v.allowed_secret_groups) >= 2 && length(v.allowed_secret_groups) <= 1024
+      for template in var.certificate_templates : template.allowed_secret_groups == null ? true : length(template.allowed_secret_groups) >= 2 && length(template.allowed_secret_groups) <= 1024
     ])
     error_message = "length of allowed_secret_groups must be >= 2 and <= 1024 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for k, v in var.certificate_templates : length(v.allowed_uri_sans) <= 100
+      for template in var.certificate_templates : length(template.allowed_uri_sans) <= 100
     ])
     error_message = "length of allowed_uri_sans must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for k, v in var.certificate_templates : length(v.ext_key_usage) <= 100
+      for template in var.certificate_templates : length(template.ext_key_usage) <= 100
     ])
     error_message = "length of ext_key_usage must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for k, v in var.certificate_templates : length(v.ext_key_usage_oids) <= 100
+      for template in var.certificate_templates : length(template.ext_key_usage_oids) <= 100
     ])
     error_message = "length of ext_key_usage_oids must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for k, v in var.certificate_templates : length(v.key_usage) <= 100
+      for template in var.certificate_templates : length(template.key_usage) <= 100
     ])
     error_message = "length of key_usage must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for k, v in var.certificate_templates : v.serial_number == null ? true : length(v.serial_number) >= 32 && length(v.serial_number) <= 64
+      for template in var.certificate_templates : template.serial_number == null ? true : length(template.serial_number) >= 32 && length(template.serial_number) <= 64
     ])
     error_message = "length of serial_number must be >= 32 and <= 64 for all templates"
   }

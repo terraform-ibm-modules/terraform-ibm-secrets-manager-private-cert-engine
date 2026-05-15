@@ -5,15 +5,15 @@
 locals {
   prefix = var.prefix != null ? trimspace(var.prefix) != "" ? "${var.prefix}-" : "" : ""
 
-  # Transform certificate_templates to add prefix to each template name
-  certificate_templates_with_prefix = {
-    for key, template in var.certificate_templates : key => merge(
+  # Transform certificate_templates list to add prefix to each template name
+  certificate_templates_with_prefix = [
+    for template in var.certificate_templates : merge(
       template,
       {
         name = "${local.prefix}${template.name}"
       }
     )
-  }
+  ]
 }
 
 module "crn_parser" {

@@ -71,7 +71,8 @@ resource "ibm_sm_private_certificate_configuration_intermediate_ca" "intermediat
 }
 
 resource "ibm_sm_private_certificate_configuration_template" "certificate_template" {
-  for_each                           = var.certificate_templates
+  for_each = { for template in var.certificate_templates : template.name => template }
+
   instance_id                        = var.secrets_manager_guid
   region                             = var.region
   name                               = each.value.name

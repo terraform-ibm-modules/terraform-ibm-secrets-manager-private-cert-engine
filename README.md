@@ -54,15 +54,19 @@ These components make up the `private_cert` secrets type. The module also signs 
 
 ```hcl
 module "private_secret_engine" {
-  source                    = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
-  version                   = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
-  secrets_manager_guid      = "<secrets_manager_instance_id>"
-  region                    = "us-south"
-  root_ca_name              = "My Root CA"
-  root_ca_common_name       = "cloud.ibm.com"
-  root_ca_max_ttl           = "8760h"
-  intermediate_ca_name      = "My Intermediate CA"
-  certificate_template_name = "My Certificate Template"
+  source                = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
+  version               = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+  secrets_manager_guid  = "<secrets_manager_instance_id>"
+  region                = "us-south"
+  root_ca_name          = "My Root CA"
+  root_ca_common_name   = "cloud.ibm.com"
+  root_ca_max_ttl       = "8760h"
+  intermediate_ca_name  = "My Intermediate CA"
+  certificate_templates = [
+    {
+      name = "my-certificate-template"
+    }
+  ]
 }
 ```
 
@@ -99,7 +103,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_alt_names"></a> [alt\_names](#input\_alt\_names) | Alternate names for the certificate to be created | `list(string)` | `null` | no |
-| <a name="input_certificate_templates"></a> [certificate\_templates](#input\_certificate\_templates) | Map of certificate templates to create. Each key is a unique identifier, and the value is an object with template configuration. | <pre>map(object({<br/>    name                               = string<br/>    max_ttl                            = optional(string, "8760h")<br/>    allow_any_name                     = optional(bool, true)<br/>    allow_bare_domains                 = optional(bool, false)<br/>    allow_glob_domains                 = optional(bool, false)<br/>    allow_ip_sans                      = optional(bool, true)<br/>    allow_subdomains                   = optional(bool, false)<br/>    allowed_domains                    = optional(list(string), [])<br/>    allowed_domains_template           = optional(bool, false)<br/>    allowed_other_sans                 = optional(list(string), [])<br/>    allowed_secret_groups              = optional(string, null)<br/>    allowed_uri_sans                   = optional(list(string), ["example.com/test"])<br/>    basic_constraints_valid_for_non_ca = optional(bool, false)<br/>    client_flag                        = optional(bool, true)<br/>    code_signing_flag                  = optional(bool, false)<br/>    email_protection_flag              = optional(bool, false)<br/>    enforce_hostnames                  = optional(bool, true)<br/>    ext_key_usage                      = optional(list(string), [])<br/>    ext_key_usage_oids                 = optional(list(string), [])<br/>    key_usage                          = optional(list(string), ["DigitalSignature", "KeyAgreement", "KeyEncipherment"])<br/>    policy_identifiers                 = optional(list(string), [])<br/>    require_common_name                = optional(bool, true)<br/>    server_flag                        = optional(bool, true)<br/>    serial_number                      = optional(string, null)<br/>    use_csr_cn                         = optional(bool, true)<br/>    use_csr_sans                       = optional(bool, true)<br/>  }))</pre> | n/a | yes |
+| <a name="input_certificate_templates"></a> [certificate\_templates](#input\_certificate\_templates) | List of certificate templates to create. Each template must have a unique name. | <pre>list(object({<br/>    name                               = string<br/>    max_ttl                            = optional(string, "8760h")<br/>    allow_any_name                     = optional(bool, true)<br/>    allow_bare_domains                 = optional(bool, false)<br/>    allow_glob_domains                 = optional(bool, false)<br/>    allow_ip_sans                      = optional(bool, true)<br/>    allow_subdomains                   = optional(bool, false)<br/>    allowed_domains                    = optional(list(string), [])<br/>    allowed_domains_template           = optional(bool, false)<br/>    allowed_other_sans                 = optional(list(string), [])<br/>    allowed_secret_groups              = optional(string, null)<br/>    allowed_uri_sans                   = optional(list(string), ["example.com/test"])<br/>    basic_constraints_valid_for_non_ca = optional(bool, false)<br/>    client_flag                        = optional(bool, true)<br/>    code_signing_flag                  = optional(bool, false)<br/>    email_protection_flag              = optional(bool, false)<br/>    enforce_hostnames                  = optional(bool, true)<br/>    ext_key_usage                      = optional(list(string), [])<br/>    ext_key_usage_oids                 = optional(list(string), [])<br/>    key_usage                          = optional(list(string), ["DigitalSignature", "KeyAgreement", "KeyEncipherment"])<br/>    policy_identifiers                 = optional(list(string), [])<br/>    require_common_name                = optional(bool, true)<br/>    server_flag                        = optional(bool, true)<br/>    serial_number                      = optional(string, null)<br/>    use_csr_cn                         = optional(bool, true)<br/>    use_csr_sans                       = optional(bool, true)<br/>  }))</pre> | n/a | yes |
 | <a name="input_country"></a> [country](#input\_country) | Country (C) values to define in the subject field of the resulting certificate | `list(string)` | `null` | no |
 | <a name="input_endpoint_type"></a> [endpoint\_type](#input\_endpoint\_type) | The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 | <a name="input_exclude_cn_from_sans"></a> [exclude\_cn\_from\_sans](#input\_exclude\_cn\_from\_sans) | Set whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply | `bool` | `false` | no |

@@ -9,8 +9,8 @@ The `certificate_templates` input variable uses a complex object type. You need 
 The `certificate_templates` input variable allows you to define multiple certificate templates for issuing private certificates from the intermediate CA. Each template defines policies and constraints for certificate issuance.
 
 - Variable name: `certificate_templates`
-- Type: A map of objects, where the key is a unique identifier for the certificate template
-- Default value: A map with a single default template
+- Type: A list of objects, where each object represents a certificate template configuration
+- Default value: A list with a single default template
 
 ### Options for certificate_templates
 
@@ -69,8 +69,8 @@ The `certificate_templates` input variable allows you to define multiple certifi
 ### Points to note
 
 - You can define between 1 and 10 certificate templates per intermediate CA (IBM Cloud Secrets Manager limit).
-- Each template must have a unique `name` value.
-- The template key in the map must be unique.
+- Each template must have a unique `name` value within the list.
+- Template names are validated to ensure uniqueness.
 - Lists such as `allowed_domains`, `allowed_other_sans`, `allowed_uri_sans`, `ext_key_usage`, `ext_key_usage_oids`, and `key_usage` have a maximum of 100 items.
 
 ### Example Certificate Templates Configuration
@@ -78,18 +78,18 @@ The `certificate_templates` input variable allows you to define multiple certifi
 #### Single Default Template
 
 ```hcl
-certificate_templates = {
-  "default" = {
+certificate_templates = [
+  {
     name = "default-cert-template"
   }
-}
+]
 ```
 
 #### Web Server Template
 
 ```hcl
-certificate_templates = {
-  "web-server" = {
+certificate_templates = [
+  {
     name               = "web-server-template"
     max_ttl            = "8760h"
     allow_any_name     = false
@@ -101,22 +101,22 @@ certificate_templates = {
     key_usage          = ["DigitalSignature", "KeyEncipherment"]
     ext_key_usage      = ["ServerAuth"]
   }
-}
+]
 ```
 
 #### Multiple Templates for Different Use Cases
 
 ```hcl
-certificate_templates = {
-  "web-server" = {
+certificate_templates = [
+  {
     name            = "web-server-template"
     max_ttl         = "8760h"
     allowed_domains = ["*.example.com"]
     server_flag     = true
     client_flag     = false
     ext_key_usage   = ["ServerAuth"]
-  }
-  "client-cert" = {
+  },
+  {
     name               = "client-cert-template"
     max_ttl            = "4380h"
     allow_any_name     = true
@@ -125,8 +125,8 @@ certificate_templates = {
     client_flag        = true
     key_usage          = ["DigitalSignature", "KeyAgreement"]
     ext_key_usage      = ["ClientAuth"]
-  }
-  "internal-services" = {
+  },
+  {
     name                 = "internal-services-template"
     max_ttl              = "8760h"
     allow_any_name       = false
@@ -139,7 +139,7 @@ certificate_templates = {
     key_usage            = ["DigitalSignature", "KeyAgreement", "KeyEncipherment"]
     ext_key_usage        = ["ServerAuth", "ClientAuth"]
   }
-}
+]
 ```
 
 For more information, refer to the [IBM Cloud Secrets Manager - Certificate Templates documentation](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificate-templates) and the [IBM Cloud Terraform Provider documentation for Private Certificate Configuration Template](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/sm_private_certificate_configuration_template).

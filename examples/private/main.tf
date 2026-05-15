@@ -26,10 +26,10 @@ module "private_secret_engine" {
   root_ca_common_name  = "*.cloud.ibm.com"
   root_ca_max_ttl      = "8760h"
   intermediate_ca_name = var.intermediate_ca_name
-  certificate_templates = {
-    test_template = {
+  certificate_templates = [
+    {
       name = var.certificate_template_name
     }
-  }
+  ]
   endpoint_type = "private"
 }
