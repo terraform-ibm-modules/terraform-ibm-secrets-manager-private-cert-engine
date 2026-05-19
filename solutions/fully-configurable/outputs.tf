@@ -2,9 +2,14 @@
 # Outputs
 ##############################################################################
 
-output "template_name" {
-  description = "Name of the SSL certificate template used to define certificate settings and policies during issuance."
-  value       = module.secrets_manager_private_cert_engine.template_name
+output "template_ids" {
+  description = "Map of certificate template IDs from the private cert engine module"
+  value       = module.secrets_manager_private_cert_engine.template_ids
+}
+
+output "template_names" {
+  description = "Map of certificate template names used to define certificate settings and policies during issuance."
+  value       = module.secrets_manager_private_cert_engine.template_names
 }
 
 output "private_root_ca_id" {
@@ -25,11 +30,6 @@ output "private_intermediate_ca_id" {
 output "private_intermediate_ca_status" {
   description = "Intermediate CA status from the private cert engine module"
   value       = module.secrets_manager_private_cert_engine.intermediate_ca_status
-}
-
-output "private_template_id" {
-  description = "Certificate template ID from the private cert engine module"
-  value       = module.secrets_manager_private_cert_engine.template_id
 }
 
 output "secrets_manager_crn" {

@@ -12,4 +12,10 @@
 This example handles the following tasks:
 
 - Creates a Secrets Manager instance
-- Configures a `private_cert` secret type in the Secrets Manager instance
+- Configures a private certificate engine with -
+  - 1 Root CA
+  - 1 Intermediate CA
+  - 3 Certificate Templates with different configurations:
+    - **web-server-template**: For web server certificates with specific domain restrictions
+    - **code-signing-template**: For code signing certificates
+    - **internal-services-template**: For internal services with wildcard domain support

@@ -50,15 +50,19 @@ These components make up the `private_cert` secrets type. The module also signs 
 
 ```hcl
 module "private_secret_engine" {
-  source                    = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
-  version                   = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
-  secrets_manager_guid      = "<secrets_manager_instance_id>"
-  region                    = "us-south"
-  root_ca_name              = "My Root CA"
-  root_ca_common_name       = "cloud.ibm.com"
-  root_ca_max_ttl           = "8760h"
-  intermediate_ca_name      = "My Intermediate CA"
-  certificate_template_name = "My Certificate Template"
+  source                = "terraform-ibm-modules/secrets-manager-private-cert-engine/ibm"
+  version               = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+  secrets_manager_guid  = "<secrets_manager_instance_id>"
+  region                = "us-south"
+  root_ca_name          = "My Root CA"
+  root_ca_common_name   = "cloud.ibm.com"
+  root_ca_max_ttl       = "8760h"
+  intermediate_ca_name  = "My Intermediate CA"
+  certificate_templates = [
+    {
+      name = "my-certificate-template"
+    }
+  ]
 }
 ```
 
@@ -94,9 +98,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_allowed_domains_template"></a> [allowed\_domains\_template](#input\_allowed\_domains\_template) | Allow the domains that are supplied in the allowed\_domains field to contain access control list (ACL) templates | `bool` | `false` | no |
 | <a name="input_alt_names"></a> [alt\_names](#input\_alt\_names) | Alternate names for the certificate to be created | `list(string)` | `null` | no |
-| <a name="input_certificate_template_name"></a> [certificate\_template\_name](#input\_certificate\_template\_name) | Name of the Certificate Template to create for a private\_cert secret engine | `string` | n/a | yes |
+| <a name="input_certificate_templates"></a> [certificate\_templates](#input\_certificate\_templates) | List of certificate templates to create. Each template must have a unique name. | <pre>list(object({<br/>    name                               = string                                                                          # Name of the Certificate Template to create for a private_cert secret engine<br/>    max_ttl                            = optional(string, "8760h")                                                       # Max TTL for the certificate template<br/>    allow_any_name                     = optional(bool, true)                                                            # Allow clients to request a private certificate that matches any common name<br/>    allow_bare_domains                 = optional(bool, false)                                                           # Allow clients to request private certificates that match the value of the actual domains on the final certificate<br/>    allow_glob_domains                 = optional(bool, false)                                                           # Allow glob patterns in the names that are specified in the allowed_domains field<br/>    allow_ip_sans                      = optional(bool, true)                                                            # Allow clients to request a private certificate with IP Subject Alternative Names<br/>    allow_subdomains                   = optional(bool, false)                                                           # Allow clients to request private certificates with common names (CN) that are subdomains of the CNs that are allowed by the other certificate template options<br/>    allowed_domains                    = optional(list(string), [])                                                      # Domains to define for the certificate template<br/>    allowed_domains_template           = optional(bool, false)                                                           # Allow the domains that are supplied in the allowed_domains field to contain access control list (ACL) templates<br/>    allowed_other_sans                 = optional(list(string), [])                                                      # The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to allow for private certificates<br/>    allowed_secret_groups              = optional(string, null)                                                          # Allowed secrets group Ids as a comma-delimited list<br/>    allowed_uri_sans                   = optional(list(string), ["example.com/test"])                                    # Allowed URI SANs for the certificate template<br/>    basic_constraints_valid_for_non_ca = optional(bool, false)                                                           # Mark the Basic Constraints extension of an issued private certificate as valid for non-CA certificates<br/>    client_flag                        = optional(bool, true)                                                            # Set whether private certificates are flagged for client use<br/>    code_signing_flag                  = optional(bool, false)                                                           # Set whether private certificates are flagged for code signing use<br/>    email_protection_flag              = optional(bool, false)                                                           # Set whether private certificates are flagged for email protection use<br/>    enforce_hostnames                  = optional(bool, true)                                                            # Set whether to enforce only valid host names for common names, DNS Subject Alternative Names, and the host section of email addresses<br/>    ext_key_usage                      = optional(list(string), [])                                                      # List of allowed extended key usage constraint on private certificates<br/>    ext_key_usage_oids                 = optional(list(string), [])                                                      # List of extended key usage Object Identifiers (OIDs)<br/>    key_usage                          = optional(list(string), ["DigitalSignature", "KeyAgreement", "KeyEncipherment"]) # List of allowed key usage constraint to define for private certificates<br/>    policy_identifiers                 = optional(list(string), [])                                                      # List of policy Object Identifiers (OIDs)<br/>    require_common_name                = optional(bool, true)                                                            # Set whether to require a common name to create a private certificate<br/>    server_flag                        = optional(bool, true)                                                            # Set whether private certificates are flagged for server use<br/>    serial_number                      = optional(string, null)                                                          # Serial number to assign to the generated certificate<br/>    use_csr_cn                         = optional(bool, true)                                                            # Set whether to use the common name (CN) from a certificate signing request (CSR) instead of the CN that's included in the data of the certificate<br/>    use_csr_sans                       = optional(bool, true)                                                            # Set whether to use the Subject Alternative Names(SANs) from a certificate signing request (CSR) instead of the SANs that are included in the data of the certificate<br/>  }))</pre> | n/a | yes |
 | <a name="input_country"></a> [country](#input\_country) | Country (C) values to define in the subject field of the resulting certificate | `list(string)` | `null` | no |
 | <a name="input_endpoint_type"></a> [endpoint\_type](#input\_endpoint\_type) | The endpoint type to communicate with the provided secrets manager instance. Possible values are `public` or `private` | `string` | `"public"` | no |
 | <a name="input_exclude_cn_from_sans"></a> [exclude\_cn\_from\_sans](#input\_exclude\_cn\_from\_sans) | Set whether the common name is excluded from Subject Alternative Names (SANs). If set to true, the common name is not included in DNS or Email SANs if they apply | `bool` | `false` | no |
@@ -130,30 +133,6 @@ No modules.
 | <a name="input_root_ca_name"></a> [root\_ca\_name](#input\_root\_ca\_name) | Name of the Root CA to create for a private\_cert secret engine | `string` | n/a | yes |
 | <a name="input_secrets_manager_guid"></a> [secrets\_manager\_guid](#input\_secrets\_manager\_guid) | GUID of secrets manager instance to create the secret engine in | `string` | n/a | yes |
 | <a name="input_street_address"></a> [street\_address](#input\_street\_address) | Street Address values in the subject field of the resulting certificate | `list(string)` | `null` | no |
-| <a name="input_tempalate_key_usage"></a> [tempalate\_key\_usage](#input\_tempalate\_key\_usage) | List of allowed key usage constraint to define for private certificates | `list(string)` | <pre>[<br/>  "DigitalSignature",<br/>  "KeyAgreement",<br/>  "KeyEncipherment"<br/>]</pre> | no |
-| <a name="input_template_allow_any_name"></a> [template\_allow\_any\_name](#input\_template\_allow\_any\_name) | Allow clients to request a private certificate that matches any common name | `bool` | `true` | no |
-| <a name="input_template_allow_bare_domains"></a> [template\_allow\_bare\_domains](#input\_template\_allow\_bare\_domains) | Allow clients to request private certificates that match the value of the actual domains on the final certificate | `bool` | `false` | no |
-| <a name="input_template_allow_glob_domains"></a> [template\_allow\_glob\_domains](#input\_template\_allow\_glob\_domains) | Allow glob patterns in the names that are specified in the allowed\_domains field | `bool` | `false` | no |
-| <a name="input_template_allow_ip_sans"></a> [template\_allow\_ip\_sans](#input\_template\_allow\_ip\_sans) | Allow clients to request a private certificate with IP Subject Alternative Names | `bool` | `true` | no |
-| <a name="input_template_allow_subdomains"></a> [template\_allow\_subdomains](#input\_template\_allow\_subdomains) | Allow clients to request private certificates with common names (CN) that are subdomains of the CNs that are allowed by the other certificate template options | `bool` | `false` | no |
-| <a name="input_template_allowed_domains"></a> [template\_allowed\_domains](#input\_template\_allowed\_domains) | Domains to define for the certificate template | `list(string)` | `[]` | no |
-| <a name="input_template_allowed_other_sans"></a> [template\_allowed\_other\_sans](#input\_template\_allowed\_other\_sans) | The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to allow for private certificates | `list(string)` | `[]` | no |
-| <a name="input_template_allowed_secret_groups"></a> [template\_allowed\_secret\_groups](#input\_template\_allowed\_secret\_groups) | Allowed secrets group Ids as a comma-delimited list | `string` | `null` | no |
-| <a name="input_template_allowed_uri_sans"></a> [template\_allowed\_uri\_sans](#input\_template\_allowed\_uri\_sans) | Allowed URI SANs for the certificate template | `list(string)` | <pre>[<br/>  "example.com/test"<br/>]</pre> | no |
-| <a name="input_template_basic_constraints_valid_for_non_ca"></a> [template\_basic\_constraints\_valid\_for\_non\_ca](#input\_template\_basic\_constraints\_valid\_for\_non\_ca) | Mark the Basic Constraints extension of an issued private certificate as valid for non-CA certificates | `bool` | `false` | no |
-| <a name="input_template_client_flag"></a> [template\_client\_flag](#input\_template\_client\_flag) | Set whether private certificates are flagged for client use | `bool` | `true` | no |
-| <a name="input_template_code_signing_flag"></a> [template\_code\_signing\_flag](#input\_template\_code\_signing\_flag) | Set whether private certificates are flagged for code signing use | `bool` | `false` | no |
-| <a name="input_template_email_protection_flag"></a> [template\_email\_protection\_flag](#input\_template\_email\_protection\_flag) | Set whether private certificates are flagged for email protection use | `bool` | `false` | no |
-| <a name="input_template_enforce_hostnames"></a> [template\_enforce\_hostnames](#input\_template\_enforce\_hostnames) | Set whether to enforce only valid host names for common names, DNS Subject Alternative Names, and the host section of email addresses | `bool` | `true` | no |
-| <a name="input_template_ext_key_usage"></a> [template\_ext\_key\_usage](#input\_template\_ext\_key\_usage) | List of allowed extended key usage constraint on private certificates | `list(string)` | `[]` | no |
-| <a name="input_template_ext_key_usage_oids"></a> [template\_ext\_key\_usage\_oids](#input\_template\_ext\_key\_usage\_oids) | List of extended key usage Object Identifiers (OIDs) | `list(string)` | `[]` | no |
-| <a name="input_template_max_ttl"></a> [template\_max\_ttl](#input\_template\_max\_ttl) | Max TTL for the certificate template | `string` | `"8760h"` | no |
-| <a name="input_template_policy_identifiers"></a> [template\_policy\_identifiers](#input\_template\_policy\_identifiers) | List of policy Object Identifiers (OIDs) | `list(string)` | `[]` | no |
-| <a name="input_template_require_common_name"></a> [template\_require\_common\_name](#input\_template\_require\_common\_name) | Set whether to require a common name to create a private certificate | `bool` | `true` | no |
-| <a name="input_template_serial_number"></a> [template\_serial\_number](#input\_template\_serial\_number) | Serial number to assign to the generated certificate | `string` | `null` | no |
-| <a name="input_template_server_flag"></a> [template\_server\_flag](#input\_template\_server\_flag) | Set whether private certificates are flagged for server use | `bool` | `true` | no |
-| <a name="input_template_use_csr_cn"></a> [template\_use\_csr\_cn](#input\_template\_use\_csr\_cn) | Set whether to use the common name (CN) from a certificate signing request (CSR) instead of the CN that's included in the data of the certificate | `bool` | `true` | no |
-| <a name="input_template_use_csr_sans"></a> [template\_use\_csr\_sans](#input\_template\_use\_csr\_sans) | Set whether to use the Subject Alternative Names(SANs) from a certificate signing request (CSR) instead of the SANs that are included in the data of the certificate | `bool` | `true` | no |
 | <a name="input_ttl"></a> [ttl](#input\_ttl) | Time-to-live (TTL) to assign to a private certificate | `string` | `null` | no |
 | <a name="input_uri_sans"></a> [uri\_sans](#input\_uri\_sans) | URI Subject Alternative Names (SANs) to define for the CA certificate, in a comma-delimited list | `string` | `null` | no |
 
@@ -165,8 +144,8 @@ No modules.
 | <a name="output_intermediate_ca_status"></a> [intermediate\_ca\_status](#output\_intermediate\_ca\_status) | Intermediate CA status from the private cert engine module |
 | <a name="output_root_ca_id"></a> [root\_ca\_id](#output\_root\_ca\_id) | Root CA ID from the private cert engine module |
 | <a name="output_root_ca_status"></a> [root\_ca\_status](#output\_root\_ca\_status) | Root CA status from the private cert engine module |
-| <a name="output_template_id"></a> [template\_id](#output\_template\_id) | Certificate template ID from the private cert engine module |
-| <a name="output_template_name"></a> [template\_name](#output\_template\_name) | Name of the SSL certificate template used to define certificate settings and policies during issuance. |
+| <a name="output_template_ids"></a> [template\_ids](#output\_template\_ids) | Map of certificate template IDs from the private cert engine module |
+| <a name="output_template_names"></a> [template\_names](#output\_template\_names) | Map of certificate template names used to define certificate settings and policies during issuance. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->

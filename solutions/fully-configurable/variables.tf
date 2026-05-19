@@ -455,255 +455,107 @@ variable "intermediate_ca_signing_method" {
 # Template
 ##############################################################################
 
-variable "certificate_template_name" {
-  type        = string
-  description = "Name of the Certificate Template to create for a private_cert secret engine. If a prefix input variable is specified, it is added to the value in the `<prefix>-<certificate_template_name>` format."
-  default     = "default-cert-template"
-}
-
-variable "template_max_ttl" {
-  type        = string
-  description = "Max TTL for the certificate template"
-  default     = "8760h"
-}
-
-variable "template_allow_any_name" {
-  type        = bool
-  description = "Allow clients to request a private certificate that matches any common name"
-  default     = true
-}
-
-variable "template_allow_bare_domains" {
-  type        = bool
-  description = "Allow clients to request private certificates that match the value of the actual domains on the final certificate"
-  default     = false
-}
-
-variable "template_allow_glob_domains" {
-  type        = bool
-  description = "Allow glob patterns in the names that are specified in the allowed_domains field"
-  default     = false
-}
-
-variable "template_allow_ip_sans" {
-  type        = bool
-  description = "Allow clients to request a private certificate with IP Subject Alternative Names"
-  default     = true
-}
-
-variable "template_allow_subdomains" {
-  type        = bool
-  description = "Allow clients to request private certificates with common names (CN) that are subdomains of the CNs that are allowed by the other certificate template options"
-  default     = false
-}
-
-variable "template_allowed_domains" {
-  type        = list(string)
-  description = "Domains to define for the certificate template"
-  default     = []
+variable "certificate_templates" {
+  type = list(object({
+    name                               = string
+    max_ttl                            = optional(string, "8760h")
+    allow_any_name                     = optional(bool, true)
+    allow_bare_domains                 = optional(bool, false)
+    allow_glob_domains                 = optional(bool, false)
+    allow_ip_sans                      = optional(bool, true)
+    allow_subdomains                   = optional(bool, false)
+    allowed_domains                    = optional(list(string), [])
+    allowed_domains_template           = optional(bool, false)
+    allowed_other_sans                 = optional(list(string), [])
+    allowed_secret_groups              = optional(string, null)
+    allowed_uri_sans                   = optional(list(string), ["example.com/test"])
+    basic_constraints_valid_for_non_ca = optional(bool, false)
+    client_flag                        = optional(bool, true)
+    code_signing_flag                  = optional(bool, false)
+    email_protection_flag              = optional(bool, false)
+    enforce_hostnames                  = optional(bool, true)
+    ext_key_usage                      = optional(list(string), [])
+    ext_key_usage_oids                 = optional(list(string), [])
+    key_usage                          = optional(list(string), ["DigitalSignature", "KeyAgreement", "KeyEncipherment"])
+    policy_identifiers                 = optional(list(string), [])
+    require_common_name                = optional(bool, true)
+    server_flag                        = optional(bool, true)
+    serial_number                      = optional(string, null)
+    use_csr_cn                         = optional(bool, true)
+    use_csr_sans                       = optional(bool, true)
+  }))
+  description = "List of certificate templates to create. Each template must have a unique name. You can add up to 10 templates per certificate authority."
+  default = [
+    {
+      name = "default-cert-template"
+    }
+  ]
 
   validation {
-    condition     = length(var.template_allowed_domains) <= 100
-    error_message = "length of template_allowed_domains must be <= 100"
+    condition     = length(var.certificate_templates) > 0 && length(var.certificate_templates) <= 10
+    error_message = "Number of certificate templates must be between 1 and 10. You can add up to 10 templates per certificate authority."
+  }
+
+  validation {
+    condition     = length(var.certificate_templates) == length(distinct([for t in var.certificate_templates : t.name]))
+    error_message = "All certificate template names must be unique. Duplicate names found in the list."
   }
 
   validation {
     condition = alltrue([
-      for subdomain in var.template_allowed_domains : can(regex("(.*?)", subdomain))
+      for template in var.certificate_templates : length(template.allowed_domains) <= 100
     ])
-    error_message = "list items must match regular expression /(.*?)/"
-  }
-}
-
-variable "allowed_domains_template" {
-  type        = bool
-  description = "Allow the domains that are supplied in the allowed_domains field to contain access control list (ACL) templates"
-  default     = false
-}
-
-variable "template_allowed_other_sans" {
-  type        = list(string)
-  description = "The custom Object Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to allow for private certificates"
-  default     = []
-
-  validation {
-    condition     = length(var.template_allowed_other_sans) <= 100
-    error_message = "length of template_allowed_other_sans must be <= 100"
+    error_message = "length of allowed_domains must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for template_allowed_other_san in var.template_allowed_other_sans : can(regex("^(.*?)", template_allowed_other_san))
+      for template in var.certificate_templates : length(template.allowed_other_sans) <= 100
     ])
-    error_message = "list items must match regular expression /^(.*?)/"
-  }
-}
-
-variable "template_allowed_secret_groups" {
-  type        = string
-  description = "Allowed secrets group Ids as a comma-delimited list"
-  default     = null
-
-  validation {
-    condition     = var.template_allowed_secret_groups == null ? true : length(var.template_allowed_secret_groups) >= 2 && length(var.template_allowed_secret_groups) <= 1024
-    error_message = "length of template_allowed_secret_groups must be >= 2 and <= 1024"
-  }
-
-  validation {
-    condition = var.template_allowed_secret_groups == null ? true : alltrue([
-      for secret_group in var.template_allowed_secret_groups : can(regex("^(.*?)", secret_group))
-    ])
-    error_message = "list items must match regular expression /^(.*?)/"
-  }
-}
-
-variable "template_allowed_uri_sans" {
-  type        = list(string)
-  description = "Allowed URI SANs for the certificate template"
-  default     = ["example.com/test"]
-
-  validation {
-    condition     = var.template_allowed_uri_sans == null ? true : length(var.template_allowed_uri_sans) <= 100
-    error_message = "length of template_allowed_uri_sans must be <= 100"
-  }
-
-  validation {
-    condition = var.template_allowed_uri_sans == null ? true : alltrue([
-      for template_allowed_uri_san in var.template_allowed_uri_sans : can(regex("^(.*?)", template_allowed_uri_san))
-    ])
-    error_message = "list items must match regular expression /^(.*?)/"
-  }
-}
-
-variable "template_basic_constraints_valid_for_non_ca" {
-  type        = bool
-  description = "Mark the Basic Constraints extension of an issued private certificate as valid for non-CA certificates"
-  default     = false
-}
-
-variable "template_client_flag" {
-  type        = bool
-  description = "Set whether private certificates are flagged for client use"
-  default     = true
-}
-
-variable "template_code_signing_flag" {
-  type        = bool
-  description = "Set whether private certificates are flagged for code signing use"
-  default     = false
-}
-
-variable "template_email_protection_flag" {
-  type        = bool
-  description = "Set whether private certificates are flagged for email protection use"
-  default     = false
-}
-
-variable "template_enforce_hostnames" {
-  type        = bool
-  description = "Set whether to enforce only valid host names for common names, DNS Subject Alternative Names, and the host section of email addresses"
-  default     = true
-}
-
-variable "template_ext_key_usage" {
-  type        = list(string)
-  description = "List of allowed extended key usage constraint on private certificates"
-  default     = []
-
-  validation {
-    condition     = length(var.template_ext_key_usage) <= 100
-    error_message = "length of template_ext_key_usage must be <= 100"
+    error_message = "length of allowed_other_sans must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for ext_key_usage in var.template_ext_key_usage : can(regex("^[a-zA-Z]+$", ext_key_usage))
+      for template in var.certificate_templates : template.allowed_secret_groups == null ? true : length(template.allowed_secret_groups) >= 2 && length(template.allowed_secret_groups) <= 1024
     ])
-    error_message = "list items must match regular expression /^[a-zA-Z]+$/"
-  }
-
-}
-
-variable "template_ext_key_usage_oids" {
-  type        = list(string)
-  description = "List of extended key usage Object Identifiers (OIDs)"
-  default     = []
-
-  validation {
-    condition     = length(var.template_ext_key_usage_oids) <= 100
-    error_message = "length of template_ext_key_usage_oids must be <= 100"
+    error_message = "length of allowed_secret_groups must be >= 2 and <= 1024 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for ext_key_usage_oid in var.template_ext_key_usage_oids : can(regex("^(.*?)", ext_key_usage_oid))
+      for template in var.certificate_templates : length(template.allowed_uri_sans) <= 100
     ])
-    error_message = "list items must match regular expression /^(.*?)/"
-  }
-}
-
-variable "tempalate_key_usage" {
-  type        = list(string)
-  description = "List of allowed key usage constraint to define for private certificates"
-  default     = ["DigitalSignature", "KeyAgreement", "KeyEncipherment"]
-
-  validation {
-    condition     = length(var.tempalate_key_usage) <= 100
-    error_message = "length of tempalate_key_usage must be <= 100"
+    error_message = "length of allowed_uri_sans must be <= 100 for all templates"
   }
 
   validation {
     condition = alltrue([
-      for key_usage in var.tempalate_key_usage : can(regex("^[a-zA-Z]+$", key_usage))
+      for template in var.certificate_templates : length(template.ext_key_usage) <= 100
     ])
-    error_message = "list items must match regular expression /^[a-zA-Z]+$/"
-  }
-}
-
-variable "template_policy_identifiers" {
-  type        = list(string)
-  description = "List of policy Object Identifiers (OIDs)"
-  default     = []
-}
-
-variable "template_require_common_name" {
-  type        = bool
-  description = "Set whether to require a common name to create a private certificate"
-  default     = true
-}
-
-variable "template_server_flag" {
-  type        = bool
-  description = "Set whether private certificates are flagged for server use"
-  default     = true
-}
-
-variable "template_serial_number" {
-  type        = string
-  description = "Serial number to assign to the generated certificate"
-  default     = null
-
-  validation {
-    condition     = var.template_serial_number == null ? true : length(var.template_serial_number) >= 32 && length(var.template_serial_number) <= 64
-    error_message = "length of template_serial_number >= 32 and <= 64"
+    error_message = "length of ext_key_usage must be <= 100 for all templates"
   }
 
   validation {
-    condition     = var.template_serial_number == null ? true : can(regex("[^a-fA-F0-9]", var.template_serial_number)) #verify regex
-    error_message = "template_serial_number must match regular expression /[^a-fA-F0-9]/"
+    condition = alltrue([
+      for template in var.certificate_templates : length(template.ext_key_usage_oids) <= 100
+    ])
+    error_message = "length of ext_key_usage_oids must be <= 100 for all templates"
   }
-}
 
-variable "template_use_csr_cn" {
-  type        = bool
-  description = "Set whether to use the common name (CN) from a certificate signing request (CSR) instead of the CN that's included in the data of the certificate"
-  default     = true
-}
+  validation {
+    condition = alltrue([
+      for template in var.certificate_templates : length(template.key_usage) <= 100
+    ])
+    error_message = "length of key_usage must be <= 100 for all templates"
+  }
 
-variable "template_use_csr_sans" {
-  type        = bool
-  description = "Set whether to use the Subject Alternative Names(SANs) from a certificate signing request (CSR) instead of the SANs that are included in the data of the certificate"
-  default     = true
+  validation {
+    condition = alltrue([
+      for template in var.certificate_templates : template.serial_number == null ? true : length(template.serial_number) >= 32 && length(template.serial_number) <= 64
+    ])
+    error_message = "length of serial_number must be >= 32 and <= 64 for all templates"
+  }
 }
 
 ##############################################################################

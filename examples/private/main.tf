@@ -19,13 +19,13 @@ module "secrets_manager" {
 }
 
 module "private_secret_engine" {
-  source                    = "../.."
-  secrets_manager_guid      = module.secrets_manager.secrets_manager_guid
-  region                    = var.region
-  root_ca_name              = var.root_ca_name
-  root_ca_common_name       = "*.cloud.ibm.com"
-  root_ca_max_ttl           = "8760h"
-  intermediate_ca_name      = var.intermediate_ca_name
-  certificate_template_name = var.certificate_template_name
-  endpoint_type             = "private"
+  source                = "../.."
+  secrets_manager_guid  = module.secrets_manager.secrets_manager_guid
+  region                = var.region
+  root_ca_name          = var.root_ca_name
+  root_ca_common_name   = "*.cloud.ibm.com"
+  root_ca_max_ttl       = "8760h"
+  intermediate_ca_name  = var.intermediate_ca_name
+  certificate_templates = var.certificate_templates
+  endpoint_type         = "private"
 }
